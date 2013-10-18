@@ -1,0 +1,1015 @@
+<html>
+	<head>
+		<!-- Link a bootsrap -->
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">    
+
+		<!-- CSS del documento -->
+		<style>
+			@media screen and (max-width: 1050px){
+				.primFil
+				{
+					position:relative; 
+					z-index:0;
+				}
+			}
+			@media screen and (min-width: 1051px){
+				.primFil
+				{
+					position:fixed; 
+					z-index:1000;
+				}
+			}
+			body
+			{
+				margin:0;
+				padding:0;
+			}
+			pre
+			{
+				background-color: #7cff9c;
+				border:none;
+			}
+			.fila
+			{
+				width: 100%;
+				height: 100px;
+			}
+			.celda
+			{
+				border: 1px solid black;
+				min-width: 423px;
+				width: 40%;
+				float:left;
+				height: 300px;
+				overflow: auto;
+				background-color: #7cff9c;
+			}
+			.celdaIz
+			{
+				clear: both;
+				width: 15%;
+				text-align: left;
+				min-width: 213px;
+				background-color: #66daff;
+				overflow: hidden;
+			}
+			.celda span
+			{
+				position: absolute;
+				font-size: 30px;
+			}
+			.celdaIz span
+			{
+				position: absolute;
+				margin-top: 30px;
+				margin-left: 35px;
+			}
+			.celdaDe
+			{
+				background-color: #ffcf79;
+				overflow: auto;
+				padding-left: 1%;
+			}
+			.primera
+			{
+				height: 100px;
+			}
+			.primera span
+			{
+				position: absolute;
+				margin-top: 30px;
+			}
+			.CodRes
+			{
+				text-align: center;
+			}
+			.CodRes span
+			{
+				margin-left: -50px;
+			}
+			.empty
+			{
+				height:100px;
+			}
+			.imagen
+			{
+				float:left;
+				position: fixed;
+				right: 10px;
+				cursor:pointer;
+			}
+			.im
+			{
+				width: 40px;
+				height: 40px;
+			}
+
+			#valor,#valorSwitch,#num,#valFibo,#valFrase,#valBusc,#valCond
+			{
+				height: 30px;
+				margin-top: 4%;
+			}
+			#valFrase
+			{
+				width: 350px;
+			}
+			#valBusc
+			{
+				width: 30px;
+			}
+			.inputEx
+			{
+				width: 100px;
+				margin-right: 10px;
+			}
+
+			#numRes, #numResSwitch,#busc,#cond
+			{
+				font-size: 18px;
+			}
+			
+			#cond
+			{
+				width: auto;
+				height: auto;
+			}
+			
+			#fibo
+			{
+				font-size: 18px;
+			}
+			#info1,#info3,#info4,#info5,#info6
+			{
+				font-size: 15px;
+				color:#49afcd;
+			}
+			#info2
+			{
+				font-size: 15px;
+				color:#49afcd;
+				position: relative;
+			}
+			.but
+			{
+				margin-top: 2%;
+			}
+		</style>
+		<!-- Funcion general para la flecha arriba -->
+		<script type="text/javascript">
+			function up()
+			{
+				window.scrollTo(0,0);
+			}
+		</script>
+	</head>
+	<body>
+
+<!-- -----------------------------------------------------CABECERA ---------------------------------------------------->
+		<div>
+			<div class="fila primFil" >
+				<div class="celda celdaIz primera">
+					<span>
+						Ejemplo
+					</span>
+				</div>
+				<div class="celda primera CodRes">
+					<span>
+					Codigo
+					</span>
+				</div>
+				<div class="celda celdaDe primera CodRes">
+					<span>
+						Resultado
+					</span>
+				</div>
+			</div>
+			<div class="empty">
+			</div>
+
+<!-- -----------------------------------------------------VARIABLES ---------------------------------------------------->
+
+			<div class="fila segFil">
+				<div class="celda celdaIz">
+					<span>
+						Variables
+					</span>
+				</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;script&gt;
+      //Declaracion y uso de variables
+      var a = 5;
+      document.write("a = "+a);
+      var nombre="carles";
+      document.write("nombre = "+nombre);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					</br>
+					<script type="text/javascript">
+						//Declaracion y uso de variables
+						var a = 5;
+						document.write("a = "+a+"</br>");
+						var nombre="carles";
+						document.write("nombre = "+nombre);
+					</script>
+				</div>
+				<div class="imagen" id="up" onclick="up()">
+					<img class="im" src="http://www.antisocialmediallc.com/wp-content/uploads/2012/02/Up-Arrow-Icon.jpg"alt="Ir arriba"/>
+				</div>
+			</div>
+
+<!-- -----------------------------------------------------DATA TYPES -------------------------------------------------->
+			
+			<div class="fila">
+				<div class="celda celdaIz">
+					<span>
+						Data Types
+					</span>
+				</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;script&gt;
+      //Ya hemos visto los numeros naturales, 
+      //tambien tenemos decimales:
+      var dec = 3.4;
+      document.write("dec= "+dec);
+
+      //los strings(cadenas de texto):
+      var nombre = "carles";
+      document.write("nombre = "+nombre);
+
+      //los arrays, que se pueden declarar de dos maneras:
+      var cervezas = new Array();
+      cervezas[0] = "Franziskaner";
+      cervezas[1] = "Mikkeller";
+      var paises = new Array("Alemania","Dinamarca");
+
+      //escribimos los valores del array con un bucle,
+      //que veremos mas adelante: 
+      for (var i = cervezas.length - 1; i >= 0; i--) {
+	    if(i!=cervezas.length-1)
+	    	document.write(",");
+	    document.write(cervezas[i]+","+paises[i]);
+      };
+
+      //booleanos:
+      var aprobado = true;
+      var repetidor = false;
+      document.write("aprobado = "+aprobado);
+      document.write("repetidor = "+repetidor);
+
+      //Los objetos los vemos en el siguiente punto.
+
+      //A cualquier variable se le puede cambiar 
+      //el tipo simplemente reasignando.
+      nombre = 5+6;
+      document.write("nombre = "+nombre);
+      cervezas = "pepa";
+      document.write("cervezas = "+cervezas);
+
+      //a cualquier variable se le puede asignar el valor 
+      //null, y si no ha sido declarada es undefined:
+      var nota;
+      document.write("nota = "+ nota);
+      nota = null;
+      document.write("nota = "+ nota);
+
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					<script>
+						//Ya hemos visto los numeros naturales, 
+						//tambien tenemos decimales:
+						var dec = 3.4;
+						document.write("dec= "+dec+"</br>");
+
+						//los strings(cadenas de texto):
+						var nombre = "carles";
+						document.write("nombre = "+nombre+"</br>");
+
+						//los arrays, que se pueden declarar de dos maneras:
+						var cervezas = new Array();
+						cervezas[0] = "Franziskaner";
+						cervezas[1] = "Mikkeller";
+						var paises = new Array("Alemania","Dinamarca");
+
+						//escribimos los valores del array con un bucle,
+						//que veremos mas adelante: 
+						for (var i = cervezas.length - 1; i >= 0; i--) {
+							if(i!=cervezas.length-1)
+								document.write(",");
+							document.write(cervezas[i]+","+paises[i]);
+							if(i==0)
+								document.write("</br>");
+						};
+
+						//booleanos:
+						var aprobado = true;
+						var repetidor = false;
+						document.write("aprobado = "+aprobado+"</br>");
+						document.write("repetidor = "+repetidor+"</br>");
+
+						//Los objetos los vemos en el siguiente punto.
+						
+						//A cualquier variable se le puede cambiar 
+						//el tipo simplemente reasignando.
+						nombre = 5+6;
+						document.write("nombre = "+nombre+"</br>");
+						cervezas = "pepa";
+						document.write("cervezas = "+cervezas+"</br>");
+
+						//a cualquier variable se le puede asignar el valor null,
+						//Y si no ha sido declarada es undefined:
+						var nota;
+						document.write("nota = "+ nota + "</br>");
+						nota = null;
+						document.write("nota = "+ nota + "</br>");
+					</script>
+				</div>
+			</div>
+
+<!-- -----------------------------------------------------OBJECTS ---------------------------------------------------->
+
+			<div class="fila">
+				<div class="celda celdaIz">
+					<span>
+						Objects
+					</span>
+				</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;script&gt;
+      //Los objetos son un poco diferentes de los otros 
+      //lenguajes, se pueden declarar en el mismo codigo 
+      //i asignarle atributos i metodos:
+      var ordenador=
+      {
+      	marca: "Apple",
+      	modelo: "Macbook Pro 13",
+      	anos: 1,
+      	asegurado: true,
+      	enciende: function()
+      	{
+      		return "encendiendo...3...2...1";
+      	},
+      	envejece: function()
+      	{
+      		this.anos++;
+      	}
+      }
+      document.write(ordenador.marca+": "+ordenador.modelo+
+        ", "+ordenador.anos+" anos");
+      document.write(ordenador.enciende()+"");
+      ordenador.envejece();
+      document.write(ordenador.marca+": "+ordenador.modelo+
+        ", "+ordenador.anos+" anos");
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					<script type="text/javascript">
+						//Los objetos son un poco diferente de los visto en otros lenguajes,
+						//se pueden declarar en el mismo codigo i asignarle atributos i metodos:
+						var ordenador=
+						{
+							marca: "Apple",
+							modelo: "Macbook Pro 13",
+							anos: 1,
+							asegurado: true,
+							enciende: function()
+							{
+								return "encendiendo...3...2...1";
+							},
+							envejece: function()
+							{
+								this.anos++;
+							}
+						}
+						document.write(ordenador.marca+": "+ordenador.modelo+", "+ordenador.anos+" anos</br>");
+						document.write(ordenador.enciende()+"</br>");
+						ordenador.envejece();
+						document.write(ordenador.marca+": "+ordenador.modelo+", "+ordenador.anos+" anos</br>");
+					</script>
+				</div>
+			</div>
+
+<!-- -----------------------------------------------------Functions ---------------------------------------------------->
+
+			<div class="fila">
+				<div class="celda celdaIz">
+					<span>
+						Functions
+					</span>
+				</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;script&gt;
+      //Las funciones y acciones en JS son como 
+        //en muchos otros lenguajes.
+      //Funcion que devuelve el factorial de 
+        //un numero recursivamente.
+      //De paso hacemos una deteccione de 
+        //errores con el bloque try/catch.
+      function factorial(i)
+      {
+      	try
+      	{
+      	  if(i==0 || i==undefined || isNaN(i))
+      	  return "Tiene que ser un numero!";
+     	  if(i==1)
+      	    return i;
+      	  else
+      	    return i*factorial(i-1);
+      	}
+      	catch(err)
+      	{
+      	  return	err.message;
+      	}
+      }
+      //funcion que se llama al clickar el boton:
+      function fact()
+      {
+      	document.getElementById("num").value = 
+      	  factorial(document.getElementById("num").value);
+      }
+
+      //Tambien podemos hacer una accion en JS:
+      function escribe()
+      {
+      	document.write("Pues esto de las funciones
+      	  en Js funciona");
+      }
+      escribe();
+    &lt;/script&gt;
+    &lt;input id="num" type="text"&gt;&lt;/input&gt;
+	&lt;button class="btn btn-info" onclick="fact()"&gt;Factorial!&lt;/button&gt;				
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					<script type="text/javascript">
+						//Las funciones y acciones en JS son como en muchos otros lenguajes.
+						//Funcion que devuelve el factorial de un numero recursivamente.
+						//De paso hacemos una deteccione de errores con el bloque try/catch.
+						function factorial(i)
+						{
+							try
+							{
+								if(i==0 || i==undefined || isNaN(i))
+									return "Tiene que ser un numero!";
+								if(i==1)
+									return i;
+								else
+									return i*factorial(i-1);
+							}
+							catch(err)
+							{
+								return	err.message;
+							}
+						}
+						//funcion que se llama al clickar el boton:
+						function fact()
+						{
+							document.getElementById("num").value = factorial(document.getElementById("num").value);
+						}
+
+						//Tambien podemos hacer una accion en JS:
+						function escribe()
+						{
+							document.write("Pues esto de las funciones en Js funciona</br>");
+						}
+						escribe();
+					</script>
+					<span id="info1">Escribe un numero y clicka al bot&oacute;n para calcular el factorial</span>
+					<input id="num" type="text"></input>
+					<button class="btn btn-info but"  onclick="fact()">Factorial!</button>
+				</div>
+			</div>
+
+<!-- -----------------------------------------------------OPERATORS ---------------------------------------------------->
+
+			<div class="fila">
+				<div class="celda celdaIz">
+					<span>
+						Operators
+					</span>
+				</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;script&gt;
+      //Los operadores son los comunes en muchos lenguajes
+      //de programacion. No obstante hay que ir con cuidado con el 
+      //orden de prioridad de los simbolos.
+      var num1 = 3;
+      var num2 =5.6;
+      document.write("num1+num2 = "+(num1+num2));
+
+      //hay que tener en cuenta que no es lo mismo que,
+      //el simbolo + es la suma entre numeros y la 
+      //concatenacion entre strings( o entre un string y
+      // un numero):
+      document.write("num1+num2 = "+num1+num2");
+
+      document.write("num1-num2 = "+(num1-num2));
+      document.write("num1*9 = "+(num1*9));
+      document.write("57/num1 = "+57/num1");
+      document.write("56%num1 = "+56%num1")
+
+      //Tambien hay una version corta de los operadores
+      num3=10;
+      document.write("res = "+num3);
+      num3+=num2;
+      document.write("res = "+num3);
+      num3-=4.8;
+      document.write("res = "+num3);
+      num3*=10;
+      document.write("res = "+num3);
+      num3/=5;
+      document.write("res = "+num3);
+      num3%=2;
+      document.write("res = "+num3);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					<script type="text/javascript">
+						//Los operadores son los comunes en muchos lenguajes
+						//de programacion. No obstante hay que ir con cuidado con el 
+						//orden de prioridad de los simbolos.
+						var num1 = 3;
+						var num2 =5.6;
+						document.write("num1+num2 = "+(num1+num2)+"</br>");
+						
+						//hay que tener en cuenta que no es lo mismo que,
+						//el simbolo + es la suma entre numeros y la 
+						//concatenacion entre strings( o entre un string y
+						// un numero):
+						document.write("num1+num2 = "+num1+num2+"</br>");
+
+						document.write("num1-num2 = "+(num1-num2)+"</br>");
+						document.write("num1*9 = "+(num1*9)+"</br>");
+						document.write("57/num1 = "+57/num1+"</br>");
+						document.write("56%num1 = "+56%num1+"</br>")
+
+						//Tambien hay una version corta de los operadores
+						num3=10;
+						document.write("res = "+num3+"</br>");
+						num3+=num2;
+						document.write("res = "+num3+"</br>");
+						num3-=4.8;
+						document.write("res = "+num3+"</br>");
+						num3*=10;
+						document.write("res = "+num3+"</br>");
+						num3/=5;
+						document.write("res = "+num3+"</br>");
+						num3%=2;
+						document.write("res = "+num3+"</br>");
+					</script>
+				</div>
+			</div>
+
+<!-- --------------------------------------------------- COMPARISIONS -------------------------------------------------->
+
+			<div class="fila">
+				<div class="celda celdaIz">
+					<span>
+						Comparisions
+					</span>
+			</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;script type="text/javascript"&gt;
+      // Tenemos los operadores de comparacion:
+      document.write("3==5 ? "+(3==5)+", 4==4 ? "+(4==4)+"&lt;/br&gt;");
+      document.write("3==='3' ? "+(3==='3')+", 3===3.0 ? "+(3===3.0)+"&lt;/br&gt;");
+      document.write("10!=10 ? "+(10!=10)+", 4!=3 ? "+(4!=3)+"&lt;/br&gt;");
+      document.write("3!==3.0 ? "+(3!==3.0)+", 4!=='4' ? "+(4!=='4')+"&lt;/br&gt;");
+      document.write("3&gt;5 ? "+(3&gt;5)+", 4&gt;2 ? "+(4&gt;2)+"&lt;/br&gt;");
+      document.write("3&gt;=4 ? "+(3&gt;=4)+", 4&gt;=4 ? "+(4&gt;=4)+"&lt;/br&gt;");
+      document.write("4&lt;2 ? "+(4&lt;2)+", 3&lt;5 ? "+(3&lt;5)+"&lt;/br&gt;");
+      document.write("8&lt;=5 ? "+(8&lt;=5)+", 6&lt;=6 ? "+(6&lt;=6)+"&lt;/br&gt;");
+      document.write("-----------------------------&lt;/br&gt;");
+      //,los operadores logicos:
+      document.write("3&gt;1 && 3&gt;9 ? "+ (3&gt;1 && 3&gt;9)+"&lt;/br&gt;");
+      .write("3&gt;1 && 3&gt;9 ? "+ (3&gt;1 || 3&gt;9)+"&lt;/br&gt;");
+      document.write("!(3==9) ? "+ (!(3==9))+"&lt;/br&gt;");
+      document.write("-----------------------------&lt;/br&gt;");
+      //y el operador condicional(o ternario):
+    &lt;/script&gt;
+      &lt;input id="valCond" class="inputEx" type="text" maxlength="10" onkeypress="change()" /&gt;
+      &lt;span id="cond"&gt;&lt;/span&gt;
+    &lt;script type="text/javascript"&gt;
+      function change()
+      {
+        var text = document.getElementById("valCond").value;
+        var res = (text.length&lt;5)?"menos de 5 caracteres":"5 o mas caracteres";
+        document.getElementById("cond").innerHTML=res;
+      }
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					<script type="text/javascript">
+					// Tenemos los operadores de comparacion:
+					document.write("3==5 ? "+(3==5)+", 4==4 ? "+(4==4)+"</br>");
+					document.write("3==='3' ? "+(3==='3')+", 3===3.0 ? "+(3===3.0)+"</br>");
+					document.write("10!=10 ? "+(10!=10)+", 4!=3 ? "+(4!=3)+"</br>");
+					document.write("3!==3.0 ? "+(3!==3.0)+", 4!=='4' ? "+(4!=='4')+"</br>");
+					document.write("3>5 ? "+(3>5)+", 4>2 ? "+(4>2)+"</br>");
+					document.write("3>=4 ? "+(3>=4)+", 4>=4 ? "+(4>=4)+"</br>");
+					document.write("4<2 ? "+(4<2)+", 3<5 ? "+(3<5)+"</br>");
+					document.write("8<=5 ? "+(8<=5)+", 6<=6 ? "+(6<=6)+"</br>");
+					document.write("-----------------------------</br>");
+					//,los operadores logicos:
+					document.write("3>1 && 3>9 ? "+ (3>1 && 3>9)+"</br>");
+					document.write("3>1 && 3>9 ? "+ (3>1 || 3>9)+"</br>");
+					document.write("!(3==9) ? "+ (!(3==9))+"</br>");
+					document.write("-----------------------------</br>");
+					//y el operador condicional(o ternario):
+					</script>
+					<span id="info2">Escribe una palabra de como m&aacute;ximo 10 letras(no va bien en chrome).</span>
+					</br>
+					<input id="valCond" class="inputEx" type="text" maxlength="10" onkeyup="change()" />
+					<span id="cond"></span>
+					<script type="text/javascript">
+						function change()
+						{
+							var text = document.getElementById("valCond").value;
+							var res = (text.length<5)?"menos de 5 caracteres":"5 o mas caracteres";
+							document.getElementById("cond").innerHTML=res;
+						}
+					</script>
+				</div>
+			</div>
+			<div class="fila">
+				<div class="celda celdaIz">
+					<span>
+						Conditions
+					</span>
+				</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;input id="valor" class="inputEx" type="number" name="valor" 
+        min="12" max="14" value="13"/&gt;
+    &lt;button class="btn btn-info" onclick="condicional()"&gt;Resultat!&lt;/button&gt;
+    &lt;br/&gt;
+    &lt;span id="numRes"&gt;&lt;/span&gt;
+    &lt;script type="text/javascript"&gt;
+      function condicional()
+      {
+        //El if en javascript es como en la mayoria 
+        //de lenguajes que ya conocemos
+        var res = "res vale ";
+        var val = document.getElementById("valor").value;
+        if(val == 12)
+          res+="12.";
+        else if(val ==13)
+          res+="13."
+        else if(val ==14)
+          res+="14."
+        else res ="El valor no esta entre 12 i 14.";
+        document.getElementById("numRes").innerHTML=res;
+      }
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					<span id="info3">Escribe un n&uacute;mero entre 12 i 14 y clicka al bot&oacute;n.</span>
+					<input id="valor" class="inputEx"  type="number" name="valor" min="12" max="14" value="13"/>
+					<button class="btn btn-info but"  onclick="condicional()">Resultat!</button>
+					<br/>
+					<span id="numRes" ></span>
+					<script type="text/javascript">
+						function condicional()
+						{
+							//El if en javascript es como en la mayoria 
+							//de lenguajes que ya conocemos
+							var res = "res vale ";
+							var val = document.getElementById("valor").value;
+							if(val == 12)
+								res+="12.";
+							else if(val ==13)
+								res+="13."
+							else if(val ==14)
+								res+="14."
+							else res ="El valor no esta entre 12 i 14.";
+							document.getElementById("numRes").innerHTML=res;
+						}
+					</script>
+				</div>
+			</div>
+
+<!-- -----------------------------------------------------SWITCH ---------------------------------------------------->
+
+			<div class="fila">
+				<div class="celda celdaIz">
+					<span>
+						Switch
+					</span>
+				</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;input id="valorSwitch" class="inputEx" 
+      type="number" name="valorSwitch" min="1" value="1"/&gt;
+    &lt;button class="btn btn-info" onclick="condicionalS()"&gt;Resultat!&lt;/button&gt;
+    &lt;br/&gt;
+    &lt;span id="numResSwitch" class="spanEx"&gt;&lt;/span&gt;
+    &lt;script type="text/javascript"&gt;
+      function condicionalS()
+      {
+        //El switch en javascript es como en la mayoria 
+        //de lenguajes que ya conocemos
+        var val = document.getElementById("valorSwitch").value;
+        var res = parseInt(val)+" % 3 = ";
+        switch(parseInt(val)%3)
+        {
+          case 0:
+            res+="0";
+            break;
+          case 1:
+            res+="1"
+            break;
+          case 2:
+            res+="2"
+            break;
+          default:
+            res ="No has puesto un valor correcto.";
+            break;
+        }
+        document.getElementById("numResSwitch").innerHTML=res;
+      }      
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					<span id="info4">Escribe un n&uacute;umero y clicka al bot&oacute;n</span>
+					<input id="valorSwitch" class="inputEx" type="number" name="valorSwitch" min="1" value="1"/>
+					<button class="btn btn-info but"  onclick="condicionalS()">Resultat!</button>
+					<br/>
+					<span id="numResSwitch"></span>
+					<script type="text/javascript">
+						function condicionalS()
+						{
+							//El switch en javascript es como en la mayoria 
+							//de lenguajes que ya conocemos
+							var val = document.getElementById("valorSwitch").value;
+							var res = parseInt(val)+" % 3 = ";
+							switch(parseInt(val)%3)
+							{
+								case 0:
+									res+="0";
+									break;
+								case 1:
+									res+="1"
+									break;
+								case 2:
+									res+="2"
+									break;
+								default:
+									res ="No has puesto un valor correcto.";
+									break;
+							}
+							document.getElementById("numResSwitch").innerHTML=res;
+						}
+					</script>
+				</div>
+			</div>
+
+<!-- -----------------------------------------------------LOOP FOR ---------------------------------------------------->
+
+			<div class="fila">
+				<div class="celda celdaIz">
+					<span>
+						Loop for
+					</span>
+				</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;script type="text/javascript"&gt;
+    //funcion que genera el n valor en la serie de fibonacci
+    function fibonacci(n)
+    {
+      if(n&lt;2)
+        return n;
+      else 
+        return fibonacci(n-2)+fibonacci(n-1);
+    }
+
+    //Funcion que escribe la serie de fibonacci desde 0 hasta el numero que el 
+    //usuario ha indicado(maximo 20).
+    function boto()
+    {
+      var max = parseInt(document.getElementById("valFibo").value);
+      if(max &gt;=0 && max &lt;=20)
+      {
+        document.getElementById("fibo").innerHTML ="";
+        //Aqui tenemos el bucle for:
+        for(var i=0;i&lt;=max;i++)
+        {
+          document.getElementById("fibo").innerHTML += fibonacci(i);
+          if(i!=(max))
+            document.getElementById("fibo").innerHTML += ",";
+        }
+        document.getElementById("fibo").innerHTML += ".";
+       }
+       else
+         document.getElementById("fibo").innerHTML ="Posa un numero entre 1 i 20.";
+    }
+  &lt;/script&gt;
+  &lt;input id="valFibo" class="inputEx" type="number" min="1" max="20" value="5"/&gt;
+  &lt;button class="btn btn-info" onclick="boto()"&gt;Fibonacci&lt;/button&gt;
+  &lt;br/&gt;
+  &lt;span id="fibo"&gt;&lt;/span&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					<script type="text/javascript">
+
+						//funcion que genera el n valor en la serie de fibonacci
+						function fibonacci(n)
+						{
+							if(n<2)
+								return n;
+							else return fibonacci(n-2)+fibonacci(n-1);
+						}
+
+						//Funcion que escribe la serie de fibonacci desde 0 hasta el numero que el 
+						//usuario ha indicado(maximo 20).
+						function boto()
+						{
+							var max = parseInt(document.getElementById("valFibo").value);
+							if(max >=0 && max <=20)
+							{
+								document.getElementById("fibo").innerHTML ="";
+								//Aqui tenemos el bucle for:
+								for(var i=0;i<=max;i++)
+								{
+									document.getElementById("fibo").innerHTML += fibonacci(i);
+									if(i!=(max))
+										document.getElementById("fibo").innerHTML += ",";
+								}
+								document.getElementById("fibo").innerHTML += ".";
+							}
+							else
+								document.getElementById("fibo").innerHTML ="Posa un numero entre 1 i 20.";
+						}
+					</script>
+					<span id="info5">Escribe un n&uacute;mero y clicka al bot&oacute;n para calcular la serie de fibonacci</span>
+					<input id="valFibo" class="inputEx" type="number" min="1" max="20" value="5"/>
+					<button class="btn btn-info but" onclick="boto()">Fibonacci</button>
+					<br/>
+					<span id="fibo"></span>
+				</div>
+			</div>
+
+<!-- ------------------------------------------------- LOOP WHILE ------------------------------------------------------>
+
+			<div class="fila">
+				<div class="celda celdaIz">
+					<span>
+						Loop while
+					</span>
+				</div>
+				<div class="celda">
+					<pre>
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;script type="text/javascript"&gt;
+      function busc()
+      {
+        var frase = document.getElementById("valFrase").value;
+        var car = document.getElementById("valBusc").value;
+        if(frase.trim() == "")
+          document.getElementById("busc").innerHTML = "Introduce una frase donde buscar.";
+        else if(car.trim() == "")
+          document.getElementById("busc").innerHTML = "Introduce un caracter a buscar.";
+        else
+        {
+          var trobat = false;
+          frase +=".";
+          var i = 0;
+
+          //Haremos un bucle para buscar un caracter en una cadena de texto
+          //El bucle acaba si encontramos el caracter, o llegamos al final
+          while(!trobat && frase[i]!='.')
+          {
+            if(frase[i]==car)
+            trobat = true;
+            else i++;
+          }
+          if(trobat)
+            document.getElementById("busc").innerHTML = "El caracter esta en la posicion "+(i+1)+" .";
+          else
+            document.getElementById("busc").innerHTML = "No se ha encontrado el caracter.";
+        }
+      }
+    &lt;/script&gt;
+    &lt;input id="valFrase" class="inputEx" type="text" cols="4" placeholder="Introduce la frase donde buscar" maxlength="48"/&gt;
+    &lt;input id="valBusc" class="inputEx" type="text" placeholder="c" maxlength="1"/&gt;
+    &lt;button class="btn btn-info" onclick="busc()"&gt;Buscar&lt;/button&gt;
+    &lt;br/&gt;
+    &lt;span id="busc"&gt;&lt;/span&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</div>
+				<div class="celda celdaDe">
+					</br>
+					<script type="text/javascript">
+						function busc()
+						{
+							var frase = document.getElementById("valFrase").value;
+							var car = document.getElementById("valBusc").value;
+							if(frase.trim() == "")
+								document.getElementById("busc").innerHTML = "Introduce una frase donde buscar.";
+							else if(car.trim() == "")
+								document.getElementById("busc").innerHTML = "Introduce un caracter a buscar.";
+							else
+							{
+								var trobat = false;
+								frase +=".";
+								var i = 0;
+
+								//Haremos un bucle para buscar un caracter en una cadena de texto
+								//El bucle acaba si encontramos el caracter, o llegamos al final
+								while(!trobat && frase[i]!='.')
+								{
+									if(frase[i]==car)
+										trobat = true;
+									else i++;
+								}
+								if(trobat)
+									 document.getElementById("busc").innerHTML = "El caracter esta en la posicion "+(i+1)+" .";
+								else
+									document.getElementById("busc").innerHTML = "No se ha encontrado el caracter.";
+							}
+						}
+					</script>
+					<span id="info6">Escribe una frase y un car&aacute;cter y clicka al bot&oacute;n para buscarlo en la frase</span>
+					<input id="valFrase" class="inputEx" type="text" cols="4" placeholder="Introduce la frase donde buscar" maxlength="48"/>
+					<input id="valBusc" class="inputEx" type="text" placeholder="c" maxlength="1"/>
+					<button class="btn btn-info but" onclick="busc()">Buscar</button>
+					<br/>
+					<span id="busc"></span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
