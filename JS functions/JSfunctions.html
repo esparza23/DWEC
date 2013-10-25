@@ -1,5 +1,35 @@
 <html>
 <head>
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">   
+	<style type="text/css">
+		#cont
+		{
+			margin: auto;
+			margin-top: 5%;
+			background-color: #cae3ff;
+			width:50%;
+			height: 50%;
+			border:1px solid #487eff;
+		}
+		#conc
+		{
+			width: 100%;
+			margin: auto;
+			text-align: left;
+		}
+		#concTit
+		{
+			text-align: center;
+		}
+		#concList 
+		{
+			margin:4% 5%;
+		}
+		.but
+		{
+			margin:5% 9% 5% 9%;
+		}
+	</style> 
 	<script type="text/javascript">
 		function boto1()
 		{
@@ -150,12 +180,27 @@
 	</script>
 </head>
 <body onload="">
-	<div id="suma"></div>
-	<button id="bot" onclick="boto1()">1er boton</button>
+	<div id="cont">
+		<button type="button" id="bot" onclick="boto1()" class="but btn btn-primary">1er boton</button>
 
-	<button id="bot" onclick="boto2()">2do boton</button>
+		<button type="button" id="bot" onclick="boto2()" class="but btn btn-primary">2do boton</button>
 
-	<button id="bot" onclick="boto3()">3er boton</button>
+		<button type="button" id="bot" onclick="boto3()" class="but btn btn-primary">3er boton</button>
+		<div id="conc">
+			<h1 id="concTit">Conclusiones</h1>
+			<div id="concList">
+				<span>1-Las funciones en JS son liniales, y te bloquean la pagina.</span>
+				</br>
+				</br>
+				<span>2-Se pueden pasar funciones como parametro a otras funciones 
+				y llamarlas mediante callback.</span>
+				</br>
+				</br>
+				<span>3-Con la funcion setTimeout() se puede llamar a otra funcion 
+				pasado un tiempo sin que se bloquee el sitio web.</span>
+			</div>
+		</div>	
+	</div>
 </body>
 </body>
 </html>
