@@ -1,0 +1,69 @@
+
+#cabecera
+{
+	height: 13%;
+	background-color: #e9ffb9;
+	border-bottom: 1px solid black;
+}
+#cabeceraImg
+{
+	border-right: 1px solid black;
+	background-color: #e9ffb9;
+	height: 13%;
+}
+#cabeceraTit
+{
+	text-align: center;
+	background-color: #e9ffb9;
+	height: 13%
+}
+
+#cabeceraLat
+{
+	background-color: #e9ffb9;
+	height: 13%;
+}
+
+.lateral
+{
+	background-color: #a2d5ff;
+}
+
+.joc
+{
+	background-color: #5ad8ff;
+	/*height: 100%;*/
+}
+
+#anadirPalabra
+{
+	height: 10%;
+	background-color: #a4ff17;
+}
+#estadisticas
+{
+	height: 10%;
+	background-color: #00ff5d;
+}
+.anPal
+{
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-top:2%;
+}
+@media (max-width: 992px) {
+	#cabeceraLat
+	{
+		background-color: #e9ffb9;
+		height: 0%;
+	}
+}
+
+@media (max-width: 596px) {
+	#anadirPalabra
+	{
+		height: 13%;
+		background-color: #a4ff17;
+	}
+}
+

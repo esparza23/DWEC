@@ -1,10 +1,48 @@
 <html>
 	<head>
-		<style  href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap-theme.css"></style>
-		<style href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap.css"></style>
+		<script src="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-2.0.3.min.js"></script>
 		<script src="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/js/bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap-theme.css"></link>
+		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/ahorcado.css"></link>
+		<script type="text/javascript" src="js/ahorcado.js"></script>
+		<script type="text/javascript" src="js/jQueryRotate.js"></script>
 	</head>
 	<body>
-		<button type="button" class="btn btn-default">Default</button>
+
+<!------------------------------------------------------------ PRIMERA ROW ---------------------------------------------------------->
+
+			<div class="row">
+		  		<div id="cabeceraImg" class="col-md-1">
+					<img src="img/a9.png" class="center-block" height="90" width="45" />
+		  		</div>
+		  		<div id="cabeceraTit" class="col-md-10">
+		  			<h1>Juego del Ahorcado</h1>
+		  		</div>
+		  		<div id ="cabeceraLat" class="col-md-1"></div>
+			</div>
+
+<!------------------------------------------------------------ SEGONA ROW ---------------------------------------------------------->
+			
+		<div class="row">
+		  	<div class="col-md-1 lateral"></div>
+		  	<div class="col-md-8 joc">
+		  		<div class="row">
+		  			<div id="estadisticas" class="col-md-12">
+		  				ESTADISTICAS
+		  			</div>
+		  			<div id="anadirPalabra" class="col-md-12">
+		  				<span class="anPal">Nueva palabra:</span>
+		  				<input id="nuevaPal" class="anPal" type="text" placeholder="palabra" maxlength="8"></input>
+						<button id="nuevaPalBut" class=" btn btn-Danger">Anadir Palabra</button>
+						<span id="nuevaPalMis" class="anPal"></span>
+		  			</div>
+		  		</div>
+		  	</div>
+		  	<div class="col-md-2">
+		  		<img id="colgado" src="img/a9.png" class="center-block" height="300" width="100" />
+		  	</div>
+		  	<div class="col-md-1 lateral"></div>
+		</div>
 	</body>
 </html>
