@@ -6,7 +6,6 @@
 		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/ahorcado.css"></link>
 		<script type="text/javascript" src="js/ahorcado.js"></script>
-		<script type="text/javascript" src="js/jQueryRotate.js"></script>
 	</head>
 	<body>
 
@@ -28,14 +27,17 @@
 		  	<div class="col-md-1 lateral"></div>
 		  	<div class="col-md-8 joc">
 		  		<div class="row">
-		  			<div id="estadisticas" class="col-md-12">
-		  				ESTADISTICAS
-		  			</div>
 		  			<div id="anadirPalabra" class="col-md-12">
-		  				<span class="anPal">Nueva palabra:</span>
+		  				<span id="spanLeft" class="anPal">Nueva palabra:</span>
 		  				<input id="nuevaPal" class="anPal" type="text" placeholder="palabra" maxlength="8"></input>
 						<button id="nuevaPalBut" class=" btn btn-Danger">Anadir Palabra</button>
 						<span id="nuevaPalMis" class="anPal"></span>
+		  			</div>
+		  			<div id="estadisticas" class="col-md-12">
+		  				<button id="empezar" class="center-block btn btn-Danger">Empezar a Jugar!</button>
+		  			</div>
+		  			<div id="letras" class="col-md-12 hidden">
+		  				<div id="letrasA" class="center-block hidden"></div>
 		  			</div>
 		  		</div>
 		  	</div>
