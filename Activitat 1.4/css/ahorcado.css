@@ -2,6 +2,7 @@ body
 {
 	font-family: Verdana, Verdana, Geneva, sans-serif;
 }
+
 #cabecera
 {
 	height: 13%;
@@ -62,14 +63,22 @@ body
 
 .TBletras
 {
-	width: 25px;
+	width: 40px;
 	margin: 0 2%;
+	border-width: 3px;
 }
 
 #TBL
 {
 	margin: 3% auto;
 	background-color: #ffb64f;
+}
+
+#letra
+{
+	margin:auto;
+	width: 45px;
+	margin-bottom:2%;
 }
 
 #validar
@@ -92,23 +101,23 @@ body
 
 .TBL4
 {
-	width:120px;
+	width:195px;
 }
 .TBL5
 {
-	width:165px;
+	width:255px;
 }
 .TBL6
 {
-	width:210px;
+	width:340px;
 }
 .TBL7
 {
-	width: 250px;
+	width: 395px;
 }
 .TBL8
 {
-	width: 310px;
+	width: 475px;
 }
 
 #mensaje
@@ -117,6 +126,12 @@ body
 	text-align: center;
 	margin:auto;
 	background-color: #7acbff;
+}
+
+.TBdiv
+{
+	display:inline-block;
+	margin:0 2%;
 }
 
 @media (max-width: 992px) {
@@ -139,4 +154,9 @@ body
 	}
 }
 
-
+@media (max-width: 437px) {
+	#nuevaPalBut
+	{
+		margin-top: 3%;
+	}
+}
