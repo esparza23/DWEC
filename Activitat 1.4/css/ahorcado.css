@@ -1,18 +1,20 @@
-
+body
+{
+	font-family: Verdana, Verdana, Geneva, sans-serif;
+}
 #cabecera
 {
 	height: 13%;
-	background-color: #e9ffb9;
+	
 	border-bottom: 1px solid black;
 }
 #cabeceraImg
 {
-	border-right: 1px solid black;
-	background-color: #e9ffb9;
 	height: 13%;
 }
 #cabeceraTit
 {
+	font-family: Verdana, Verdana, Geneva, sans-serif;
 	text-align: center;
 	background-color: #e9ffb9;
 	height: 13%
@@ -20,13 +22,13 @@
 
 #cabeceraLat
 {
-	background-color: #e9ffb9;
+	
 	height: 13%;
 }
 
 .lateral
 {
-	background-color: #a2d5ff;
+	/*background-color: #a2d5ff;*/
 }
 
 .joc
@@ -64,6 +66,59 @@
 	margin: 0 2%;
 }
 
+#TBL
+{
+	margin: 3% auto;
+	background-color: #ffb64f;
+}
+
+#validar
+{
+	margin-bottom: 3%;
+}
+
+#info
+{
+	padding: 0 2%;
+	margin: auto;
+	width: 60%;
+	background-color: #deafff;
+}
+.est
+{
+	background-color: #ff0d81;
+	width: auto;
+}
+
+.TBL4
+{
+	width:120px;
+}
+.TBL5
+{
+	width:165px;
+}
+.TBL6
+{
+	width:210px;
+}
+.TBL7
+{
+	width: 250px;
+}
+.TBL8
+{
+	width: 310px;
+}
+
+#mensaje
+{
+	font-size: 2em;
+	text-align: center;
+	margin:auto;
+	background-color: #7acbff;
+}
+
 @media (max-width: 992px) {
 	#cabeceraLat
 	{
@@ -83,4 +138,5 @@
 		margin-left: 0%;
 	}
 }
+
 
