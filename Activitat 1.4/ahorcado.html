@@ -1,9 +1,18 @@
 <html>
 	<head>
+		<!----------------------------------------------------------- Cargar desde Github ---------------------------------------- -->
+		<!--
 		<script src="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-2.0.3.min.js"></script>
 		<script src="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/js/bootstrap.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap-theme.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap.css"></link>
+		-->
+		<!----------------------------------------------------------- Cargar local ----------------------------------------- -->
+		
+		<script src="../Jquery/jquery-2.0.3.min.js"></script>
+		<script src="../Bootstrap/js/bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap-theme.css"></link>
+		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/ahorcado.css"></link>
 		<script type="text/javascript" src="js/ahorcado.js"></script>
 	</head>
@@ -27,10 +36,24 @@
 		  	<div class="col-md-1 lateral"></div>
 		  	<div class="col-md-8 joc">
 		  		<div class="row">
+		  			<div id="instrucciones" class="row">
+			  			<div id="divText1" class="col-md-5">
+			  				<h1 class="titulo">A&#241;adir Palabra</h1>
+			  				<p id="text1" align="justify">
+			  				Hay 10 palabras predefinidas en el juego, todas relacionadas con marcas comerciales. El usuario tiene la libertad de introducir una palabra en el juego antes de iniciar cualquier partida. Si la pagina se actualiza las palabras volver&aacute;n a ser las 10 por defecto.
+			  				</p>
+			  			</div>	
+			  			<div id="divText2"  class="col-md-5">
+			  				<h1 class="titulo">Como Jugar</h1>
+			  				<p id="text2" align="justify">
+			  				Al empezar la partida el usuario cuenta con 8 vidas. Cada vida es una oportunidad de escribir una letra y comprobar si est&aacute; en la palabra. Si el usuario se queda sin vidas, la partida acaba. En caso de acertar todas las letras antes de quedarse sin vidas, ha ganado!
+			  				</p>
+			  			</div>	
+			  		</div>
 		  			<div id="anadirPalabra" class="col-md-12">
 		  				<span id="spanLeft" class="anPal">Nueva palabra:</span>
 		  				<input id="nuevaPal" class="anPal" type="text" placeholder="palabra" maxlength="8"></input>
-						<button id="nuevaPalBut" class=" btn btn-Danger">Anadir Palabra</button>
+						<button id="nuevaPalBut" class=" btn btn-Danger">A&#241;adir Palabra</button>
 						<span id="nuevaPalMis" class="anPal"></span>
 		  			</div>
 		  			<div id="estadisticas" class="col-md-12">
@@ -44,9 +67,11 @@
 			  				<span id="mensaje" class="center-block">FELICIDADES</span>
 			  			</div>
 		  			</div>
-		  			<div id="letras" class="col-md-12 hidden">
+		  			<div id="letras" class=" row col-md-12 hidden ">
 		  				<div id="TBL"></div>
-		  				<input id="letra" type="text" class="TBletras center-block form-control" maxlength="1">
+		  				<div id="divLetra" class="form-group">
+		  					<input id="letra" type="text" class="TBletras center-block form-control " maxlength="1">
+		  				</div>
 		  				<button id="validar" class="btn btn-success center-block">Validar</button>
 		  			</div>
 		  		</div>

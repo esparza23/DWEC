@@ -17,7 +17,7 @@ body
 {
 	font-family: Verdana, Verdana, Geneva, sans-serif;
 	text-align: center;
-	background-color: #e9ffb9;
+	/*background-color: #e9ffb9;*/
 	height: 13%
 }
 
@@ -27,27 +27,42 @@ body
 	height: 13%;
 }
 
+.titulo
+{
+	text-align: center;
+	margin-bottom: 8%;
+}
+
+#divText1
+{
+	margin:4% 4%;
+}
+
+#divText2
+{
+	margin:4% 4%;
+}
 .lateral
 {
-	/*background-color: #a2d5ff;*/
+	/*/*background-color: #a2d5ff;*/
 }
 
 .joc
 {
-	background-color: #5ad8ff;
+	/*background-color: #5ad8ff;*/
 	/*height: 100%;*/
 }
 
 #anadirPalabra
 {
 	height: 10%;
-	background-color: #a4ff17;
+	/*background-color: #a4ff17;*/
 }
 #estadisticas
 {
 	padding-top:2%;
 	height: 10%;
-	background-color: #00ff5d;
+	/*background-color: #00ff5d;*/
 }
 .anPal
 {
@@ -71,7 +86,7 @@ body
 #TBL
 {
 	margin: 3% auto;
-	background-color: #ffb64f;
+	/*background-color: #ffb64f;*/
 }
 
 #letra
@@ -91,11 +106,11 @@ body
 	padding: 0 2%;
 	margin: auto;
 	width: 60%;
-	background-color: #deafff;
+	/*background-color: #deafff;*/
 }
 .est
 {
-	background-color: #ff0d81;
+	/*background-color: #ff0d81;*/
 	width: auto;
 }
 
@@ -125,7 +140,7 @@ body
 	font-size: 2em;
 	text-align: center;
 	margin:auto;
-	background-color: #7acbff;
+	/*background-color: #7acbff;*/
 }
 
 .TBdiv
@@ -137,7 +152,11 @@ body
 @media (max-width: 992px) {
 	#cabeceraLat
 	{
-		background-color: #e9ffb9;
+		/*background-color: #e9ffb9;*/
+		height: 0%;
+	}
+	#cabeceraImg
+	{
 		height: 0%;
 	}
 }
@@ -146,7 +165,7 @@ body
 	#anadirPalabra
 	{
 		height: 13%;
-		background-color: #a4ff17;
+		/*background-color: #a4ff17;*/
 	}
 	#spanLeft
 	{
