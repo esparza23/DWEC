@@ -1,68 +1,75 @@
 body
 {
 	font-family: Verdana, Verdana, Geneva, sans-serif;
+	background-color: #FFF9F4;
+}
+#cont
+{
+	height: 100%;
+	background-color: #FFE1C1;
 }
 
-#cabecera
+#realCont
 {
-	height: 13%;
-	
-	border-bottom: 1px solid black;
+	padding-top:5%;
 }
-#cabeceraImg
-{
-	height: 13%;
-}
+
+
 #cabeceraTit
 {
 	font-family: Verdana, Verdana, Geneva, sans-serif;
 	text-align: center;
-	/*background-color: #e9ffb9;*/
-	height: 13%
+	background-color: #ffa340;
+	font-size: 5em;
+	height: 15%;
+	color: #442200;
 }
-
-#cabeceraLat
-{
-	
-	height: 13%;
-}
-
 .titulo
 {
 	text-align: center;
-	margin-bottom: 8%;
+	height: 7%;
+	color: #442200;
 }
 
 #divText1
 {
-	margin:4% 4%;
+	margin:0 0;
+	color: #442200;
 }
 
 #divText2
 {
-	margin:4% 4%;
-}
-.lateral
-{
-	/*/*background-color: #a2d5ff;*/
+	margin:0 0;
+	color: #442200;
 }
 
-.joc
+#nuevaPal
 {
-	/*background-color: #5ad8ff;*/
-	/*height: 100%;*/
+	width:15%;
+	border: 1px solid #442200; 
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	color: #442200;
+}
+#nuevaPalBut
+{
+	margin-left: 2%;
 }
 
 #anadirPalabra
 {
+	margin-top: 4%;
+	margin-bottom: 2%;
 	height: 10%;
-	/*background-color: #a4ff17;*/
+	color: #442200;
 }
 #estadisticas
 {
+	font-size: 1.3em;
 	padding-top:2%;
 	height: 10%;
-	/*background-color: #00ff5d;*/
+	color: #442200;
 }
 .anPal
 {
@@ -80,13 +87,14 @@ body
 {
 	width: 40px;
 	margin: 0 2%;
-	border-width: 3px;
+	border: 3px solid #442200; 
 }
 
 #TBL
 {
 	margin: 3% auto;
-	/*background-color: #ffb64f;*/
+	padding-bottom: 2%;
+	border-bottom:1px solid black;
 }
 
 #letra
@@ -96,7 +104,7 @@ body
 	margin-bottom:2%;
 }
 
-#validar
+#validar,#atras
 {
 	margin-bottom: 3%;
 }
@@ -106,11 +114,9 @@ body
 	padding: 0 2%;
 	margin: auto;
 	width: 60%;
-	/*background-color: #deafff;*/
 }
 .est
 {
-	/*background-color: #ff0d81;*/
 	width: auto;
 }
 
@@ -141,6 +147,16 @@ body
 	text-align: center;
 	margin:auto;
 	/*background-color: #7acbff;*/
+}
+
+#usadasErr
+{
+	color:#c12100;
+}
+
+#usadasCorr
+{
+	color:#006512;
 }
 
 .TBdiv
@@ -178,4 +194,122 @@ body
 	{
 		margin-top: 3%;
 	}
+}
+
+@media (max-width: 1141px) {
+	#estadisticas
+	{
+		font-size: 1em;
+	}
+}
+
+@media (max-width: 687px) {
+	#cabeceraTit
+	{
+		font-size: 3em;
+	}
+}
+
+.btn-jugar {
+  color: #ffffff;
+  background-color: #c12100;
+  border-color: #4b0d00;
+}
+
+.btn-jugar:hover,
+.btn-jugar:focus,
+.btn-jugar:active,
+.btn-jugar.active,
+.open .dropdown-toggle.btn-jugar {
+  color: #ffffff;
+  background-color: #731400;
+  border-color: #4b0d00;
+}
+
+.btn-jugar:active,
+.btn-jugar.active,
+.open .dropdown-toggle.btn-jugar {
+  background-image: none;
+}
+
+.btn-jugar.disabled,
+.btn-jugar[disabled],
+fieldset[disabled] .btn-jugar,
+.btn-jugar.disabled:hover,
+.btn-jugar[disabled]:hover,
+fieldset[disabled] .btn-jugar:hover,
+.btn-jugar.disabled:focus,
+.btn-jugar[disabled]:focus,
+fieldset[disabled] .btn-jugar:focus,
+.btn-jugar.disabled:active,
+.btn-jugar[disabled]:active,
+fieldset[disabled] .btn-jugar:active,
+.btn-jugar.disabled.active,
+.btn-jugar[disabled].active,
+fieldset[disabled] .btn-jugar.active {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.btn-jugar .caret{
+  border-top-color: #fff;
+}
+
+.dropup .btn-jugar .caret,{
+  border-bottom-color: #fff;
+}
+
+
+
+
+
+
+
+.btn-anadir {
+  color: #ffffff;
+  background-color: #00981B;
+  border-color: #4b0d00;
+}
+
+.btn-anadir:hover,
+.btn-anadir:focus,
+.btn-anadir:active,
+.btn-anadir.active,
+.open .dropdown-toggle.btn-anadir {
+  color: #ffffff;
+  background-color: #006512;
+  border-color: #5cb85c;
+}
+
+.btn-anadir:active,
+.btn-anadir.active,
+.open .dropdown-toggle.btn-anadir {
+  background-image: none;
+}
+
+.btn-anadir.disabled,
+.btn-anadir[disabled],
+fieldset[disabled] .btn-anadir,
+.btn-anadir.disabled:hover,
+.btn-anadir[disabled]:hover,
+fieldset[disabled] .btn-anadir:hover,
+.btn-anadir.disabled:focus,
+.btn-anadir[disabled]:focus,
+fieldset[disabled] .btn-anadir:focus,
+.btn-anadir.disabled:active,
+.btn-anadir[disabled]:active,
+fieldset[disabled] .btn-anadir:active,
+.btn-anadir.disabled.active,
+.btn-anadir[disabled].active,
+fieldset[disabled] .btn-anadir.active {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+
+.btn-anadir .caret{
+  border-top-color: #fff;
+}
+
+.dropup .btn-anadir .caret,{
+  border-bottom-color: #fff;
 }

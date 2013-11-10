@@ -1,85 +1,134 @@
+<!DOCTYPE HTML SYSTEM>
 <html>
 	<head>
-		<!----------------------------------------------------------- Cargar desde Github ---------------------------------------- -->
+		<title>Juego del Ahorcado</title>
+		<!-- Cargar desde Github -->
+
 		<!--
 		<script src="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-2.0.3.min.js"></script>
 		<script src="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/js/bootstrap.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap-theme.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap.css"></link>
 		-->
-		<!----------------------------------------------------------- Cargar local ----------------------------------------- -->
+
+		<!--- Cargar local - -->
 		
-		<script src="../Jquery/jquery-2.0.3.min.js"></script>
-		<script src="../Bootstrap/js/bootstrap.js"></script>
-		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap-theme.css"></link>
-		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap.css"></link>
-		<link rel="stylesheet" type="text/css" href="css/ahorcado.css"></link>
+		<script src="../Jquery/jquery-2.0.3.min.js" type="text/javascript"></script>
+		<script src="../Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap-theme.css">
+		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/ahorcado.css">
 		<script type="text/javascript" src="js/ahorcado.js"></script>
 	</head>
 	<body>
 
-<!------------------------------------------------------------ PRIMERA ROW ---------------------------------------------------------->
 
-			<div class="row">
-		  		<div id="cabeceraImg" class="col-md-1">
-					
-		  		</div>
-		  		<div id="cabeceraTit" class="col-md-10">
-		  			<h1>Juego del Ahorcado</h1>
-		  		</div>
-		  		<div id ="cabeceraLat" class="col-md-1"></div>
-			</div>
-
-<!------------------------------------------------------------ SEGONA ROW ---------------------------------------------------------->
-			
 		<div class="row">
-		  	<div class="col-md-1 lateral"></div>
-		  	<div class="col-md-8 joc">
-		  		<div class="row">
-		  			<div id="instrucciones" class="row">
-			  			<div id="divText1" class="col-md-5">
-			  				<h1 class="titulo">A&#241;adir Palabra</h1>
-			  				<p id="text1" align="justify">
-			  				Hay 10 palabras predefinidas en el juego, todas relacionadas con marcas comerciales. El usuario tiene la libertad de introducir una palabra en el juego antes de iniciar cualquier partida. Si la pagina se actualiza las palabras volver&aacute;n a ser las 10 por defecto.
-			  				</p>
-			  			</div>	
-			  			<div id="divText2"  class="col-md-5">
-			  				<h1 class="titulo">Como Jugar</h1>
-			  				<p id="text2" align="justify">
-			  				Al empezar la partida el usuario cuenta con 8 vidas. Cada vida es una oportunidad de escribir una letra y comprobar si est&aacute; en la palabra. Si el usuario se queda sin vidas, la partida acaba. En caso de acertar todas las letras antes de quedarse sin vidas, ha ganado!
-			  				</p>
-			  			</div>	
-			  		</div>
-		  			<div id="anadirPalabra" class="col-md-12">
-		  				<span id="spanLeft" class="anPal">Nueva palabra:</span>
-		  				<input id="nuevaPal" class="anPal" type="text" placeholder="palabra" maxlength="8"></input>
-						<button id="nuevaPalBut" class=" btn btn-Danger">A&#241;adir Palabra</button>
-						<span id="nuevaPalMis" class="anPal"></span>
-		  			</div>
-		  			<div id="estadisticas" class="col-md-12">
-		  				<button id="empezar" class="center-block btn btn-Danger">Empezar a Jugar!</button>
-		  				<div id="info" class="hidden">
-			  				<span id="vidas" class="est">Vidas: 8</span>
-			  				<span id="tiempoIn" class="est">Hora Inicio: 08:21:54</span>
-			  				<span id="duracion" class="est">Tiempo Transcurrido: 00:00:00</span>
-			  			</div>
-			  			<div id="final" class="hidden">
-			  				<span id="mensaje" class="center-block">FELICIDADES</span>
-			  			</div>
-		  			</div>
-		  			<div id="letras" class=" row col-md-12 hidden ">
-		  				<div id="TBL"></div>
-		  				<div id="divLetra" class="form-group">
-		  					<input id="letra" type="text" class="TBletras center-block form-control " maxlength="1">
-		  				</div>
-		  				<button id="validar" class="btn btn-success center-block">Validar</button>
-		  			</div>
-		  		</div>
-		  	</div>
-		  	<div class="col-md-2">
-		  		<img id="colgado" src="img/a9.png" class="center-block" height="300" width="100" />
-		  	</div>
-		  	<div class="col-md-1 lateral"></div>
+	  		<div id="cont" class="col-md-12">
+
+	  			<div id="cabeceraTit"class="row">
+	  				<div class="col-md-12">
+	  					<span>Juego del Ahorcado</span>
+	  				</div>
+	  			</div>
+
+	  			<div id="realCont" class="row">
+	  				<div class="col-md-9">
+	  					<div id="instrucciones" class="row">
+	  						<div class="col-md-1"></div>
+	  						<div id="divText1" class="col-md-4">
+				  				<h1 class="titulo">A&#241;adir Palabras</h1>
+				  				<p id="text1" align="justify">
+				  				Puedes introducir palabras de entre 4 y 8 letras para jugar, simplemente escr&iacute;bela y pulsa al bot&oacute;n para anadirla!
+				  				</p>
+				  			</div>	
+				  			<div class="col-md-2"></div>
+				  			<div id="divText2"  class="col-md-4">
+				  				<h1 class="titulo">Como Jugar</h1>
+				  				<p id="text2" align="justify">
+				  				Tienes 8 vidas para descubrir que palabra se esconde y evitar ser colgado. Escoge una letra y comprueba si has acertado!
+				  				</p>
+				  			</div>	
+				  			<div class="col-md-1"></div>
+	  					</div>
+
+	  					<div id="anadirPalabra" class="row">
+	  						<div class="col-md-1"></div>
+	  						<div class="col-md-10">
+	  							<span id="spanLeft" class="anPal">Nueva palabra:</span>
+				  				<input id="nuevaPal" class="anPal" type="text" placeholder="palabra" maxlength="8">
+								<button id="nuevaPalBut" class=" btn btn-anadir">
+									 <span class="glyphicon glyphicon-plus"></span> A&#241;adir Palabra 
+								</button>
+								<span id="nuevaPalMis" class="anPal"></span>
+	  						</div>
+	  						<div class="col-md-1"></div>
+	  					</div>
+
+	  					<div id="estadisticas" class="row">
+	  						<div class="col-md-1"></div>
+	  						<div class="col-md-10">
+	  							<button id="empezar" class="center-block btn btn-lg btn-jugar">
+	  								<span class="glyphicon glyphicon-play"></span> Empezar a Jugar! 
+	  							</button>
+				  				<div id="info" class="hidden">
+					  				<span id="vidas" class="est"> Vidas: 8 </span>
+					  				<span id="tiempoIn" class="est"> Inicio: 08:21:54 </span>
+					  				<span id="duracion" class="est"> Tiempo: 00:00:00 </span>
+					  			</div>
+					  			<div id="final" class="hidden">
+					  				<span id="mensaje" class="center-block"></span>
+					  			</div>
+	  						</div>
+	  						<div class="col-md-1"></div>
+	  					</div>
+
+	  					<div id="letras" class="row hidden">
+	  						<div class="row">
+		  						<div class="col-md-12">
+		  							<div id="TBL"></div>
+		  						</div>
+		  					</div>
+		  					<div class="row">
+		  						<div class="col-md-12">
+					  				<div id="divLetra" class="form-group">
+					  					<input id="letra" type="text" class="TBletras center-block form-control " maxlength="1">
+					  				</div>
+					  			</div>
+					  		</div>
+					  		<div class="row">
+					  			<div class="col-md-12">
+					  				<button id="validar" class="btn btn-lg btn-anadir center-block">
+					  					<span class="glyphicon glyphicon-check"></span> Validar
+					  				</button>
+					  			</div>
+					  		</div>
+					  		<div class="row">
+					  			<div class="col-md-12">
+					  				<button id="atras" class="btn btn-jugar center-block">
+					  					<span class="glyphicon glyphicon-arrow-left"></span> Volver atr&aacute;s
+					  				</button>
+		  						</div>
+		  					</div>
+	  					</div>
+
+	  					<div id="usadas" class="row hidden">
+	  						<div class="col-md-3"></div>
+	  						<div class="col-md-3">
+	  							<span id="usadasCorr"></span>
+	  						</div>
+	  						<div class="col-md-3">
+	  							<span id="usadasErr"></span>
+	  						</div>
+	  						<div class="col-md-3"></div>
+	  					</div>
+	  				</div>
+				  	<div id="imagenJuego" class="col-md-2">
+				  		<img id="colgado" src="img/a9.png" class="center-block" height="300" width="100" alt="colgado" >
+				  	</div>
+	  				<div class="col-md-1"></div>
+	  			</div>
+	  		</div>
 		</div>
 	</body>
 </html>
