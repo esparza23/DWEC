@@ -23,7 +23,7 @@ function tornaStringHora(date)
 	if(s<10)
 		s="0"+s;
 
-	return "Inicio: "+h+":"+m+":"+s;
+	return " | Inicio: "+h+":"+m+":"+s;
 }
 
 //funcion para clacular el tiempo transcurrido jugando
@@ -53,7 +53,7 @@ function calculaTiempo()
 		mt="0"+mt;
 	if(st<10)
 		st="0"+st;
-	return "Tiempo: "+ht+":"+mt+":"+st;
+	return " | Tiempo: "+ht+":"+mt+":"+st;
 }
 
 //funcion que prepara la web para jugar
@@ -274,11 +274,17 @@ function validar()
 				acertada = true;
 			//Gestion si la letra no ESTA en la palabta
 			if(!acertada)
-				error(letra);
+			{
+				if($("#usadasErr").text().search(letra)==-1)
+					error(letra);
+			}
 
 			//Gestion si la letra esta en la palabta
-			else
+			else 
+			{
+				if($("#usadasCorr").text().search(letra)==-1)
 				acierto(letra,indices);
+			}
 		}
 	}
 	else if($("#validar").text()=="Salir")
