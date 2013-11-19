@@ -1,7 +1,7 @@
 <!DOCTYPE HTML SYSTEM>
 <html>
 	<head>
-		<title>Mon Millor</title>
+		<title>La Volta</title>
 		<link rel="icon" type="image/png" href="img/favicon.png" />
 		<!--- Cargar local - -->
 		
@@ -10,54 +10,274 @@
 		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/flaticon.css">
 		<link rel="stylesheet" type="text/css" href="css/volta.css">
+		<script src="js/indexedDB.js" type="text/javascript"></script>
 		<script src="js/volta.js" type="text/javascript"></script>
+
 	</head>
 	<body>
-		<div class="container-liquid">
-			<div class="row">
-				<div id="header" class="col-md-12">
+		<div id="tot" class="container-liquid">
+			<div id="portada" class="row">
+				<div class="col-md-12">
+					<div id="logo" class="row">
+						<div class="col-md-4 text">
+							<div class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-10">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+							<div id="buttons1" class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-10">
+									<button id="butNueva" class="btn btn-primary">Nueva Partida</button>
+									<button id="butCargar" class="btn btn-primary" data-toggle="modal" data-target="#cargar">Cargar Partida</button>
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img src="img/logo2.png" class="center-block" alt="logo">
+						</div>
+						<div class="col-md-4 text">
+							<div class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-10">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+							<div id="buttons2" class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-10">
+									<button id="butImg" class="btn btn-primary" data-toggle="modal" data-target="#imagenes">Ver Imagenes</button>
+									<button id="butBuy" class="btn btn-primary" data-toggle="modal" data-target="#completa">Version Completa</button>
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+						</div>
+					</div>
+					<div id="maillots" class="row">
+						<div class="col-md-3">
+							<img class="center-block"src="img/MaillotLider.png" alt="lider">	
+						</div>
+						<div class="col-md-3">
+							<img class="center-block"src="img/MaillotMont.png" alt="lider">
+						</div>
+						<div class="col-md-3">
+							<img class="center-block"src="img/MaillotSprint.png" alt="lider">
+						</div>
+						<div class="col-md-3">
+							<img class="center-block"src="img/MaillotCatala.png" alt="lider">
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div id="controls" class="row hidden">
+				<button id="butTurno" class="btn btn-primary">Pasar Turno</button>
+				<button id="butGuardar" class="btn btn-primary" data-toggle="modal" data-target="#guardar">Guardar Partida</button>
+				<button id="butSalir" class="btn btn-primary">Salir</button>
+			</div>
+			<div id="joc" class="row hidden">
 				<div class="col-md-12">
 					<span class="equipo">Astana</span>
 					<img src="img/astana.gif" width="70" height="110">
-					<div id="progCic1" class="progress progress-striped barra" >
-						<div id="cic1" class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					<div class="row">
+						<div class="col-md-1">
+							<button id="butCic00" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#historial">
+							  <span class="glyphicon glyphicon-time"></span> Hist
+							</button>
 						</div>
-						<span id="maCic1"class="flaticon-person94 ciclista1"></span>
+						<div class="col-md-11">
+							<div id="progCic00" class="progress progress-striped barra" >
+								<div id="cic00" class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								</div>
+								<span id="maCic00"class="flaticon-person94 ciclista1"></span>
+							</div>
+						</div>
 					</div>
-					<div id="progCic2" class="progress progress-striped barra" >
-						<div  id="cic2" class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					<div class="row">
+						<div class="col-md-1">
+							<button id="butCic01" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#historial">
+							  <span class="glyphicon glyphicon-time"></span> Hist
+							</button>
 						</div>
-						<span id="maCic2"class="flaticon-person94 ciclista1"></span>
-					</div>
-					<div id="progCic3" class="progress progress-striped barra" >
-						<div id="cic3" class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+						<div class="col-md-11">
+							<div id="progCic01" class="progress progress-striped barra" >
+								<div id="cic01" class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								</div>
+								<span id="maCic01"class="flaticon-person94 ciclista1"></span>
+							</div>
 						</div>
-						<span id="maCic3"class="flaticon-person94 ciclista1"></span>
+					</div><div class="row">
+						<div class="col-md-1">
+							<button id="butCic02" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#historial">
+							  <span class="glyphicon glyphicon-time"></span> Hist
+							</button>
+						</div>
+						<div class="col-md-11">
+							<div id="progCic02" class="progress progress-striped barra" >
+								<div id="cic02" class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								</div>
+								<span id="maCic02"class="flaticon-person94 ciclista1"></span>
+							</div>
+						</div>
 					</div>
 					<span class="equipo">Movistar</span>
 					<img src="img/movistar.gif" width="70" height="100">
-					<div id="progCic4" class="progress progress-striped  barra" >
-						<div  id="cic4" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					<div class="row">
+						<div class="col-md-1">
+							<button id="butCic10" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#historial">
+							  <span class="glyphicon glyphicon-time"></span> Hist
+							</button>
 						</div>
-						<span id="maCic4"class="flaticon-person94 ciclista2"></span>
-					</div>
-
-					<div id="progCic5" class="progress progress-striped  barra" >
-						<div id="cic5" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+						<div class="col-md-11">
+							<div id="progCic10" class="progress progress-striped barra" >
+								<div id="cic10" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								</div>
+								<span id="maCic10"class="flaticon-person94 ciclista1"></span>
+							</div>
 						</div>
-						<span id="maCic5"class="flaticon-person94 ciclista2"></span>
 					</div>
-					<div id="progCic5" class="progress progress-striped barra" >
-						<div  id="cic6" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 00%;">
+					<div class="row">
+						<div class="col-md-1">
+							<button id="butCic11" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#historial">
+							  <span class="glyphicon glyphicon-time"></span> Hist
+							</button>
 						</div>
-						<span id="maCic6"class="flaticon-person94 ciclista2"></span>
+						<div class="col-md-11">
+							<div id="progCic11" class="progress progress-striped barra" >
+								<div id="cic11" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								</div>
+								<span id="maCic11"class="flaticon-person94 ciclista1"></span>
+							</div>
+						</div>
+					</div><div class="row">
+						<div class="col-md-1">
+							<button id="butCic12" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#historial">
+							  <span class="glyphicon glyphicon-time"></span> Hist
+							</button>
+						</div>
+						<div class="col-md-11">
+							<div id="progCic12" class="progress progress-striped barra" >
+								<div id="cic12" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								</div>
+								<span id="maCic12"class="flaticon-person94 ciclista1"></span>
+							</div>
+						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
+
+		<!-- Modal Version Completa-->
+		<div class="modal fade" id="completa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Comprar Versi&oacute;n Completa</h4>
+		      </div>
+		      <div class="modal-body">
+		        Agradecemos el apoyo al intentar la versi&oacute;n completa de "La Volta" pero a&uacute;n estamos en fase de desarrollo. Tan pronto como lancemos el juego completo estar&aacute; disponible la opci&oacute;n de compra.
+				</br>
+				</br>
+		        <span id="firm">El equipo t&eacute;cnico de "La Volta"</span>
+		      </div>
+		      <div class="modal-footer">
+		      <button type="button" class="btn btn-default btn-danger" disabled>Comprar</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- Modal Imagenes-->
+		<div class="modal fade" id="imagenes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Im&aacute;genes "La Volta"</h4>
+		      </div>
+		      <div class="modal-body" >
+					Tema Pendent
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+		<!-- Modal Guardar-->
+		<div class="modal fade" id="guardar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Guardar Partida</h4>
+		      </div>
+		      <div class="modal-body" >
+					<div id="partidasG">
+						
+					</div>
+					<input id="tbGuardar" class="center-block" type="text">
+		      </div>
+		      <div class="modal-footer">
+		      	<button id="guardarConf" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+		        <button id="guardarCanc" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- Modal Cargar Partida-->
+		<div class="modal fade" id="cargar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Cargar Partida</h4>
+		      </div>
+		      <div class="modal-body" >
+					<div id="partidasC">
+						
+					</div>
+					<input id="tbCargar" class="center-block" type="text" disabled>
+		      </div>
+		      <div class="modal-footer">
+		        <button id="cargarConf" type="button" class="btn btn-success" data-dismiss="modal">Cargar</button>
+		        <button id="cargarCanc" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+
+		<!-- Modal Hstorial-->
+		<div class="modal fade" id="historial" tabindex="-1" role="dialog" aria-labelledby="myHistorial" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myHistorial">Historial</h4>
+		      </div>
+		      <div class="modal-body" >
+					<ul id="histMetros">
+					</ul>
+		      </div>
+		      <div class="modal-footer">
+		        <button id="cargarCanc" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 	</body>
 </head>
+<!--
+<img src="img/MaillotLiderOrg.png" alt="lider">	
+<img src="img/MaillotMontOrg.png" alt="lider">
+<img src="img/MaillotSprintOrg.png" alt="lider">
+<img src="img/MaillotCatalaOrg.png" alt="lider">
+-->
