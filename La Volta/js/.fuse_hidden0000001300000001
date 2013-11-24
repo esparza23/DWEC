@@ -1,0 +1,451 @@
+var eqUs= null;
+var eqRiv = null;
+var jugEq = null
+var pEq1;
+var pEq2;
+
+var estadoPartida;
+var durEtapa;
+var partida;
+var currentIndex = 1;
+
+function inicializaJuego()
+{
+	eqUs = eqUs.replace("Us","");
+	eqRiv = eqRiv.replace("Riv","");
+	$("#equipo1").text(eqUs.toUpperCase())
+	$("#equipo2").text(eqRiv.toUpperCase());
+	$("#imgEquipo1").attr("src","img/maillots/"+eqUs+".png");
+	$("#imgEquipo2").attr("src","img/maillots/"+eqRiv+".png");
+
+	var numEq = 2
+	var col;
+	//añadir corredores equipo 1
+	for(j=0;j<numEq;j++)
+	{
+		if(j==0)
+			col="success";
+		else 
+			col="info";
+
+		for(i=0;i<jugEq;i++)
+		{
+			var jm = j;
+			var im = i;
+			$(document.createElement("div"))
+				.addClass('row')
+				.attr("id","pepa")
+				.append
+				(
+					$(document.createElement("div"))
+						.addClass('col-md-1')
+						.append
+						(
+							$(document.createElement("button"))
+								.attr("id","butCic"+j+i)
+								.attr("type","button")
+								.attr("data-toogle","modal")
+								.attr("data-target","#historial")
+								.addClass("btn btn-default btn-lg")
+								.click(function(event) {
+									$('#historial').modal();
+									historial($(this).attr("id"));
+								})
+								.append
+								(
+									$(document.createElement("span"))
+										.addClass("glyphicon glyphicon-time")
+										.text("Hist")
+								)
+						)
+				)
+				.append
+				(
+					$(document.createElement("div"))
+						.addClass('col-md-11')
+						.append
+						(
+							$(document.createElement("div"))
+								.attr("id","progCic"+j+i)
+								.addClass("progress progress-striped barra progCic")
+								.append
+								(
+									$(document.createElement("div"))
+										.attr("id","cic"+j+i)
+										.attr("role","progressbar")
+										.addClass("progress-bar progress-bar-"+col)
+										.attr("aria-valuenow","90")
+										.attr("aria-valuemin","0")
+										.attr("aria-valuemax","100")
+										.attr("style","width:0%")
+								)
+								.append
+								(
+									$(document.createElement("span"))
+										.attr("id","macCic"+j+i)
+										.addClass("flaticon-person94 ciclista1")
+								)
+						)
+				)
+				.appendTo("#ciclistes"+j);
+		}
+	}
+}
+
+//Funcion que crea el array donde guardar la informacion de la partida
+
+//HAY QUE CAMBIARLAAAAAAAA
+function inicializaVariables()
+{
+
+	jugEq = $("#jugEq").val();
+	equipo1 = new Array(eqUs.replace("Us",""));
+	equipo2 = new Array(eqRiv.replace("Riv",""));
+	jugEq1 = new Array();
+	jugEq2 = new Array();
+	for(i=0;i<jugEq;i++)
+	{
+		jugEq1.push(new Array("nombre1"+i,"Rol1",100,0,0,0,new Array()));
+		jugEq2.push(new Array("nombre2"+i,"Rol2",100,0,0,0,new Array()));
+	}
+
+	/*Creamos la estructura del array donde guardaremos la informacion*/
+	estadoPartida = null;
+	estadoPartida = new Array();
+	equipo1.push(jugEq1);
+	equipo2.push(jugEq2);	
+	estadoPartida.push(equipo1);
+	estadoPartida.push(equipo2);
+	//alert(estadoPartida);
+	durEtapa = $("#durEtapa").val();;
+}
+
+//funcion que carga los datos de la indexedDB en el array informacion, y coloca los corredores como estaban antes.
+
+///HABRA QUE MEJORARLA CON LOS CAMBIOS...
+function carga()
+{
+	durEtapa = 10000;
+	estadoPartida = partida;
+	for (var i = 0; i < estadoPartida.length; i++) {
+		for (var j = 0; j < estadoPartida[i].length; j++) {
+			var por = estadoPartida[i][1][j][5];
+			
+			$("#cic"+i+j).css("width",por+"%");
+		};
+	};
+}
+
+//funcion que guarda el ancho de la progress bar en el array informacion
+function actualizaWidth()
+{
+	for (var i = 0; i < estadoPartida[0][1].length; i++) {
+		
+		var wid = $("#cic0"+i).css("width");
+	    var widParent = $("#cic0"+i).parent().css("width");
+	    wid = wid.match(/\d/g);
+		wid = wid.join("");
+	    widParent = widParent.match(/\d/g);
+		widParent = widParent.join("");
+	    widParent = widParent.match(/\d/g);
+		widParent = widParent.join("");
+		w = (p*Number(widParent)/100);
+		var p = wid*100/widParent;
+
+		estadoPartida[0][1][i][5] = p;
+	}
+	for (var i = 0; i < estadoPartida[1][1].length; i++) {
+		var wid = $("#cic1"+i).css("width");
+	    var widParent = $("#cic1"+i).parent().css("width");
+	    wid = wid.match(/\d/g);
+		wid = wid.join("");
+	    widParent = widParent.match(/\d/g);
+		widParent = widParent.join("");
+	    widParent = widParent.match(/\d/g);
+		widParent = widParent.join("");
+		w = (p*Number(widParent)/100);
+		var p = wid*100/widParent;
+
+		estadoPartida[1][1][i][5] = p;
+	}
+}
+
+
+//Funcion que calcula cuantos metros se movera cada ciclista.
+function pasarTurno()
+{
+	totEq1 = totEq2 = 1000;
+	for (var i = 0; i < jugEq; i++) {
+
+		/*Distribuir metros bien hecho...*/
+
+		//var metros = Math.floor((Math.random()*totEq1)+1);
+		//totEq1-=metros;
+		var metros = Math.floor(totEq1/3);
+
+		estadoPartida[0][1][i][4] = metros;
+		estadoPartida[0][1][i][3]+= metros;
+		estadoPartida[0][1][i][6].push(metros);
+		mover("#cic0"+i,Math.floor((estadoPartida[0][1][i][4]*100)/(durEtapa)));
+
+		/*Distribuir metros bien hecho...*/
+		
+		//var metros = Math.floor((Math.random()*totEq2)+1);
+		//totEq2-=metros;
+		var metros = Math.floor(totEq2/3);
+		estadoPartida[1][1][i][4] = metros;
+		estadoPartida[1][1][i][3]+= metros;
+		estadoPartida[1][1][i][6].push(metros);
+		mover("#cic1"+i,Math.floor((estadoPartida[1][1][i][4]*100)/(durEtapa)));
+
+	};
+}
+
+//Funcion que actualiza la "distancia" de los ciclistas en las progress bar
+function mover(id,metros)
+{
+	//Calcular porcentaje hecho
+	var wid = $(id).css("width");
+    var widParent = $(id).parent().css("width");
+    wid = wid.match(/\d/g);
+	wid = wid.join("");
+    widParent = widParent.match(/\d/g);
+	widParent = widParent.join("");
+    widParent = widParent.match(/\d/g);
+	widParent = widParent.join("");
+	w = (p*Number(widParent)/100);
+	var p = wid*100/widParent;
+	var f = p + metros;
+	//moverlo
+	$(id).parent().addClass('active');
+    var c1 = setInterval(function()
+    {
+		var wid = $(id).css("width",p+"%");
+		p++;
+		if(p>f)
+		{
+			$(id).parent().removeClass('active');
+			clearInterval(c1);
+		}
+    },100);
+}
+
+//Funcion que muestra el historial de un ciclista dada una ID
+function historial(id)
+{
+	eq = id[id.length-2];
+	cic = id[id.length-1];
+	$("#myHistorial").text("Historial Moviments " +estadoPartida[eq][1][cic][0]);
+	$("#histMetros").empty();
+	if(estadoPartida[eq][1][cic][6].length == 0)
+	{
+		$(document.createElement("span")).text("Encara no hi ha hagut moviments.")
+			.appendTo("#histMetros");
+		$("#histMetros").addClass("alert alert-danger");
+		$("#histMetros").css("text-align","center");
+	}
+	else
+	{
+		$("#histMetros").removeClass("alert alert-danger");
+		$("#histMetros").css("text-align","left");
+		for(i=0;i<estadoPartida[eq][1][cic][6].length;i++)
+		{
+			$(document.createElement("li"))
+				.append(
+					$(document.createElement("span")).text("Torn "+(i+1)+" : "+estadoPartida[eq][1][cic][6][i])
+				)
+			.appendTo("#histMetros");
+		}
+		$(document.createElement("br"))
+		.appendTo("#histMetros");
+		$(document.createElement("span")).text("Total metres: "+estadoPartida[eq][1][cic][3])
+		.appendTo("#histMetros");
+	}
+}
+
+//Funcion que se ejecuta cuando  se carga la pagina
+jQuery(document).ready(function($) {
+
+	//llamamos a la funcion para abrir la base de datos.
+	init();
+
+	//Gestionamos los clicks de los botones
+	$("#butNueva").click(function(event) {
+		$("#portada").addClass("hidden");
+		$("#configuration").removeClass("hidden");
+		//$("#joc").removeClass("hidden");
+		//$("#controls").removeClass("hidden");
+		//inicializaVariables();
+
+	});
+	$("#butSalir").click(function(event) {
+		$("#portada").removeClass("hidden");
+		$("#joc").addClass("hidden");
+		$("#controls").addClass("hidden");
+		$("#cic00").css("width","0%");
+		$("#cic01").css("width","0%");
+		$("#cic02").css("width","0%");
+		$("#cic10").css("width","0%");
+		$("#cic11").css("width","0%");
+		$("#cic12").css("width","0%");
+	});
+
+	$("#butTurno").click(function(event) {
+		$(this).addClass('disabled');
+		$(this).text("Simulando...");
+		pasarTurno();
+		setTimeout(function(){
+			$("#butTurno").removeClass('disabled');
+			$("#butTurno").text("Pasar Turno");
+		},2000);
+	});
+
+	//Botones guardar y cargar
+	$("#butGuardar").click(function(event) {
+		cogePartidas("#partidasG");
+		//alert(estadoPartida[0][1]);
+		//alert(estadoPartida[1][1]);
+	});
+	$("#butCargar").click(function(event) {
+		cogePartidas("#partidasC");
+	});
+
+	//botones del modal guardar
+	$("#guardarConf").click(function(event) {
+		actualizaWidth();
+		guardar($("#tbGuardar").val().trim(),estadoPartida);
+		$("#tbGuardar").val("");
+	});
+	$("#guardarCanc").click(function(event) {
+		$("#tbGuardar").val("");
+	});
+
+	//botones del modal cargar
+	$("#cargarConf").click(function(event) {
+		$("#tbCargar").val("");
+		alert(partida);
+		$("#portada").addClass("hidden");
+		$("#joc").removeClass("hidden");
+		$("#controls").removeClass("hidden");
+		carga();
+	});
+	$("#cargarCanc").click(function(event) {
+		$("#tbCargar").val("");
+	});
+
+	$(".butSi").click(function(event) {
+		//borra();
+		var divId = $(this).parent().parent().parent().parent().parent().attr("id");
+		if(divId == "cargar")
+			borra("#partidasC");
+		else
+			borra("#partidasG");
+		$(".okBorrar").addClass('hidden');
+		$(".butGC").removeClass('disabled');
+	});
+	$(".butNo").click(function(event) {
+		$(".okBorrar").addClass('hidden');
+		$(".butGC").removeClass('disabled');
+	});
+
+	$(".butGC").click(function(event) {
+		$(".okBorrar").addClass('hidden');
+	});
+
+	$(".ajusteestadoPartida").click(function(event) {
+		//Hay que saber el equipo
+		var id = $(this).attr("id")
+		var eq = id[id.length-1];
+		$("#corredores").empty();
+		for(i=0;i<estadoPartida[eq].length;i++){
+
+			$(document.createElement("span"))
+			.text("Corredor: "+estadoPartida[eq][i][0]+", Rol: "+estadoPartida[eq][i][1])
+			.appendTo("#corredores");
+			$(document.createElement("br"))
+			.appendTo("#corredores");
+			$(document.createElement("input"))
+			.attr("placeholder",estadoPartida[eq][i][3].toString())
+			.appendTo("#corredores");
+			$(document.createElement("br"))
+			.appendTo("#corredores");
+			$(document.createElement("br"))
+			.appendTo("#corredores");
+		}
+	});
+	$('#cargar').on('hidden.bs.modal', function () {
+	  $(".okBorrar").addClass('hidden');
+	})
+	$('#guardar').on('hidden.bs.modal', function () {
+	  $(".okBorrar").addClass('hidden');
+	})
+
+	$('.carousel').carousel({
+		wrap:false,
+		interval:false
+	});
+
+	//evento cuando nos movemos
+	$('#confCarousel').on('slide.bs.carousel', function () {
+	 	//alert("HOLA");
+	})
+
+	//evento cuando nos hemos movido
+	$('#confCarousel').bind('slid', function() {
+	    currentIndex = $('div.active').index() + 1;
+	  	//alert(currentIndex);
+	  	if(currentIndex==2)
+	  	{
+	  		$(".disabled").removeClass("disabled");
+	  		var eq = eqUs.replace("Us","")
+	  		//$("#"+eq+"Riv").addClass("btn btn-success");
+	  		$("#"+eq+"Riv").addClass("disabled");
+	  	}
+	});
+
+	$('.maillots').click(function(event) {
+		$("#"+eqUs).removeClass("active");
+		eqUs = $(this).attr("id");
+		//alert(eqUs);
+		$(this).addClass("active");
+		$("#mensajeStep1").addClass('hidden');
+	});
+
+	$('.maillotsRiv').click(function(event) {
+		$("#"+eqRiv).removeClass("active");
+		eqRiv = $(this).attr("id");
+		//alert(eqRiv);
+		$(this).addClass("active");
+		$("#mensajeStep2").addClass('hidden');
+	});
+
+	$(".btnNext").click(function(event) {
+		switch(currentIndex)
+		{
+			case 1:
+				if(eqUs == null)
+					$("#mensajeStep1").removeClass('hidden');
+				else
+					$("#confCarousel").carousel('next');
+				break;
+			case 2:
+				if(eqRiv == null)
+					$("#mensajeStep2").removeClass('hidden');
+				else
+					$("#confCarousel").carousel('next');
+				break;
+		}
+	});	
+	$(".btnPrev").click(function(event) {
+		//alert(currentIndex);
+		$("#confCarousel").carousel('prev');
+	});	
+
+	$("#empezar").click(function(event) {
+		$("#configuration").addClass("hidden");
+		$("#joc").removeClass("hidden");
+		$("#controls").removeClass("hidden");
+		inicializaVariables();
+		inicializaJuego();
+	});	
+});

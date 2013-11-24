@@ -1,18 +1,29 @@
 body {
 	margin: 0;
-	background-color: #FFF;
+	background: #edfcff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #edfcff 0%, #cff5ff 52%, #edfcff 98%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#edfcff), color-stop(52%,#cff5ff), color-stop(98%,#edfcff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #edfcff 0%,#cff5ff 52%,#edfcff 98%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #edfcff 0%,#cff5ff 52%,#edfcff 98%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #edfcff 0%,#cff5ff 52%,#edfcff 98%); /* IE10+ */
+	background: linear-gradient(to bottom,  #edfcff 0%,#cff5ff 52%,#edfcff 98%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#edfcff', endColorstr='#edfcff',GradientType=0 ); /* IE6-9 */
+
 }
 #portada,#joc
 {
-	background-color: #FFF;
-}
-#controls
-{
-	height: 10%;
+	/*background-color: #FFF;*/
 }
 #joc
 {
-	height: 90%;
+	padding-top: 100px;
+}
+
+#controls
+{
+	position: fixed;
+	background-color: black;
+	height: 100px;
 }
 #maillots
 {
@@ -46,9 +57,9 @@ body {
 
 .barra
 {
-	height: 7%;
+	height: 46px;
 }
-#progCic00,#progCic01,#progCic02,#progCic10,#progCic11,#progCic12
+.progCic
 {
 	background-color:#9FBFBF;
 }
@@ -56,7 +67,8 @@ body {
 {
 	margin-top: 45px;
 	margin-left:-40px; 
-	font-size:3em
+	font-size:3em;
+
 }
 .ciclista1
 {
@@ -67,11 +79,15 @@ body {
 	color:black;
 }
 
+#info1,#info2
+{
+	padding: 2% 0;
+}
+
 .equipo
 {
 	text-align: center;
 	width: 10%;
-	background-color: red;
 	font-size: 2em;
 	padding-right: 20px;
 }
@@ -81,6 +97,104 @@ body {
 	float:right;
 }
 
+#butEq0,#butEq1
+{
+	margin-left: 3%;
+}
+
+.conf
+{
+	background-color:;
+	height: 600px;
+	overflow: scroll;
+}
+
+.equipos
+{
+	margin:4% 0;
+}
+
+.step
+{
+	margin-top: 3%;
+	text-align: center;
+	font-size: 3em;
+}
+.maillots,.maillotsRiv
+{
+}
+
+.mensajeStep
+{
+	text-align: center;
+	font-size: 1.2em;
+}
+.carousel-caption
+{
+	color:black;
+	font-size: 2em;
+}
+
+#botonesConf
+{
+	margin-top: 3%;
+}
+
+#mensajeConfSuc,#mensajeConfDan
+{
+	margin-top: 3%;
+	text-align: center;
+}
+
 .banner { position: relative; overflow: auto; }
     .banner li { list-style: none; }
         .banner ul li { float: left; }
+
+.btn-anadir {
+  color: #ffffff;
+  background-color: #FF8100;
+  border-color: #b35a00;
+}
+
+.btn-anadir:hover,
+.btn-anadir:focus,
+.btn-anadir:active,
+.btn-anadir.active,
+.open .dropdown-toggle.btn-anadir {
+  color: #ffffff;
+  background-color: #e67400;
+  border-color: #9a4d00;
+}
+
+.btn-anadir:active,
+.btn-anadir.active,
+.open .dropdown-toggle.btn-anadir {
+  background-image: none;
+}
+
+.btn-anadir.disabled,
+.btn-anadir[disabled],
+fieldset[disabled] .btn-anadir,
+.btn-anadir.disabled:hover,
+.btn-anadir[disabled]:hover,
+fieldset[disabled] .btn-anadir:hover,
+.btn-anadir.disabled:focus,
+.btn-anadir[disabled]:focus,
+fieldset[disabled] .btn-anadir:focus,
+.btn-anadir.disabled:active,
+.btn-anadir[disabled]:active,
+fieldset[disabled] .btn-anadir:active,
+.btn-anadir.disabled.active,
+.btn-anadir[disabled].active,
+fieldset[disabled] .btn-anadir.active {
+  background-color: #e67400;
+  border-color: #5cb85c;
+}
+
+.btn-anadir .caret{
+  border-top-color: #fff;
+}
+
+.dropup .btn-anadir .caret,{
+  border-bottom-color: #fff;
+}

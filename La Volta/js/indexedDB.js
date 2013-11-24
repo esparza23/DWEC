@@ -1,4 +1,5 @@
 var lavolta = {};
+var part;
 
 
 lavolta.indexedDB = {};
@@ -25,7 +26,7 @@ lavolta.indexedDB.open = function() {
 
   request.onsuccess = function(e) {
     lavolta.indexedDB.db = e.target.result;
-    //lavolta.indexedDB.getAllTodoItems();
+    //lavolta.indexedDB.getAllPartidasItems();
   };
 
   request.onerror = lavolta.indexedDB.onerror;
@@ -45,7 +46,7 @@ lavolta.indexedDB.addPartidas = function(nombre,info) {
 
   request.onsuccess = function(e) {
     // Re-render all the todo's
-    //lavolta.indexedDB.getAllTodoItems();
+    //lavolta.indexedDB.getAllPartidasItems();
   };
 
   request.onerror = function(e) {
@@ -53,7 +54,7 @@ lavolta.indexedDB.addPartidas = function(nombre,info) {
   };
 };
 
-function renderTodo(div,row) {
+function renderPartidas(div,row) {
 	$(document.createElement("li"))
 	.append(
 		$(document.createElement("span")).text(row.nombre)
@@ -72,13 +73,16 @@ function renderTodo(div,row) {
 			.css("cursor","pointer")
 			.css("margin-left","1%")
 			.click(function(event) {
-				lavolta.indexedDB.deleteTodo(row.tiempoInicio,div)
+				$(".okBorrar").removeClass('hidden');
+        part = row.tiempoInicio;
+        $(".butGC").addClass('disabled');
+				//lavolta.indexedDB.deletePartidas(row.tiempoInicio)
 			})
 		)
 	.appendTo(div);
 }
 
-lavolta.indexedDB.getAllTodoItems = function(div) {
+lavolta.indexedDB.getAllPartidas = function(div) {
   $(div).empty();
 
   var db = lavolta.indexedDB.db;
@@ -94,14 +98,14 @@ lavolta.indexedDB.getAllTodoItems = function(div) {
     if(!!result == false)
       return;
 
-    renderTodo(div,result.value);
+    renderPartidas(div,result.value);
     result.continue();
   };
 
   cursorRequest.onerror = lavolta.indexedDB.onerror;
 };
 
-lavolta.indexedDB.deleteTodo = function(id,div) {
+lavolta.indexedDB.deletePartidas = function(id,div) {
   var db = lavolta.indexedDB.db;
   var trans = db.transaction(["partidas"], "readwrite");
   var store = trans.objectStore("partidas");
@@ -109,7 +113,7 @@ lavolta.indexedDB.deleteTodo = function(id,div) {
   var request = store.delete(id);
 
   request.onsuccess = function(e) {
-    lavolta.indexedDB.getAllTodoItems(div);  // Refresh the screen
+    lavolta.indexedDB.getAllPartidas(div);  // Refresh the screen
   };
 
   request.onerror = function(e) {
@@ -118,15 +122,51 @@ lavolta.indexedDB.deleteTodo = function(id,div) {
 };
 
 
+
+lavolta.indexedDB.getPartidas = function(partida) {
+
+  var db = lavolta.indexedDB.db;
+  var trans = db.transaction(["partidas"], "readwrite");
+  var store = trans.objectStore("partidas");
+
+  // Get everything in the store;
+  var keyRange = IDBKeyRange.lowerBound(0);
+  var cursorRequest = store.openCursor(keyRange);
+
+  cursorRequest.onsuccess = function(e) {
+    var result = e.target.result;
+    if(!!result == false)
+      return;
+
+    if(result.value.nombre == partida)
+    	lavolta.indexedDB.deletePartidas(result.value.tiempoInicio,"partidasG");
+    	//alert("Borrare " + partida);
+    else
+    	result.continue();
+  };
+  cursorRequest.onerror = lavolta.indexedDB.onerror;
+};
+
 function cogePartidas(div)
 {
-	lavolta.indexedDB.getAllTodoItems(div);
+	lavolta.indexedDB.getAllPartidas(div);
 }
 
 function guardar(nombre,info) {
+	comprueba(nombre),
   lavolta.indexedDB.addPartidas(nombre,info);
 }
 
 function init() {
   lavolta.indexedDB.open(); // open displays the data previously saved
+}
+
+function comprueba(partida)
+{
+	lavolta.indexedDB.getPartidas(partida);
+}
+
+function borra(div)
+{
+  lavolta.indexedDB.deletePartidas(part,div);
 }
