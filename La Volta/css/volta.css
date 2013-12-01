@@ -1,14 +1,5 @@
 body {
 	margin: 0;
-	background: #edfcff; /* Old browsers */
-	background: -moz-linear-gradient(top,  #edfcff 0%, #cff5ff 52%, #edfcff 98%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#edfcff), color-stop(52%,#cff5ff), color-stop(98%,#edfcff)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #edfcff 0%,#cff5ff 52%,#edfcff 98%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #edfcff 0%,#cff5ff 52%,#edfcff 98%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #edfcff 0%,#cff5ff 52%,#edfcff 98%); /* IE10+ */
-	background: linear-gradient(to bottom,  #edfcff 0%,#cff5ff 52%,#edfcff 98%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#edfcff', endColorstr='#edfcff',GradientType=0 ); /* IE6-9 */
-
 }
 #portada,#joc
 {
@@ -16,14 +7,17 @@ body {
 }
 #joc
 {
-	padding-top: 100px;
+	padding-top: 50px;
 }
-
+.textPort
+{
+	height: 130px;
+}
 #controls
 {
 	position: fixed;
 	background-color: black;
-	height: 100px;
+	height: 50px;
 }
 #maillots
 {
@@ -97,9 +91,9 @@ body {
 	float:right;
 }
 
+
 #butEq0,#butEq1
 {
-	margin-left: 3%;
 }
 
 .conf
@@ -109,7 +103,7 @@ body {
 	overflow: scroll;
 }
 
-.equipos
+.equipos,.equipos2
 {
 	margin:4% 0;
 }
@@ -128,13 +122,17 @@ body {
 {
 	text-align: center;
 	font-size: 1.2em;
+	visibility: hidden;
 }
 .carousel-caption
 {
 	color:black;
 	font-size: 2em;
 }
-
+#botonesConfIz
+{
+	
+}
 #botonesConf
 {
 	margin-top: 3%;
@@ -197,4 +195,133 @@ fieldset[disabled] .btn-anadir.active {
 
 .dropup .btn-anadir .caret,{
   border-bottom-color: #fff;
+}
+
+.progress-bar {
+  -webkit-transition: width 3s swing;
+  transition: width 3s swing;
+}
+.progress.active .progress-bar {
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite;
+}
+#selecPartida
+{
+	text-align: center;
+}
+
+.mySlider
+{
+	width:200px;
+	margin-bottom: 25px;
+	margin-top: 10px;
+}
+
+.infoCor,.textSlider
+{
+	text-align: center;
+}
+
+.hist
+{
+	font-size: 1em;
+}
+
+.ajustesImg
+{
+	vertical-align: center;
+	font-size: 4em;
+}
+
+
+.bolsaAgua
+{
+	margin-left: -10px;
+	margin-top: -8px;
+}
+
+.bolsaImg
+{
+	font-size: 3em;
+	color:black;
+}
+
+.bolsaAguaImg
+{
+	font-size: 4em;
+	color:black;
+}
+#puntEqAg
+{
+	margin-left: 10px;
+	margin-top: -45px;
+	text-align: center;
+	font-size: 1em;
+	width:150px;
+	color:black;
+}
+#puntEqEn,#puntEqGras
+{
+	margin-top: -35px;
+	text-align: center;
+	font-size: 1em;
+	width:150px;
+	color:black;
+}
+#bolsaCor
+{
+	margin-top: 15px;
+}
+
+.bolsaCor
+{
+	margin-left:15px;
+}
+
+#titBolsa
+{
+	font-size: 2em;
+	margin-top: 10px;
+}
+
+.addBolsa
+{
+	cursor: pointer;
+	margin-left:10px;
+}
+
+@media(max-width: 991px){
+	.textPort
+	{
+		height: auto;
+		padding: auto 20px;
+	}
+	#buttons1,#buttons2
+	{
+		margin-top: 10px;
+	}
+	.step
+	{
+		margin-top: 0;
+		padding-top: 3%;
+		width: 100%;
+		text-align: center;
+		position: fixed;
+		top:0px;
+		z-index:1000;
+		background-color: #FFF;
+		height: 150px;
+	}
+	.equipos,#confRow
+	{
+		margin-top: 150px;
+		margin-bottom: 0;
+	}
+	.equipos2
+	{
+		margin:0;
+	}
+}
+@media(max-width: 767px){
+
 }

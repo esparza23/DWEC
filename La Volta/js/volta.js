@@ -6,6 +6,7 @@ var equipo1 = null;
 var equipo2 = null;
 var estadoPartida = null;
 var puntEquipos = null;
+var acabados = 0;
 
 var durEtapa;
 var partida;
@@ -26,6 +27,8 @@ function reiniciaVariables()
 	$("#"+eqUs+"Us").removeClass("btn-success");
 	$("#"+eqRiv+"Riv").removeClass("active");
 	$("#"+eqRiv+"Riv").removeClass("btn-danger");
+	$("#imgEquipo1").tooltip('destroy');
+	$("#imgEquipo2").tooltip('destroy');
 	eqUs = null;
 	eqRiv = null;
 	jugEq = null;
@@ -34,6 +37,7 @@ function reiniciaVariables()
 	equipo2 = null;
 	estadoPartida = null;
 	puntEquipos = null;
+	acabados = 0;
 
 }
 
@@ -54,35 +58,11 @@ function generaCorredores()
 			var im = i;
 			$(document.createElement("div"))
 				.addClass('row')
-				.attr("id","pepa")
+				.attr("id","rowCic"+j+i)
 				.append
 				(
 					$(document.createElement("div"))
-						.addClass('col-md-1')
-						.append
-						(
-							$(document.createElement("button"))
-								.attr("id","butCic"+j+i)
-								.attr("type","button")
-								.attr("data-toogle","modal")
-								.attr("data-target","#historial")
-								.addClass("btn btn-default btn-lg")
-								.click(function(event) {
-									$('#historial').modal();
-									historial($(this).attr("id"));
-								})
-								.append
-								(
-									$(document.createElement("span"))
-										.addClass("glyphicon glyphicon-time")
-										.text("Hist")
-								)
-						)
-				)
-				.append
-				(
-					$(document.createElement("div"))
-						.addClass('col-md-11')
+						.addClass('col-md-10')
 						.append
 						(
 							$(document.createElement("div"))
@@ -107,6 +87,37 @@ function generaCorredores()
 								)
 						)
 				)
+				.append
+				(
+					$(document.createElement("div"))
+						.addClass('col-md-2')
+						.append
+						(
+							$(document.createElement("button"))
+								.attr("id","butCic"+j+i)
+								.attr("type","button")
+								.attr("data-toogle","modal")
+								.attr("data-target","#historial")
+								.addClass("btn btn-default btn-lg ")
+								.click(function(event) {
+									$('#historial').modal();
+									historial($(this).attr("id"));
+								})
+								.append
+								(
+									$(document.createElement("span"))
+										//.addClass("glyphicon glyphicon-time")
+										.addClass("flaticon-look hist")
+										//.text("Hist")
+								)
+						)
+						.append
+						(
+							$(document.createElement("img"))
+								.attr("id","img"+j+i)
+								.attr("src","")
+						)
+				)
 				.appendTo("#ciclistes"+j);
 		}
 	}
@@ -120,7 +131,15 @@ function inicializaJuego()
 	$("#equipo1").text(eqUs.toUpperCase())
 	$("#equipo2").text(eqRiv.toUpperCase());
 	$("#imgEquipo1").attr("src","img/maillots/"+eqUs+".png");
+	$("#imgEquipo1").tooltip({
+		placement:"right",
+		title:''+eqUs
+	});
 	$("#imgEquipo2").attr("src","img/maillots/"+eqRiv+".png");
+	$("#imgEquipo2").tooltip({
+		placement:"right",
+		title:''+eqRiv
+	});
 
 	generaCorredores();
 	
@@ -131,6 +150,7 @@ function inicializaVariables()
 {
 
 	jugEq = $("#jugEq").val();
+	durEtapa = $("#durEtapa").val();
 	puntEquipos = 1000+(jugEq-3)*300;
 	equipo1 = new Array(eqUs.replace("Us",""));
 	equipo2 = new Array(eqRiv.replace("Riv",""));
@@ -139,46 +159,54 @@ function inicializaVariables()
 	for(i=0;i<jugEq;i++)
 	{
 		if(i==0)
-		{
-			jugEq1.push(new Array(nombres1[i],"Lider",100,0,400,0,new Array()));
-			jugEq2.push(new Array(nombres2[i],"Lider",100,0,400,0,new Array()));
+		{						  //nombre     rol    Esf  MR  En     Ag    Gr   MMT  Width  Historial
+ 			jugEq1.push(new Array(nombres1[i],"Lider",100 ,0  ,100  ,100  ,100  ,400,  0,    new Array()));
+			jugEq2.push(new Array(nombres2[i],"Lider",100 ,0  ,100  ,100  ,100  ,400,  0,    new Array()));
 		}
 		else
-		{
-			jugEq1.push(new Array(nombres1[i],"Gregario",100,0,300,0,new Array()));
-			jugEq2.push(new Array(nombres2[i],"Gregario",100,0,300,0,new Array()));
+		{						     //nombre     rol    Esf  MR   En     Ag   Gr   MMT  Width  Historial
+			jugEq1.push(new Array(nombres1[i],"Gregario",100  ,0  ,100  ,100  ,100  ,300,  0,    new Array()));
+			jugEq2.push(new Array(nombres2[i],"Gregario",100  ,0  ,100  ,100  ,100  ,300,  0,    new Array()));
 		}
 	}
 
 	/*Creamos la estructura del array donde guardaremos la informacion*/
 	estadoPartida = new Array();
-	equipo1.push(jugEq1);
-	equipo2.push(jugEq2);	
+	equipo1.push(jugEq1,"1000","1000","1000");
+	equipo2.push(jugEq2,"1000","1000","1000");	
 	estadoPartida.push(equipo1);
 	estadoPartida.push(equipo2);
-	//alert(estadoPartida);
-	durEtapa = $("#durEtapa").val();
+	estadoPartida.push(durEtapa);
 }
 
 //funcion que carga los datos de la indexedDB en el array informacion, y coloca los corredores como estaban antes.
 function carga()
 {
 	estadoPartida = partida;
-
-	durEtapa = 10000;
+	durEtapa = estadoPartida[2];
 	eqUs= estadoPartida[0][0];
 	eqRiv = estadoPartida[1][0];
 	jugEq = estadoPartida[0][1].length;
+	puntEquipos = 1000+(jugEq-3)*300;
 
 	generaCorredores();
 	$("#equipo1").text(eqUs.toUpperCase())
 	$("#equipo2").text(eqRiv.toUpperCase());
 	$("#imgEquipo1").attr("src","img/maillots/"+eqUs+".png");
+	$("#imgEquipo1").tooltip({
+		placement:"right",
+		title:''+eqUs
+	});
 	$("#imgEquipo2").attr("src","img/maillots/"+eqRiv+".png");
+	$("#imgEquipo2").tooltip({
+		placement:"right",
+		title:''+eqRiv
+	});
+
 	
-	for (var i = 0; i < estadoPartida.length; i++) {
+	for (var i = 0; i < estadoPartida.length-1; i++) {
 		for (var j = 0; j < estadoPartida[i][1].length; j++) {
-			var por = estadoPartida[i][1][j][5];
+			var por = estadoPartida[i][1][j][8];
 			$("#cic"+i+j).css("width",por+"%");
 		};
 	};
@@ -190,19 +218,8 @@ function actualizaWidth()
 	for(j=0;j<numEq;j++)
 	{
 		for (var i = 0; i < estadoPartida[j][1].length; i++) {
-			
-			var wid = $("#cic"+j+i).css("width");
-		    var widParent = $("#cic"+j+i).parent().css("width");
-		    wid = wid.match(/\d/g);
-			wid = wid.join("");
-		    widParent = widParent.match(/\d/g);
-			widParent = widParent.join("");
-		    widParent = widParent.match(/\d/g);
-			widParent = widParent.join("");
-			w = (p*Number(widParent)/100);
-			var p = wid*100/widParent;
-
-			estadoPartida[j][1][i][5] = p;
+			var p = (estadoPartida[j][1][i][3]*100)/durEtapa;
+			estadoPartida[j][1][i][8] = p;
 		}
 	}
 }
@@ -213,55 +230,51 @@ function pasarTurno()
 {
 	for (var j = 0; j < numEq; j++) {
 		for (var i = 0; i < jugEq; i++) {
-			var metros = Math.floor((Math.random()*estadoPartida[j][1][i][4])+1);
-			estadoPartida[j][1][i][3]+= metros;
-			estadoPartida[j][1][i][6].push(metros);
-			mover("#cic"+j+i,Math.floor((metros*100)/(durEtapa)));
+			/*
+			if(estadoPartida[j][1][i][4] == 0 || estadoPartida[j][1][i][5] == 0 || estadoPartida[j][1][i][6] == 0)
+			{
+				//alert("problemas");
+			}
+			else
+			{*/
+				var metros = Math.floor((estadoPartida[j][1][i][2]*estadoPartida[j][1][i][7])/100);
+				
+				estadoPartida[j][1][i][4]-= estadoPartida[j][1][i][2];
+				estadoPartida[j][1][i][5]-= estadoPartida[j][1][i][2];
+				estadoPartida[j][1][i][6]-= estadoPartida[j][1][i][2];
+
+				var metrosAntes = estadoPartida[j][1][i][3];
+				estadoPartida[j][1][i][3]+= metros;
+				var metrosDespues = metrosAntes + metros;
+				estadoPartida[j][1][i][9].push(metros);
+				var p = (metrosDespues*100)/durEtapa;
+				if(p>=99.8)
+				{
+					p = 99.8;
+					if( $("#img"+j+i).attr("src")=="")
+						acabados++;
+					switch(acabados)
+					{
+						case 1:
+							if( $("#img"+j+i).attr("src")=="")
+								$("#img"+j+i).attr("src","img/1-48.png");
+							break;
+						case 2:
+							if($("#img"+j+i).attr("src")=="")
+								$("#img"+j+i).attr("src","img/2-48.png");
+							break;
+						case 3:
+							if($("#img"+j+i).attr("src")=="")
+								$("#img"+j+i).attr("src","img/3-48.png");
+							break;
+					}
+				}	
+				$("#cic"+j+i).css("width",p+"%");	
+			//}
 		}
 	}
 }
 
-//Funcion que actualiza la "distancia" de los ciclistas en las progress bar
-function mover(id,metros)
-{
-	//Calcular porcentaje hecho
-	var wid = $(id).css("width");
-    var widParent = $(id).parent().css("width");
-    wid = wid.match(/\d/g);
-	wid = wid.join("");
-    widParent = widParent.match(/\d/g);
-	widParent = widParent.join("");
-    widParent = widParent.match(/\d/g);
-	widParent = widParent.join("");
-	w = (p*Number(widParent)/100);
-	var p = wid*100/widParent;
-	var f = p + metros;
-
-	if(f >100)
-		f=100;
-	//moverlo de p(principio) a f (final)
-	$(id).parent().addClass('active');
-    var c1 = setInterval(function()
-    {
-    	if(f==100)
-    	{
-    		$(id).css("width","99.8%");
-    		$(id).parent().removeClass('active');
-			clearInterval(c1);
-			//Hacer que ganen o algo...
-    	}
-    	else
-    	{
-			$(id).css("width",p+"%");
-			p++;
-			if(p>f )
-			{
-				$(id).parent().removeClass('active');
-				clearInterval(c1);
-			}
-		}
-    },300);
-}
 
 //Funcion que muestra el historial de un ciclista dada una ID
 function historial(id)
@@ -270,7 +283,7 @@ function historial(id)
 	cic = id[id.length-1];
 	$("#myHistorial").text("Historial Moviments " +estadoPartida[eq][1][cic][0]);
 	$("#histMetros").empty();
-	if(estadoPartida[eq][1][cic][6].length == 0)
+	if(estadoPartida[eq][1][cic][9].length == 0)
 	{
 		$(document.createElement("span")).text("Encara no hi ha hagut moviments.")
 			.appendTo("#histMetros");
@@ -281,11 +294,11 @@ function historial(id)
 	{
 		$("#histMetros").removeClass("alert alert-danger");
 		$("#histMetros").css("text-align","left");
-		for(i=0;i<estadoPartida[eq][1][cic][6].length;i++)
+		for(i=0;i<estadoPartida[eq][1][cic][9].length;i++)
 		{
 			$(document.createElement("li"))
 				.append(
-					$(document.createElement("span")).text("Torn "+(i+1)+" : "+estadoPartida[eq][1][cic][6][i])
+					$(document.createElement("span")).text("Torn "+(i+1)+" : "+estadoPartida[eq][1][cic][9][i])
 				)
 			.appendTo("#histMetros");
 		}
@@ -296,8 +309,82 @@ function historial(id)
 	}
 }
 
+function activaTooltips()
+{
+	$(".ajusteEquipos").tooltip({
+		placement:'right',
+		title:'Ajustes de Equipo'
+	});
+	
+	$("#euskaltelUs, #euskaltelRiv").tooltip({
+		placement:'top',
+		title:'Euskaltel'
+	});
+	$("#fdjUs, #fdjRiv").tooltip({
+		placement:'top',
+		title:'FDJ'
+	});
+	$("#skyUs, #skyRiv").tooltip({
+		placement:'top',
+		title:'Sky'
+	});
+	$("#astanaUs, #astanaRiv").tooltip({
+		placement:'top',
+		title:'Astana'
+	});
+	$("#katushaUs, #katushaRiv").tooltip({
+		placement:'top',
+		title:'Katusha'
+	});
+	$("#quickstepUs, #quickstepRiv").tooltip({
+		placement:'top',
+		title:'Quickstep'
+	});
+	$("#radioshackUs, #radioshackRiv").tooltip({
+		placement:'top',
+		title:'Radioshack'
+	});
+	$("#movistarUs, #movistarRiv").tooltip({
+		placement:'top',
+		title:'Movistar'
+	});
+
+	$("#agua").tooltip({
+		placement:"top",
+		title:"Agua"
+	});
+	$("#energia").tooltip({
+		placement:"top",
+		title:"Energia"
+	});
+	$("#grasa").tooltip({
+		placement:"top",
+		title:"Grasa"
+	});
+}
+
+function resolution()
+{
+    if ($(window).width() < 992) {
+        $("#logoImg").appendTo("#logo");
+        $("#logoText1").appendTo("#logo");
+        $("#logoText2").appendTo("#logo");
+    }
+    else
+    {
+        $("#logoText1").appendTo("#logo");
+        $("#logoImg").appendTo("#logo");
+        $("#logoText2").appendTo("#logo");
+    }
+}
+
 //Funcion que se ejecuta cuando  se carga la pagina
 jQuery(document).ready(function($) {
+
+	resolution();
+	$(window).resize(function () {
+        resolution();
+    });
 
 	//llamamos a la funcion para abrir la base de datos.
 	init();
@@ -305,6 +392,7 @@ jQuery(document).ready(function($) {
 	//llamamos a la funcion que gestiona los clicks de los botones
 	gestionaClicks();
 	
+	activaTooltips();
 	//gestionamos el cierre de los modales para esconder el mensaje de comnfirmacion
 	$('#cargar').on('hidden.bs.modal', function () {
 	  $(".okBorrar").addClass('hidden');
@@ -323,5 +411,14 @@ jQuery(document).ready(function($) {
 	$('#confCarousel').bind('slid', function() {
 	    currentIndex = $('div.active').index() + 1;
 	});
+
+	$('#ajustes').on('hidden.bs.modal', function () {
+	 	$("#Lcorredores").removeClass("active");
+	 	$("#Lbolsa").removeClass("active");
+	 	$("#Linformacion").addClass("active");
+	 	$("#corredores").removeClass("active");
+	 	$("#bolsa").removeClass("active");
+	 	$("#informacion").addClass("active");
+	})
 
 });

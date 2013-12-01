@@ -1,7 +1,6 @@
 var lavolta = {};
 var part;
 
-
 lavolta.indexedDB = {};
 lavolta.indexedDB.db = null;
 
@@ -60,6 +59,9 @@ function renderPartidas(div,row) {
 		$(document.createElement("span")).text(row.nombre)
 			.css("cursor","pointer")
 			.click(function(event) {
+        $(".selecPartida").addClass("hidden");
+        $(".okBorrar").addClass('hidden');
+        $(".butGC").removeClass('disabled');
 				if(div =="#partidasG")
 					$("#tbGuardar").val(row.nombre);
 				else
@@ -74,6 +76,7 @@ function renderPartidas(div,row) {
 			.css("margin-left","1%")
 			.click(function(event) {
 				$(".okBorrar").removeClass('hidden');
+        $(".selecPartida").addClass("hidden");
         part = row.tiempoInicio;
         $(".butGC").addClass('disabled');
 				//lavolta.indexedDB.deletePartidas(row.tiempoInicio)
