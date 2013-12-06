@@ -1,23 +1,34 @@
 body {
 	margin: 0;
 }
+.myModal
+{
+	height: 600px;
+	width: 800px;
+}
 #portada,#joc
 {
 	/*background-color: #FFF;*/
 }
 #joc
 {
-	padding-top: 50px;
+	padding-top: 75px;
 }
 .textPort
 {
 	height: 130px;
 }
+
+#butTurno,#butGuardar,#butSalir
+{
+	margin-top: 20px;
+}
+
 #controls
 {
 	position: fixed;
 	background-color: black;
-	height: 50px;
+	height: 75px;
 }
 #maillots
 {
@@ -57,20 +68,11 @@ body {
 {
 	background-color:#9FBFBF;
 }
-.ciclista1,.ciclista2
+.ciclista
 {
-	margin-top: 45px;
-	margin-left:-40px; 
+	position: absolute;
+	color:black;
 	font-size:3em;
-
-}
-.ciclista1
-{
-	color:black;
-}
-.ciclista2
-{
-	color:black;
 }
 
 #info1,#info2
@@ -290,6 +292,14 @@ fieldset[disabled] .btn-anadir.active {
 	margin-left:10px;
 }
 
+.imgPos
+{
+	width: 48px;
+	margin-left: 2%;
+	margin-right: 10%;
+}
+
+
 @media(max-width: 991px){
 	.textPort
 	{
@@ -321,7 +331,26 @@ fieldset[disabled] .btn-anadir.active {
 	{
 		margin:0;
 	}
-}
-@media(max-width: 767px){
-
+	.myModal
+	{
+		height: auto;
+		width: auto;
+	}
+	.histBut
+	{
+		font-size: 1em;
+		margin-bottom:20px;
+	}
+	.aj
+	{
+		margin-top: 20px;
+	}
+	#info2
+	{
+		border-top:2px solid black;
+	}
+	.imgPos
+	{
+		margin-bottom: 20px;
+	}
 }

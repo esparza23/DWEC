@@ -1,3 +1,6 @@
+//La mayor parte del codigo es el que habia en el primer tutorial.
+//HE modificado lo justo para que hiciera lo que yo quiera.
+
 var lavolta = {};
 var part;
 
@@ -31,7 +34,7 @@ lavolta.indexedDB.open = function() {
   request.onerror = lavolta.indexedDB.onerror;
 };
 
-
+//funcion que añade una partida a la base de datos
 lavolta.indexedDB.addPartidas = function(nombre,info) {
   var db = lavolta.indexedDB.db;
   var trans = db.transaction(["partidas"], "readwrite");
@@ -53,6 +56,7 @@ lavolta.indexedDB.addPartidas = function(nombre,info) {
   };
 };
 
+//fincion que dada una partida(row) la añade al div que se la pasa por parametro(puede ser el modal de guardar o cargar)
 function renderPartidas(div,row) {
 	$(document.createElement("li"))
 	.append(
@@ -85,6 +89,7 @@ function renderPartidas(div,row) {
 	.appendTo(div);
 }
 
+//funcion que coge todas las partidas de las bd y llama a la funcion para añdirlas al modal correspondiente.
 lavolta.indexedDB.getAllPartidas = function(div) {
   $(div).empty();
 
@@ -108,6 +113,8 @@ lavolta.indexedDB.getAllPartidas = function(div) {
   cursorRequest.onerror = lavolta.indexedDB.onerror;
 };
 
+
+//funcion que dada una id de partida, la elimina de la base de datos y recarga las partidas del div seleccionado.
 lavolta.indexedDB.deletePartidas = function(id,div) {
   var db = lavolta.indexedDB.db;
   var trans = db.transaction(["partidas"], "readwrite");
@@ -125,7 +132,7 @@ lavolta.indexedDB.deletePartidas = function(id,div) {
 };
 
 
-
+//funcion que es llamada para ver si la partida existe, y en tal caso, borrarla de la BD
 lavolta.indexedDB.getPartidas = function(partida) {
 
   var db = lavolta.indexedDB.db;
@@ -149,6 +156,7 @@ lavolta.indexedDB.getPartidas = function(partida) {
   };
   cursorRequest.onerror = lavolta.indexedDB.onerror;
 };
+
 
 function cogePartidas(div)
 {

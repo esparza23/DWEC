@@ -1,3 +1,4 @@
+//variables "globales" para controlar el juego.
 var eqUs= null;
 var eqRiv = null;
 var jugEq = null;
@@ -41,7 +42,7 @@ function reiniciaVariables()
 
 }
 
-//funcion que genera los ciclistas segun el numero que haya introducido el usuario.
+//funcion que genera los ciclistas(y todo lo que ello conlleva) segun el numero que haya introducido el usuario.
 function generaCorredores()
 {	
 	var col;
@@ -63,6 +64,12 @@ function generaCorredores()
 				(
 					$(document.createElement("div"))
 						.addClass('col-md-10')
+								.append
+								(
+									$(document.createElement("span"))
+										.attr("id","macCic"+j+i)
+										.addClass("flaticon-person94 ciclista")
+								)
 						.append
 						(
 							$(document.createElement("div"))
@@ -79,12 +86,6 @@ function generaCorredores()
 										.attr("aria-valuemax","100")
 										.attr("style","width:0%")
 								)
-								.append
-								(
-									$(document.createElement("span"))
-										.attr("id","macCic"+j+i)
-										.addClass("flaticon-person94 ciclista1")
-								)
 						)
 				)
 				.append
@@ -93,12 +94,19 @@ function generaCorredores()
 						.addClass('col-md-2')
 						.append
 						(
+							$(document.createElement("img"))
+								.addClass("imgPos")
+								.attr("id","img"+j+i)
+								.attr("src","")
+						)
+						.append
+						(
 							$(document.createElement("button"))
 								.attr("id","butCic"+j+i)
 								.attr("type","button")
 								.attr("data-toogle","modal")
 								.attr("data-target","#historial")
-								.addClass("btn btn-default btn-lg ")
+								.addClass("btn btn-default btn-lg histBut")
 								.click(function(event) {
 									$('#historial').modal();
 									historial($(this).attr("id"));
@@ -111,16 +119,14 @@ function generaCorredores()
 										//.text("Hist")
 								)
 						)
-						.append
-						(
-							$(document.createElement("img"))
-								.attr("id","img"+j+i)
-								.attr("src","")
-						)
 				)
 				.appendTo("#ciclistes"+j);
 		}
 	}
+	$(".histBut").tooltip({
+		placement:"left",
+		title:"Historial Movimiento"
+	});
 }
 
 //funcion que inicializa el juego, colocando los maillots de los equipos escogidos y colocando los ciclistas.
@@ -160,13 +166,13 @@ function inicializaVariables()
 	{
 		if(i==0)
 		{						  //nombre     rol    Esf  MR  En     Ag    Gr   MMT  Width  Historial
- 			jugEq1.push(new Array(nombres1[i],"Lider",100 ,0  ,100  ,100  ,100  ,400,  0,    new Array()));
-			jugEq2.push(new Array(nombres2[i],"Lider",100 ,0  ,100  ,100  ,100  ,400,  0,    new Array()));
+ 			jugEq1.push(new Array(nombres1[i],"Lider",50 ,0  ,100  ,100  ,100  ,400,  0,    new Array()));
+			jugEq2.push(new Array(nombres2[i],"Lider",50 ,0  ,100  ,100  ,100  ,400,  0,    new Array()));
 		}
 		else
 		{						     //nombre     rol    Esf  MR   En     Ag   Gr   MMT  Width  Historial
-			jugEq1.push(new Array(nombres1[i],"Gregario",100  ,0  ,100  ,100  ,100  ,300,  0,    new Array()));
-			jugEq2.push(new Array(nombres2[i],"Gregario",100  ,0  ,100  ,100  ,100  ,300,  0,    new Array()));
+			jugEq1.push(new Array(nombres1[i],"Gregario",50  ,0  ,100  ,100  ,100  ,300,  0,    new Array()));
+			jugEq2.push(new Array(nombres2[i],"Gregario",50  ,0  ,100  ,100  ,100  ,300,  0,    new Array()));
 		}
 	}
 
@@ -179,7 +185,8 @@ function inicializaVariables()
 	estadoPartida.push(durEtapa);
 }
 
-//funcion que carga los datos de la indexedDB en el array informacion, y coloca los corredores como estaban antes.
+//funcion que carga los datos de la indexedDB en el array informacion, y coloca los corredores 
+//	como estaban antes(y todo lo que eso conlleva).
 function carga()
 {
 	estadoPartida = partida;
@@ -208,6 +215,7 @@ function carga()
 		for (var j = 0; j < estadoPartida[i][1].length; j++) {
 			var por = estadoPartida[i][1][j][8];
 			$("#cic"+i+j).css("width",por+"%");
+			$("#macCic"+i+j).css("padding-left",por+"%");
 		};
 	};
 }
@@ -230,27 +238,53 @@ function pasarTurno()
 {
 	for (var j = 0; j < numEq; j++) {
 		for (var i = 0; i < jugEq; i++) {
-			/*
 			if(estadoPartida[j][1][i][4] == 0 || estadoPartida[j][1][i][5] == 0 || estadoPartida[j][1][i][6] == 0)
 			{
-				//alert("problemas");
+				$("#img"+j+i).attr("src","img/error-48.png");
+				$("#img"+j+i).tooltip({
+					placement:"top",
+					title:"Te falta alimento"
+				});
 			}
 			else
-			{*/
+			{
+				$("#img"+j+i).attr("src","");
+				$("#img"+j+i).tooltip('destroy');
 				var metros = Math.floor((estadoPartida[j][1][i][2]*estadoPartida[j][1][i][7])/100);
 				
 				estadoPartida[j][1][i][4]-= estadoPartida[j][1][i][2];
 				estadoPartida[j][1][i][5]-= estadoPartida[j][1][i][2];
-				estadoPartida[j][1][i][6]-= estadoPartida[j][1][i][2];
+				estadoPartida[j][1][i][6]-= 100-estadoPartida[j][1][i][2];
+				if(estadoPartida[j][1][i][4] < 0)
+					estadoPartida[j][1][i][4]=0;
+				if(estadoPartida[j][1][i][5] < 0)
+					estadoPartida[j][1][i][5]=0;
+				if(estadoPartida[j][1][i][6] < 0)
+					estadoPartida[j][1][i][6]=0;
 
 				var metrosAntes = estadoPartida[j][1][i][3];
-				estadoPartida[j][1][i][3]+= metros;
 				var metrosDespues = metrosAntes + metros;
+				if(metrosDespues >=  durEtapa)
+				{
+					metros = durEtapa-metrosAntes;
+					metrosDespues = durEtapa;
+				}
+				estadoPartida[j][1][i][3]+= metros;
 				estadoPartida[j][1][i][9].push(metros);
 				var p = (metrosDespues*100)/durEtapa;
-				if(p>=99.8)
+				if(p>=100)
 				{
-					p = 99.8;
+					$("#cic"+j+i).css("width",p+"%");
+					//$("#macCic"+j+i).css("padding-left",p+"%");	
+					$("#macCic"+j+i).animate({
+					    paddingLeft: "96%"
+					  }, "swing", function() {
+							//$(this).removeAttr("style");
+					  });
+					$("#macCic"+j+i).addClass("cicAcabado");
+					p = 100;
+
+					//Controlamos las posiciones y ponemos la imagen que toque.
 					if( $("#img"+j+i).attr("src")=="")
 						acabados++;
 					switch(acabados)
@@ -267,10 +301,21 @@ function pasarTurno()
 							if($("#img"+j+i).attr("src")=="")
 								$("#img"+j+i).attr("src","img/3-48.png");
 							break;
+						default:
+							if($("#img"+j+i).attr("src")=="")
+								$("#img"+j+i).attr("src","img/x-mark-48.png");
+							break;
 					}
-				}	
-				$("#cic"+j+i).css("width",p+"%");	
-			//}
+				}
+				else
+				{
+					$("#cic"+j+i).css("width",p+"%");
+					//$("#macCic"+j+i).css("padding-left",p+"%");	
+					$("#macCic"+j+i).animate({
+					    paddingLeft: p+"%"
+					  }, "swing");
+				}
+			}
 		}
 	}
 }
@@ -309,11 +354,22 @@ function historial(id)
 	}
 }
 
+//funcion que activa la mayoria de  tooltips que tiene la pagina.
 function activaTooltips()
 {
 	$(".ajusteEquipos").tooltip({
 		placement:'right',
 		title:'Ajustes de Equipo'
+	});
+
+	$(".cicEquipos").tooltip({
+		placement:'right',
+		title:'Ciclistas del Equipo'
+	});
+
+	$(".bolsaEquipos").tooltip({
+		placement:'right',
+		title:'Bolsa de Equipo'
 	});
 	
 	$("#euskaltelUs, #euskaltelRiv").tooltip({
@@ -363,6 +419,7 @@ function activaTooltips()
 	});
 }
 
+//funcion para cuadrar la portada del juego en responsive.
 function resolution()
 {
     if ($(window).width() < 992) {
@@ -407,18 +464,13 @@ jQuery(document).ready(function($) {
 		interval:false
 	});
 
+	$('.carouselMy').carousel({
+		wrap:true,
+		interval:2500
+	});
+
 	//evento cuando nos hemos movido
 	$('#confCarousel').bind('slid', function() {
 	    currentIndex = $('div.active').index() + 1;
 	});
-
-	$('#ajustes').on('hidden.bs.modal', function () {
-	 	$("#Lcorredores").removeClass("active");
-	 	$("#Lbolsa").removeClass("active");
-	 	$("#Linformacion").addClass("active");
-	 	$("#corredores").removeClass("active");
-	 	$("#bolsa").removeClass("active");
-	 	$("#informacion").addClass("active");
-	})
-
 });

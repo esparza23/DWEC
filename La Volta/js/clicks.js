@@ -102,10 +102,12 @@ function gestionaClicks()
 		$(".okBorrar").addClass('hidden');
 	});
 
-	//funcion que añade al modal de configuracion e equipo los datos necesarios (que son muchos)
-	$(".ajusteEquipos").click(function(event) {
+	//funcion que añade al modal de configuracion de equipo los datos necesarios (que son muchos)
+	//La deberia haver hecho mas pequeña y por partes, lo se.
+	function rellenaAjustes(idn)
+	{
 		//Hay que saber el equipo
-		var id = $(this).attr("id")
+		var id = $("#"+idn).attr("id")
 		var eq = id[id.length-1];
 
 		//vaciamos el contenido anterios (si hay)
@@ -332,7 +334,6 @@ function gestionaClicks()
 				$(".puntCorr").each(function() {
 					PTotales+=parseInt($(this).val());
 				});
-				alert(PTotales);
 				if(PTotales>puntEquipos)
 				{
 					$("#mensajeConfSuc").addClass("hidden");					
@@ -363,29 +364,29 @@ function gestionaClicks()
 			.attr("data-dismiss","modal")
 			.addClass("btn btn-danger center-block")
 			.appendTo("#botonesConfDer");
-	});
+	}
 
-
+	//click al seleccionar el equipo del usuario
 	$('.maillots').click(function(event) {
 		$("#"+eqUs).removeClass("active");
 		$("#"+eqUs).removeClass("btn-success");
 		eqUs = $(this).attr("id");
-		//alert(eqUs);
 		$(this).addClass("active");
 		$(this).addClass("btn-success");
 		$("#mensajeStep1").css('visibility','hidden');
 	});
 
+	//click al seleccionar el equipo del rival
 	$('.maillotsRiv').click(function(event) {
 		$("#"+eqRiv).removeClass("active");
 		$("#"+eqRiv).removeClass("btn-danger");
 		eqRiv = $(this).attr("id");
-		//alert(eqRiv);
 		$(this).addClass("active");
 		$(this).addClass("btn-danger");
 		$("#mensajeStep2").css('visibility','hidden');
 	});
 
+	//click del boton siguiente en la configuracion del juego. 
 	$(".btnNext").click(function(event) {
 		switch(currentIndex)
 		{
@@ -407,6 +408,7 @@ function gestionaClicks()
 		}
 	});	
 
+	//click del boton anterior en la configuracion del juego. 
 	$(".btnPrev").click(function(event) {
 		switch(currentIndex)
 		{
@@ -427,6 +429,8 @@ function gestionaClicks()
 		$("#confCarousel").carousel('prev');
 	});	
 
+
+	//funcion que gestiona el click del boton empezar, al final de la configuracion, y se encarga de inicializar el juego.
 	$("#empezar").click(function(event) {
 		$("#"+eqUs.replace("Us","Riv")).removeClass("disabled");
 		$("#configuration").addClass("hidden");
@@ -435,5 +439,38 @@ function gestionaClicks()
 		inicializaVariables();
 		inicializaJuego();
 	});	
+
+
+	//Gestion de los click de los botones de ajustes. La diferencia entre cada uno de ellos es la pestaña
+	//que se muestra.
+	$(".ajusteEquipos").click(function(event) {
+		$("#Linformacion").addClass("active");
+		$("#Lcorredores").removeClass("active");
+		$("#Lbolsa").removeClass("active");
+	 	$("#corredores").removeClass("active");
+	 	$("#bolsa").removeClass("active");
+	 	$("#informacion").addClass("active");
+	 	rellenaAjustes($(this).attr("id"));
+	});
+
+	$(".cicEquipos").click(function(event) {
+		$("#Linformacion").removeClass("active");
+		$("#Lcorredores").addClass("active");
+		$("#Lbolsa").removeClass("active");
+	 	$("#corredores").addClass("active");
+	 	$("#bolsa").removeClass("active");
+	 	$("#informacion").removeClass("active");
+	 	rellenaAjustes($(this).attr("id"));
+	});
+
+	$(".bolsaEquipos").click(function(event) {
+		$("#Linformacion").removeClass("active");
+		$("#Lcorredores").removeClass("active");
+		$("#Lbolsa").addClass("active");
+	 	$("#corredores").removeClass("active");
+	 	$("#bolsa").addClass("active");
+	 	$("#informacion").removeClass("active");
+	 	rellenaAjustes($(this).attr("id"));
+	});
 
 }
