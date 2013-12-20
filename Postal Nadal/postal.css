@@ -1,0 +1,21 @@
+
+*
+{
+	margin:0;
+	padding:0;
+}
+
+#postal
+{
+	position:absolute;
+	margin-top: 50px;
+	border:1px solid black;
+	background-image:url('img/fons.png');
+}
+
+
+@font-face
+{
+    font-family:fuenteNavidad;
+    src:url(MerryXmas.ttf)
+}

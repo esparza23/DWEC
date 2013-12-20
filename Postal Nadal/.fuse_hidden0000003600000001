@@ -1,0 +1,9 @@
+#postal
+{
+	position: absolute;
+	margin-top: 50px;
+	border:1px solid black;
+	background-image:url('img/fons2.jpg');
+	height: 600px;
+	width: 1200px;
+}
