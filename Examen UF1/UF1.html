@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="indexedDB.js"></script>
+		<script type="text/javascript">
+			//inicializamos la BD.
+			init();
+
+			//Variables "globales" para las funciones.
+			var x = 0;
+			var inc;
+			var inter;
+			var nums;
+			var minimo;
+			var maximo;
+			var y;
+			var today;
+
+			//mostramos por consola el valor del número, lo guardamos en la BD, en el array, y por ultimo mostramos el array por consola.
+			function guardaAArray()
+			{
+				console.log(x);
+				guardar(x);
+				nums.push(x);
+				console.log("Array: "+nums);
+			}
+
+			//funcion escriu log, que recibe otra funcion como parametro y la ejecuta cada segundo.
+			function escriuLog(callback)
+			{
+				inter = setInterval(callback,1000);
+			}
+			
+			//funcion del boton click, donde miramos que escribe el usuario y llamamos la funcion escriuLog con la funcion correspondiente.
+			function empezar()
+			{
+				//Inicializamos el array(y lo resetea) y cogemos el valor del TextBox.
+				nums = new Array();
+				var text = document.getElementById("func").value;
+
+				//caso incrementar
+				if(text.search("INC-")!=-1)				
+				{
+					var res = text.split("-");
+					inc = parseInt(res[1]);
+
+					x = 0;
+					clearInterval(inter);
+
+					escriuLog(function incX()
+					{
+						x+=inc;
+						guardaAArray();
+					});
+				}
+
+				//caso random
+				else if(text.search("RND-")!=-1)				
+				{
+					var res = text.split("-");
+					minimo = parseInt(res[1]);
+					maximo = parseInt(res[2]);
+					x = 0;
+					clearInterval(inter);
+
+					escriuLog(function random()
+					{
+						x = Math.floor(Math.random()*(maximo-(minimo-1))) + minimo;
+						guardaAArray();
+					});
+				}
+
+				//caso propio
+				else if(text.search("ALT-")!=-1)				
+				{
+					var res = text.split("-");
+					y = inc = parseInt(res[1]);
+
+					x = 1000;
+					clearInterval(inter);
+
+					escriuLog(function incAno()
+					{
+						today = new Date();
+						y+=inc;
+						x = new Date(y,today.getMonth(),today.getDay(),today.getHours(),today.getMinutes(),today.getSeconds(),0);
+						guardaAArray();
+					});
+
+				}
+				else 
+				{
+					alert("Ordre no interpretada.");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div style="width:200px; margin:40px auto; ">
+			<input id="func" type="text">
+			<button id="empezar" onclick="empezar()">Empezar</button>
+		</div>
+		
+		<div style="width:450px; margin:auto;">
+			<p>
+			El Programa "entiende" 3 funciones: INC-X, RND-X-Y, y ALT-X.
+			</br></br>
+			*INC-X : X indica el incremento del número cada segundo.
+			</br></br>
+			*RND-X-Y : El número toma el valor de un aleatorio entre X e Y.
+			</br></br>
+			*ALT-X : Te da la fecha actual, incrementándole X al año cada segundo.
+			</p>
+		</div>
+	</bod5
+</html>
