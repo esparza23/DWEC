@@ -1,0 +1,59 @@
+#tauler
+{
+	margin-left: 100px;
+	width: 1200px;
+	height: 800px;
+}
+
+.fila
+{
+	clear:both;
+}
+
+.casella
+{
+	width:65px;
+	height: 65px;
+	border:1px solid black;
+	float:left;
+	box-sizing: border-box;
+	background-color: #edecc0;
+}
+
+.casL
+{
+	border-left: 2px solid black;
+}
+.casD
+{
+	border-right: 2px solid black;
+}
+.casA
+{
+	border-top: 2px solid black;
+}
+.casB
+{
+	border-bottom: 2px solid black;
+}
+
+.circleA,.circleB
+{
+	border-radius: 50%;
+	width:50px;
+	height: 50px;
+	margin:auto;
+	margin-top: 5px;
+}
+.circleA
+{
+	
+	background-color: #0bd04f;
+	border:1px solid #056b28;
+}
+.circleB
+{
+	
+	background-color: #2c6ed0;
+	border:1px solid #143260;
+}
