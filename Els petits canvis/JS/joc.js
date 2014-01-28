@@ -1,9 +1,12 @@
 jQuery(document).ready(function($) {
-	//$(".circleA").draggable({ revert: "valid" });
-	//$(".circleB").draggable({ revert: "valid" });
+	$(".circleA").draggable({ revert: "invalid" });
+	$(".circleB").draggable({ revert: "invalid" });
+	
 
 	$("#start").click(function(event) {
-		var tauler = new Tauler(10,10,10,15);
+		tauler = new Tauler(5,5,10,15);
 		tauler.pintarTauler();
+		//var numFicha = 0;
+
 	});
 });

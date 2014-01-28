@@ -1,13 +1,19 @@
+#body
+{
+	width: 400px;
+}
+
 #tauler
 {
-	margin-left: 100px;
-	width: 1200px;
-	height: 800px;
+	width: 400px;
+	height: 400px;
 }
 
 .fila
 {
 	clear:both;
+	width:325px;
+	height: 65px;
 }
 
 .casella
@@ -56,4 +62,13 @@
 	
 	background-color: #2c6ed0;
 	border:1px solid #143260;
+}
+
+.posible
+{
+	background-color: #edcd4f;
+}
+.posibleActiu
+{
+	background-color: #eda669;
 }

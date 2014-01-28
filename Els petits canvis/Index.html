@@ -1,61 +1,49 @@
 <body>
 	<head>
+
 		<!-- Carga Github -->
+		<!--
 		<script src="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-1.10.2.js"></script>
 		<script src="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-ui-1.10.4.custom.js"></script>
 		<script src="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/js/bootstrap.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-ui-1.10.4.custom.css">
+		-->
+
+		<!-- Carga Local -->
+		<script src="../Jquery/jquery-1.10.2.js"></script>
+		<script src="../Jquery/jquery-ui-1.10.4.custom.js"></script>
+		<script src="../Bootstrap/js/bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap.css"></link>
+		<link rel="stylesheet" type="text/css" href="../Jquery/jquery-ui-1.10.4.custom.css">
 
 		<link rel="stylesheet" type="text/css" href="tauler.css">
+		<script>
+			var numFicha = 0;
+			var tauler;
+
+			function numero(cadena)
+			{
+
+			    var numero = "";
+			    for (i = 0; i < cadena.length; i++) {
+			        if (cadena.charAt(i) >= '0' && cadena.charAt(i) <= '9')
+			        {
+			            numero += cadena.charAt(i);
+			        }
+			    }
+			    return parseInt(numero);
+			}
+		</script>
+		<script src="JS/joc.js"></script>
+		<script src="JS/ficha.js"></script>
+		<script src="JS/casella.js"></script>
 		<script src="JS/tauler.js"></script>
 
-		<script src="JS/joc.js"></script>
 
 	</head>
 	<body>
+		<div id="tauler"></div>
 		<button id="start" class="btn"> click </button>
-		<div class="circleA ui-widget-content"></div>
-		<div class="circleB ui-widget-content"></div>
-		<div id="tauler">
-			<!--
-			<div class="fila">
-				<div class="casella casL casA"></div>
-				<div class="casella casA"></div>
-				<div class="casella casA"></div>
-				<div class="casella casA"></div>
-				<div class="casella casA"></div>
-				<div class="casella casA"></div>
-				<div class="casella casA"></div>
-				<div class="casella casA"></div>
-				<div class="casella casA"></div>
-				<div class="casella casD casA"></div>
-			</div>
-			<div class="fila">
-				<div class="casella casL"></div>
-				<div class="casella"></div>
-				<div class="casella"></div>
-				<div class="casella"></div>
-				<div class="casella"></div>
-				<div class="casella"></div>
-				<div class="casella"></div>
-				<div class="casella"></div>
-				<div class="casella"></div>
-				<div class="casella casD"></div>
-			</div>
-			<div class="fila">
-				<div class="casella casL casB"></div>
-				<div class="casella casB"></div>
-				<div class="casella casB"></div>
-				<div class="casella casB"></div>
-				<div class="casella casB"></div>
-				<div class="casella casB"></div>
-				<div class="casella casB"></div>
-				<div class="casella casB"></div>
-				<div class="casella casB"></div>
-				<div class="casella casD casB"></div>
-			</div>
-			-->
-		</div>
 	</body>
 </body>

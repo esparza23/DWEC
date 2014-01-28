@@ -1,9 +1,10 @@
-function Tauler(filas,columnes,fichesA,fichesB)
+function Tauler(filesN,columnesN,fichesA,fichesB)
 {
-	this.filas = filas;
-	this.columnes = columnes;
-	this.fichesA = fichesA;
-	this.fichesB = fichesB;
+	var files = filesN;
+	var columnes = columnesN;
+	var fichesA = fichesA;
+	var fichesB = fichesB;
+	var caselles;
 
 	this.inicializar = function()
 	{
@@ -12,8 +13,10 @@ function Tauler(filas,columnes,fichesA,fichesB)
 	
 	this.pintarTauler = function()
 	{
-		for(i = 0;i < this.filas; i++)
+		caselles = new Array(new Array(files));
+		for(i = 0;i < files; i++)
 		{
+			caselles[i] = new Array(new Array(columnes));
 			$("#tauler").append
 			(
 				$(document.createElement("div"))
@@ -21,52 +24,49 @@ function Tauler(filas,columnes,fichesA,fichesB)
 					.addClass("fila")
 			)
 
-			for(j = 0;j < this.columnes; j++)
+			for(j = 0;j < columnes; j++)
 			{
-				$("#fila"+i).append
-				(
-					$(document.createElement("div"))
-						.attr("id","casella"+i+j)
-						.addClass("casella")
-				)
-				/*
-				if(i%2==0)
-				{
-					$("#casella"+i+j).append
-					(
-						$(document.createElement("div"))
-							.addClass("circleA")
-					)
-				}
-				else
-				{
-					$("#casella"+i+j).append
-					(
-						$(document.createElement("div"))
-							.addClass("circleB")
-					)
-				}
-				*/
-				switch(i)
-				{
-					case 0:
-						$("#casella"+i+j).addClass("casA");
-						break;
-					case (this.filas-1):
-						$("#casella"+i+j).addClass("casB");
-						break;
-				}
-				switch(j)
-				{
-					case 0:
-						$("#casella"+i+j).addClass("casL");
-						break;
-					case (this.columnes-1):
-						$("#casella"+i+j).addClass("casD");
-						break;
-				}
+				var cas = new Casella(i,j);
+				cas.crearCasella(i,j,files,columnes);
+				caselles[i][j] = cas;
 			}
-		}	
+		}
+		console.log(caselles);
 	}
 
+	this.treuDropp = function()
+	{
+		for(i = 0;i < files; i++)
+		{
+			for(j = 0;j < columnes; j++)
+			{
+				if(caselles[i][j].socDropp())
+					caselles[i][j].treuDropp();
+			}
+		}
+	}
+
+	this.treuFicha = function (i,j)
+	{
+		var f = caselles[i][j].tornaFicha();
+		caselles[i][j].treuFicha();
+		return f;
+	}
+
+	this.colocaFicha = function (i,j,ficha)
+	{
+		caselles[i][j].posarFicha(ficha);
+	}
+
+	this.buscaLloc = function()
+	{
+		for(i = 0;i < files; i++)
+		{
+			for(j = 0;j < columnes; j++)
+			{
+				if(!caselles[i][j].tincFicha())
+					caselles[i][j].posarseDisp();
+			}
+		}
+	}
 }
