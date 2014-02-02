@@ -1,6 +1,6 @@
 <body>
 	<head>
-
+		<meta charset="utf-8"> 
 		<!-- Carga Github -->
 		<!--
 		<script src="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-1.10.2.js"></script>
@@ -18,23 +18,8 @@
 		<link rel="stylesheet" type="text/css" href="../Jquery/jquery-ui-1.10.4.custom.css">
 
 		<link rel="stylesheet" type="text/css" href="tauler.css">
-		<script>
-			var numFicha = 0;
-			var tauler;
-
-			function numero(cadena)
-			{
-
-			    var numero = "";
-			    for (i = 0; i < cadena.length; i++) {
-			        if (cadena.charAt(i) >= '0' && cadena.charAt(i) <= '9')
-			        {
-			            numero += cadena.charAt(i);
-			        }
-			    }
-			    return parseInt(numero);
-			}
-		</script>
+		<script src="JS/comportamientos.js"></script>
+		<script src="JS/config.js"></script>
 		<script src="JS/joc.js"></script>
 		<script src="JS/ficha.js"></script>
 		<script src="JS/casella.js"></script>
@@ -43,7 +28,92 @@
 
 	</head>
 	<body>
+		<button id="start" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalConf"> Configurar Juego 
+			<span class="glyphicon glyphicon-cog"></span>
+		</button>
 		<div id="tauler"></div>
-		<button id="start" class="btn"> click </button>
+
+		<div id="modalConf" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+				    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				    	<h2 class="modal-title">Configuració Del Joc</h2>
+					</div>
+					<div class="modal-body">
+						<h4>Percentatge fitxes verdes</h4>
+						<div class="slider">
+							<div class="por por50">50</div>
+							<div class="por por55">55</div>
+							<div class="por por60">60</div>
+							<div class="por por65">65</div>
+							<div class="por por70">70</div>
+							<div class="por por75">75</div>
+							<div class="por por80">80</div>
+							<div class="por por85">85</div>
+							<div class="por por90">90</div>
+						</div>
+				    	<div class="slider" id="porVerde"></div>
+				    	</br>
+
+				    	<h4>Percentatge caselles buides</h4>
+				    	<div class="slider">
+							<div class="por por30">30</div>
+							<div class="por por35">35</div>
+							<div class="por por40">40</div>
+							<div class="por por45">45</div>
+							<div class="por por502">50</div>
+						</div>
+				    	<div class="slider" id="porLlenas"></div>
+				    	</br>
+						<div class="radioOp1">
+					    	<h4>Tipus de joc</h4>
+						  	<div class="radio opcions">
+								<label>
+									<input type="radio" name="joc" id="joc1" value="joc1" checked>
+									Felicitat amb fitxes iguals
+								</label>
+							</div>
+							<div class="radio opcions">
+								<label>
+									<input type="radio" name="joc" id="joc2" value="joc2">
+									Felicitat amb fitxes diferents
+								</label>
+							</div>
+							<div class="radio opcions">
+								<label>
+									<input type="radio" name="joc" id="joc3" value="joc3">
+									Joc 3
+								</label>
+							</div>
+						</div>
+						<div class="radioOp2">
+					    	<h4>Minim veïns</h4>
+						  	<div class="radio opcions">
+								<label>
+									<input type="radio" name="veins" id="vei1" value="vei1" checked>
+									1
+								</label>
+							</div>
+							<div class="radio opcions">
+								<label>
+									<input type="radio" name="veins" id="vei2" value="vei2">
+									2
+								</label>
+							</div>
+							<div class="radio opcions">
+								<label>
+									<input type="radio" name="veins" id="vei3" value="vei3">
+									3
+								</label>
+							</div>
+						</div>
+				  	</div>
+				  	<div class="modal-footer">
+				    	<button id="comen" type="button" class="btn btn-success btn-lg center-block" data-dismiss="modal">Començar</button>
+				  	</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 	</body>
 </body>

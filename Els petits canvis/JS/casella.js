@@ -13,32 +13,6 @@ function Casella(i,j)
 				.attr("id","casella"+i+j)
 				.addClass("casella ui-widget-header")
 		)
-		switch(i)
-		{
-			case 0:
-				$("#casella"+i+j).addClass("casA");
-				break;
-			case (files-1):
-				$("#casella"+i+j).addClass("casB");
-				break;
-		}
-		switch(j)
-		{
-			case 0:
-				$("#casella"+i+j).addClass("casL");
-				break;
-			case (columnes-1):
-				$("#casella"+i+j).addClass("casD");
-				break;
-		}
-		//x = $("#casella"+i+j).offset().left;
-		//y = $("#casella"+i+j).offset().top;
-		if(i>1)
-		{
-			ficha = new Ficha();
-			ficha.crearFicha(i,j,numFicha);
-			numFicha++;
-		}
 	}
 
 	//Retorna cert si la casella te una ficha dintre
@@ -48,6 +22,13 @@ function Casella(i,j)
 			return false;
 		else 
 			return true;
+	}
+
+	this.inicializaFicha = function(x,y,color)
+	{
+		ficha = new Ficha();
+		ficha.crearFicha(x,y,numFicha,color);
+		numFicha++;
 	}
 
 	this.posarFicha = function(fichaNew)
@@ -65,6 +46,11 @@ function Casella(i,j)
 		return ficha;
 	}
 
+	this.tornaColorFicha = function()
+	{
+		return ficha.getColor();
+	}
+
 	//Treu la propietat de la casella d'acceptar fiches
 	this.treuDropp = function()
 	{
@@ -78,6 +64,11 @@ function Casella(i,j)
 			return true;
 		else 
 			return false;
+	}
+
+	this.evalFelicitat = function()
+	{
+		ficha.feliz(busca,feliz);
 	}
 
 	this.posarseDisp = function()
@@ -96,26 +87,10 @@ function Casella(i,j)
 	        	ui.draggable.remove();
 	        	
 	        	var desti = numero(event.target.id);
-	        	tauler.colocaFicha(Math.floor(desti/10),desti%10,f);
-				
-	        	//alert(numero(event.target.id)+"-"+numero(ui.draggable.attr("id")));
-
-	        	//Movem la ficha a la casella on l'hem deixada
+	        	f.crearFicha(Math.floor(desti/10),desti%10,ui.draggable.attr("id"),f.getColor());
 	        	
-	        	$("#"+event.target.id).append
-	        	(
-	        		$(document.createElement("div"))
-	        			.attr("id",ui.draggable.attr("id"))
-	        			.addClass(ui.draggable.attr("class"))
-	        			.draggable({
-							revert:"invalid",
-							start: function() {
-								//posar les casillas on puc anar...callback?
-								tauler.buscaLloc();
-							}
-						})
-	        	)
-	        	tauler.treuDropp();
+	        	tauler.colocaFicha(Math.floor(desti/10),desti%10,f);
+	        	tauler.actualitzaFelicitat();
 	       
 	      	}
 	    });

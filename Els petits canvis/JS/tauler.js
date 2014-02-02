@@ -4,19 +4,40 @@ function Tauler(filesN,columnesN,fichesA,fichesB)
 	var columnes = columnesN;
 	var fichesA = fichesA;
 	var fichesB = fichesB;
-	var caselles;
+	this.caselles = null;
+	this.files = files;
+	this.columnes = columnes;
 
 	this.inicializar = function()
 	{
-
+		var x,y;
+		for(f = 0;f<ficVerdes;f++)
+		{
+			do
+			{
+				x = Math.floor((Math.random()*10)+0);
+				y = Math.floor((Math.random()*10)+0);
+			}while(tauler.caselles[x][y].tincFicha());
+			tauler.caselles[x][y].inicializaFicha(x,y,"circleA");
+		}
+		for(f = 0;f<ficBlaves;f++)
+		{
+			do
+			{
+				x = Math.floor((Math.random()*10)+0);
+				y = Math.floor((Math.random()*10)+0);
+			}while(tauler.caselles[x][y].tincFicha());
+			tauler.caselles[x][y].inicializaFicha(x,y,"circleB");
+		}
 	}
 	
 	this.pintarTauler = function()
 	{
-		caselles = new Array(new Array(files));
+		this.caselles = null;
+		this.caselles = new Array(new Array(files));
 		for(i = 0;i < files; i++)
 		{
-			caselles[i] = new Array(new Array(columnes));
+			this.caselles[i] = new Array(new Array(columnes));
 			$("#tauler").append
 			(
 				$(document.createElement("div"))
@@ -28,10 +49,12 @@ function Tauler(filesN,columnesN,fichesA,fichesB)
 			{
 				var cas = new Casella(i,j);
 				cas.crearCasella(i,j,files,columnes);
-				caselles[i][j] = cas;
+				this.caselles[i][j] = cas;
 			}
 		}
-		console.log(caselles);
+		console.log(this.caselles);
+		this.inicializar();
+		this.actualitzaFelicitat();
 	}
 
 	this.treuDropp = function()
@@ -40,32 +63,32 @@ function Tauler(filesN,columnesN,fichesA,fichesB)
 		{
 			for(j = 0;j < columnes; j++)
 			{
-				if(caselles[i][j].socDropp())
-					caselles[i][j].treuDropp();
+				if(this.caselles[i][j].socDropp())
+					this.caselles[i][j].treuDropp();
 			}
 		}
 	}
 
 	this.treuFicha = function (i,j)
 	{
-		var f = caselles[i][j].tornaFicha();
-		caselles[i][j].treuFicha();
+		var f = this.caselles[i][j].tornaFicha();
+		this.caselles[i][j].treuFicha();
 		return f;
 	}
 
 	this.colocaFicha = function (i,j,ficha)
 	{
-		caselles[i][j].posarFicha(ficha);
+		this.caselles[i][j].posarFicha(ficha);
 	}
 
-	this.buscaLloc = function()
+	this.actualitzaFelicitat = function()
 	{
 		for(i = 0;i < files; i++)
 		{
 			for(j = 0;j < columnes; j++)
 			{
-				if(!caselles[i][j].tincFicha())
-					caselles[i][j].posarseDisp();
+				if(this.caselles[i][j].tincFicha())
+					this.caselles[i][j].evalFelicitat();
 			}
 		}
 	}

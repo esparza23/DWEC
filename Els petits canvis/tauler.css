@@ -1,18 +1,26 @@
-#body
+body
 {
-	width: 400px;
+	width: auto;
+	background-color: #F2f2f2;
+}
+
+#start
+{
+	position: absolute;
+	top:0;
+	left:0;
 }
 
 #tauler
 {
-	width: 400px;
-	height: 400px;
+	width: auto;
+	height: auto;
 }
 
 .fila
 {
 	clear:both;
-	width:325px;
+	width:auto;
 	height: 65px;
 }
 
@@ -24,6 +32,7 @@
 	float:left;
 	box-sizing: border-box;
 	background-color: #edecc0;
+	margin: 1px;
 }
 
 .casL
@@ -51,16 +60,22 @@
 	margin:auto;
 	margin-top: 5px;
 }
+
+.unhappy
+{
+	background-image: url('unhappy.png');
+	background-repeat: no-repeat;
+}
+
 .circleA
 {
-	
 	background-color: #0bd04f;
 	border:1px solid #056b28;
 }
 .circleB
 {
 	
-	background-color: #2c6ed0;
+	background-color: #50a7d0;
 	border:1px solid #143260;
 }
 
@@ -71,4 +86,101 @@
 .posibleActiu
 {
 	background-color: #eda669;
+}
+.por
+{
+	display: inline-block;
+}
+.por50
+{
+	margin-left: -8px;
+}
+.por55
+{
+	margin-left: 54px;
+}
+.por60
+{
+	margin-left: 56px;
+}
+.por65
+{
+	margin-left: 56px;
+}
+.por70
+{
+	margin-left: 55px;
+}
+.por75
+{
+	margin-left: 55px;
+}
+.por80
+{
+	margin-left: 55px;
+}
+.por85
+{
+	margin-left: 55px;
+}
+.por90
+{
+	float:right;
+	margin-right: -5px;
+}
+
+.por30
+{
+	margin-left: -8px;
+}
+.por35
+{
+	margin-left: 130px;
+}
+.por40
+{
+	margin-left: 130px;
+}
+.por45
+{
+	margin-left: 130px;
+}
+.por502
+{
+	float:right;
+	margin-right: -5px;
+}
+
+.modal-content
+{
+	width:800px;
+	margin:auto;
+}
+.modal-dialog
+{
+	width: auto;
+}
+
+.slider{
+	margin: 5px auto;
+	width:600;
+}
+
+.radioOp1
+{
+	float:left;
+	width:300px;
+}
+.radioOp2
+{
+	float:right;
+	width:300px;
+}
+.modal-footer
+{
+	clear:both;
+}
+.opcions
+{
+	margin-left: 20px;
 }
