@@ -18,8 +18,8 @@
 		<link rel="stylesheet" type="text/css" href="../Jquery/jquery-ui-1.10.4.custom.css">
 
 		<link rel="stylesheet" type="text/css" href="tauler.css">
-		<script src="JS/comportamientos.js"></script>
 		<script src="JS/config.js"></script>
+		<script src="JS/comportamientos.js"></script>
 		<script src="JS/joc.js"></script>
 		<script src="JS/ficha.js"></script>
 		<script src="JS/casella.js"></script>
@@ -28,9 +28,39 @@
 
 	</head>
 	<body>
-		<button id="start" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalConf"> Configurar Juego 
-			<span class="glyphicon glyphicon-cog"></span>
-		</button>
+		<div id="conf">
+			<div id="info" class="hidden">
+				<p class="paragraf">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+				<p class="paragraf">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+			</div>	
+			<button id="start" class="btn btn-primary btn-lg center-block hidden" data-toggle="modal" data-target="#modalConf"> Configurar Juego 
+				<span class="glyphicon glyphicon-cog"></span>
+			</button>
+		</div>
+		<div id="conf2">
+			<button id="desp" class="btn buton"> 
+				<span class="glyphicon glyphicon-chevron-right white"></span>
+			</button>
+		</div>
+		<div id="presentacio">
+			<div >
+				<img src="IMG/schilling.jpg" alt="" class="imgSch">
+			</div>
+			<p class="infoPrinc">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+			<div >
+				<img src="IMG/john.jpg" alt="" class="img">
+				<img src="IMG/kath.jpg" alt="" class="img">
+				<img src="IMG/mandela.jpg" alt="" class="img">
+				<img src="IMG/martin.jpg" alt="" class="img">
+				<img src="IMG/rosa.jpg" alt="" class="img">
+			</div>
+		</div>
 		<div id="tauler"></div>
 
 		<div id="modalConf" class="modal fade">
@@ -115,5 +145,8 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+		<div id="mensajeFinal" class="hidden">
+			<h1 id="mens"></h1>
+		</div>
 	</body>
 </body>

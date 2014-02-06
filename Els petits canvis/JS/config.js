@@ -1,4 +1,4 @@
-
+//Declaramos las variables "Globales" para el juego.
 var numFicha = 0;
 var colorDrag;
 var xOr,yOr;
@@ -12,8 +12,14 @@ var casTotal = 100;
 var casPlenes;
 var ficVerdes;
 var ficBlaves;
-//alert("Verdes: "+ficVerdes+" - "+"Blaves: "+ficBlaves);
+var click;
+var turno;
+var infelices;
+var dir;
+var guanyat;
 
+
+//Funcion que devuelve un entero con la parte numerica de un string.
 function numero(cadena)
 {
 

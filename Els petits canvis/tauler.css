@@ -3,16 +3,83 @@ body
 	width: auto;
 	background-color: #F2f2f2;
 }
+.white, .white a {
+  color: #fff;
+}
+
+.buton
+{
+	background-color: #303030;
+	-webkit-box-shadow: 7px 0px 5px -2px black ;
+	-moz-box-shadow: 7px 0px 5px -2px black ;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-radius: 45px;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-radius: 45px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	border-radius: 45px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
 
 #start
 {
-	position: absolute;
-	top:0;
-	left:0;
+	margin-top: 50px;
+}
+
+#desp
+{
+	height: 100%;
+}
+
+#presentacio
+{
+	overflow-x:scroll;
+	height: 100%;
+}
+
+#info
+{
+	width:300px;
+	margin:40px auto;
+}
+
+.infoPrinc
+{
+	text-align: justify;
+	width:700px;
+	margin-left: 30px;
+}
+
+.paragraf
+{
+	text-align: justify;
+	margin:15 auto;
+}
+
+#conf
+{
+	box-sizing:border-box;
+	background-color: #d3d3d3;
+	color:black;
+	height: 100%;
+	float:left;
+	overflow: scroll;
+}
+
+#conf2
+{
+	width:auto;
+	height: 100%;
+	float:left;
+	margin-right: 250px;
 }
 
 #tauler
 {
+	float:left;
 	width: auto;
 	height: auto;
 }
@@ -31,26 +98,10 @@ body
 	border:1px solid black;
 	float:left;
 	box-sizing: border-box;
-	background-color: #edecc0;
+	background-color: #FFEDC5;
 	margin: 1px;
 }
 
-.casL
-{
-	border-left: 2px solid black;
-}
-.casD
-{
-	border-right: 2px solid black;
-}
-.casA
-{
-	border-top: 2px solid black;
-}
-.casB
-{
-	border-bottom: 2px solid black;
-}
 
 .circleA,.circleB
 {
@@ -69,23 +120,23 @@ body
 
 .circleA
 {
-	background-color: #0bd04f;
-	border:1px solid #056b28;
+	background-color: #62cc08;
+	border:1px solid #2e6203;
 }
 .circleB
 {
 	
-	background-color: #50a7d0;
-	border:1px solid #143260;
+	background-color: #33B5E5;
+	border:1px solid #114051;
 }
 
 .posible
 {
-	background-color: #edcd4f;
+	background-color: #FFD071;
 }
 .posibleActiu
 {
-	background-color: #eda669;
+	background-color: #FF892F;
 }
 .por
 {
@@ -183,4 +234,30 @@ body
 .opcions
 {
 	margin-left: 20px;
+}
+
+.img
+{
+	margin:20px;
+}
+
+.imgSch
+{
+	margin: 50px;
+	margin-left:255px;
+}
+
+#mensajeFinal
+{
+	position: absolute;
+	margin:5% 15%;
+	width:70%;
+	height: 80%;
+	background-color: #D3D3D3;
+	opacity: 0.9;
+	border:3px solid #303030;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+	color:#000000;
 }

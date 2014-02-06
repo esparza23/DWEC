@@ -1,11 +1,13 @@
 function Casella(i,j)
 {
+	//Definimos los atributos de casilla, todos privados
 	var id = "casella"+i+j;
 	var i = i;
 	var j = j;
 	var ficha = null;
 
-	this.crearCasella = function(i,j,files,columnes)
+	//Funcion que crea el HTML necesario para crear un casilla.
+	this.crearCasella = function(i,j)
 	{
 		$("#fila"+i).append
 		(
@@ -13,9 +15,36 @@ function Casella(i,j)
 				.attr("id","casella"+i+j)
 				.addClass("casella ui-widget-header")
 		)
+		if(click)
+		{
+			var cas = $("#casella"+i+j);
+			cas.click(function(event) {
+				//alert($(this).attr("id"));
+				if(!tauler.caselles[i][j].tincFicha())
+				{
+					if(turno)
+						colorN = "circleA";
+					else 
+						colorN = "circleB"
+					turno = !turno;
+					ficha = new Ficha();
+					ficha.crearFicha(i,j,numFicha,colorN);
+					ficha.feliz(busca,feliz);
+					numFicha++;
+				}
+				else alert("NOOOO");
+			});
+			cas.hover(function() {
+				cas.css("background-color","#FFD071");
+				cas.css("cursor","pointer");
+			}, function() {
+				cas.css("background-color","#FFEDC5");
+				cas.css("cursor","auto");
+			});
+		}	
 	}
 
-	//Retorna cert si la casella te una ficha dintre
+	//Funcion que devuelve sun booleano indicando si tiene una ficha dentro.
 	this.tincFicha = function()
 	{
 		if(ficha == null)
@@ -24,6 +53,7 @@ function Casella(i,j)
 			return true;
 	}
 
+	//Funcion que llamaa al constructor de Ficha para añadirla a la casilla.
 	this.inicializaFicha = function(x,y,color)
 	{
 		ficha = new Ficha();
@@ -31,33 +61,43 @@ function Casella(i,j)
 		numFicha++;
 	}
 
+
+	//Funcion que pone una ficha en el atributo ficha de la casilla
 	this.posarFicha = function(fichaNew)
 	{
 		ficha = fichaNew;
 	}
 
+	//Funcion que quita la ficha del atributo ficha de la casilla
 	this.treuFicha = function()
 	{
 		ficha = null;
 	}
 
+	//Funcion que devuelve la ficha de la casilla
 	this.tornaFicha = function()
 	{
 		return ficha;
 	}
 
+	this.fichaFeliz = function()
+	{
+		return ficha.soyFeliz();
+	}
+
+	//Funcion que devuelve el color de la ficha de la casilla
 	this.tornaColorFicha = function()
 	{
 		return ficha.getColor();
 	}
 
-	//Treu la propietat de la casella d'acceptar fiches
+	//Funcion que quita la propiedad de la casilla de coger fichas.
 	this.treuDropp = function()
 	{
 		$("#casella"+i+j).droppable('destroy');
 	}
 
-	//Retorna cert si la casella accepta la fihca en un moment
+	//Funcion que devuelve si la casilla acepta fichas o no.
 	this.socDropp = function()
 	{
 		if ($("#casella"+i+j).data('uiDroppable')) 
@@ -66,14 +106,15 @@ function Casella(i,j)
 			return false;
 	}
 
-	this.evalFelicitat = function()
+	//Funcion que evalua la felicidad de la ficha que tiene la casilla.
+	this.evalFelicitat = function(a,b)
 	{
-		ficha.feliz(busca,feliz);
+		ficha.feliz(busca,feliz,a,b);
 	}
 
+	//Funcion que hace que una casilla este receptible para coger una ficha
 	this.posarseDisp = function()
 	{
-		//Aquesta funcio s'haura de posar quan recorrem l'array
 		$("#casella"+i+j).droppable({
 			activeClass: "posible",
 			hoverClass: "posibleActiu",
@@ -81,7 +122,6 @@ function Casella(i,j)
 	    		
 	    		//Borrem la ficha de l'anterior casella.
 	        	var inici = numero(ui.draggable.parent().attr("id"));
-	        	//alert(inici[0]);
 	        	var f = tauler.treuFicha(Math.floor(inici/10),inici%10);
 	        	
 	        	ui.draggable.remove();

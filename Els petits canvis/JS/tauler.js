@@ -1,14 +1,14 @@
-function Tauler(filesN,columnesN,fichesA,fichesB)
+function Tauler(filesN,columnesN)
 {
+	//Definimos los atributos, 2 privados y 3 publicos(para acceder a ellos desde cualquier lado).
 	var files = filesN;
 	var columnes = columnesN;
-	var fichesA = fichesA;
-	var fichesB = fichesB;
 	this.caselles = null;
 	this.files = files;
 	this.columnes = columnes;
 
-	this.inicializar = function()
+	//Funcion que coloca las fichas en el tablero.
+	this.colocaFiches = function()
 	{
 		var x,y;
 		for(f = 0;f<ficVerdes;f++)
@@ -31,7 +31,8 @@ function Tauler(filesN,columnesN,fichesA,fichesB)
 		}
 	}
 	
-	this.pintarTauler = function()
+	//Funcion que pinta el tablero, crea el objeto y crea las casillas para guardarlas en la matriz.
+	this.pintarTauler = function(reparteix)
 	{
 		this.caselles = null;
 		this.caselles = new Array(new Array(files));
@@ -47,16 +48,21 @@ function Tauler(filesN,columnesN,fichesA,fichesB)
 
 			for(j = 0;j < columnes; j++)
 			{
+				//Llamamos al constructor de casilla para crear cada casilla.
 				var cas = new Casella(i,j);
-				cas.crearCasella(i,j,files,columnes);
+				cas.crearCasella(i,j);
 				this.caselles[i][j] = cas;
 			}
 		}
 		console.log(this.caselles);
-		this.inicializar();
-		this.actualitzaFelicitat();
+		if(reparteix)
+		{	
+			this.colocaFiches();
+			this.actualitzaFelicitat();
+		}
 	}
 
+	//Funcion que recorre todas las casillas del tablero, y si son droppables, les quita la caracteristica.
 	this.treuDropp = function()
 	{
 		for(i = 0;i < files; i++)
@@ -69,6 +75,7 @@ function Tauler(filesN,columnesN,fichesA,fichesB)
 		}
 	}
 
+	//Funcion que dadas unas coordenadas, quita la ficha de esa casilla.
 	this.treuFicha = function (i,j)
 	{
 		var f = this.caselles[i][j].tornaFicha();
@@ -76,20 +83,32 @@ function Tauler(filesN,columnesN,fichesA,fichesB)
 		return f;
 	}
 
+	//Funcion que dadas unas coordenadas, pone una ficha en esa casilla.
 	this.colocaFicha = function (i,j,ficha)
 	{
 		this.caselles[i][j].posarFicha(ficha);
 	}
 
+	//funcion que recorre el tablero, evaluando la felicidad de cada ficha(Si hay)
 	this.actualitzaFelicitat = function()
 	{
-		for(i = 0;i < files; i++)
+		for(a = 0;a < files; a++)
 		{
-			for(j = 0;j < columnes; j++)
+			for(b = 0;b < columnes; b++)
 			{
-				if(this.caselles[i][j].tincFicha())
-					this.caselles[i][j].evalFelicitat();
+				if(this.caselles[a][b].tincFicha())
+				{
+					this.caselles[a][b].evalFelicitat(a,b);
+				}
 			}
 		}
+		if(infelices==0)
+	    {
+	    	$("#mensajeFinal").removeClass('hidden');
+	    	setTimeout(function(){
+	    		$("#mensajeFinal").addClass('hidden');
+	    	},5000);
+	    	$("#mens").text("Enhorabuena, todos los ciudadanos son felices!");
+	    }
 	}
 }
