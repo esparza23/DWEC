@@ -1,3 +1,4 @@
+//funcion que determina si una ficha es feliz en el 4 en raya(tiene una ficha abajo, o esta al final del tablero).
 function feliz4Raya(x,y)
 {
 	if(!rangCorrecte(x+1,y) || tauler.caselles[x+1][y].tincFicha())
@@ -6,45 +7,31 @@ function feliz4Raya(x,y)
 		return false;
 }
 
+//Funcion que "busca" la felicidad en el 4 en raya, haciendola "caer" hasta que sea feliz
 function busca4Raya(id)
 {
+	//Buscamos la posicion hasta donde caera.
 	var inici = numero($("#"+id).parent().attr("id"));
 	x = Math.floor(inici/10);
 	y = inici%10;
 	var a = x;
 	for(a=x;((a+1)<tauler.files) && !tauler.caselles[a+1][y].tincFicha() ;a++);
 	
-	/*	Directo	*/
+	//borramos la ficha del sitio original, la creamos  en el nuevo sitio y miramos si hemos ganado.
 	$("#"+id).remove();
 	var f = tauler.treuFicha(x,y);
 	f.crearFicha(a,y,$("#"+id).attr("id"),colorDrag);
     tauler.colocaFicha(a,y,f);
     var num = 0;
-    var dirI = 0;
-    var dirJ = +1;
-    //alert(dir[0][0]+"-"+dir[0][1]);
     for(d=0;! guanyat && d<dir[0].length;d++)
     {
     	if(miraCasilla(a,y,dir[0][d],dir[1][d],num,dir[0][d],dir[1][d]))
-	    {
-	    	guanyat = true;
-	    	//alert("WIIIIN");
-	    	$("#mensajeFinal").removeClass('hidden');
-	    	setTimeout(function(){
-	    		$("#mensajeFinal").addClass('hidden');
-	    	},5000);
-	    	var col;
-	    	if(tauler.caselles[a][y].tornaColorFicha()=="circleA")
-	    		col = "verd";
-	    	else 
-	    		col = "blau";
-	    	$("#mens").text("Ha guanyat l'equip "+col);
-	    }
+	    	mensajeFinal(a,y);
     }
     
-    /*	Timeout	*/
 }
 
+//funcion que dada una posicion, y una direccion, determina si se ha ganado al 4 en raya.
 function miraCasilla(l,m,sumaI,sumaJ,num,dirI,dirJ)
 {
 	if(num==3)
@@ -317,4 +304,45 @@ function buscaIg(a,b)
 function rangCorrecte(x,y)
 {
 	return ((x>=0 && y >=0) && (x<tauler.columnes &&  y<tauler.files));
+}
+
+//Funcion que devuelve un entero con la parte numerica de un string.
+function numero(cadena)
+{
+
+    var numero = "";
+    for (i = 0; i < cadena.length; i++) {
+        if (cadena.charAt(i) >= '0' && cadena.charAt(i) <= '9')
+        {
+            numero += cadena.charAt(i);
+        }
+    }
+    return parseInt(numero);
+}
+
+//Funcion que gestiona el mensaje final
+function mensajeFinal(a,y)
+{
+	if(click)
+	{
+		guanyat = true;
+    	$("#mensajeFinal").removeClass('hidden');
+    	var col;
+    	if(tauler.caselles[a][y].tornaColorFicha()=="circleA")
+    		col = "verd";
+    	else 
+    		col = "blau";
+    	$("#mens").text("Ha guanyat l'equip "+col);
+
+
+    	//Quitamos el evento click de las casillas.
+    	for(l = 0;l < tauler.files; l++)
+			for(m = 0;m < tauler.columnes; m++)	
+				$("#casella"+l+m).unbind("click");
+	}
+	else
+	{
+    	$("#mensajeFinal").removeClass('hidden');
+    	$("#mens").text("Enhorabuena, todos los ciudadanos son felices!");
+	}
 }

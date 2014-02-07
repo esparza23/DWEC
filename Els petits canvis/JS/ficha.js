@@ -17,21 +17,25 @@ function Ficha()
 		id = "ficha"+numFicha;
 	}
 
+	//funcion que devuelve el color de una ficha.
 	this.getColor = function()
 	{
 		return color;
 	}
 
+	//funcion que da el color a una ficha.
 	this.setColor = function(nColor)
 	{
 		color = nColor;
 	}
 
+	//FUncion que devuelve si la ficha es.
 	this.soyFeliz = function()
 	{
 		return feliz;
 	}
 
+	//Funcion que evalua si una ficha es feliz, y si no lo es, la preparamos para que busque felicidad.
 	this.feliz = function(buscaFel,evalFel,a,b)
 	{
 		$("#"+id).removeClass('unhappy');
@@ -39,35 +43,27 @@ function Ficha()
 		var inici = numero($("#"+id).parent().attr("id"));
 		var x = Math.floor(inici/10);
 		var y = inici%10;
+
+		//El booleano click indica 	que estamos jugando al 4 en raya
 		if(click)
 		{
+			//Si la ficha no es feliz, hacemos que "caiga", "buscando felicidad".
 			if(!evalFel(x,y))
 				buscaFel(id);
 			else
 			{	
+				//si la fihca es feliz al dejarla, miramos si hemos ganado.
+				var num = 0;
     			for(d=0;! guanyat && d<dir[0].length;d++)
 			    {
-			    	if(miraCasilla(a,y,dir[0][d],dir[1][d],num,dir[0][d],dir[1][d]))
-				    {
-				    	guanyat = true;
-				    	//alert("WIIIIN");
-				    	$("#mensajeFinal").removeClass('hidden');
-				    	setTimeout(function(){
-				    		$("#mensajeFinal").addClass('hidden');
-				    	},5000);
-				    	var col;
-				    	if(tauler.caselles[a][y].tornaColorFicha()=="circleA")
-				    		col = "verd";
-				    	else 
-				    		col = "blau";
-				    	$("#mens").text("Ha guanyat l'equip "+col);
-				    }
+			    	if(miraCasilla(x,y,dir[0][d],dir[1][d],num,dir[0][d],dir[1][d]))
+				    	mensajeFinal(x,y);
 			    }
 			}
 		}
+		//si no, estamos jugando al juego de Schelling
 		else
 		{
-			var fe = feliz;
 			feliz = evalFel(a,b);
 			if(!feliz)
 			{
@@ -87,8 +83,6 @@ function Ficha()
 			}
 			else
 			{
-				if(!fe)
-					infelices--;
 				if($("#"+id).data('uiDraggable'))
 				{
 					$("#"+id).draggable('destroy');

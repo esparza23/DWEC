@@ -89,6 +89,22 @@ function Tauler(filesN,columnesN)
 		this.caselles[i][j].posarFicha(ficha);
 	}
 
+	//Funcion que determina el numero de fichas infelices que quedan en el tablero.
+	this.numInfelices = function()
+	{
+		infelices = 0;
+		for(a = 0;a < files; a++)
+		{
+			for(b = 0;b < columnes; b++)
+			{
+				if(this.caselles[a][b].tincFicha() && !this.caselles[a][b].fichaFeliz())
+				{
+					infelices++;
+				}
+			}
+		}
+	}
+
 	//funcion que recorre el tablero, evaluando la felicidad de cada ficha(Si hay)
 	this.actualitzaFelicitat = function()
 	{
@@ -102,13 +118,8 @@ function Tauler(filesN,columnesN)
 				}
 			}
 		}
+		this.numInfelices();
 		if(infelices==0)
-	    {
-	    	$("#mensajeFinal").removeClass('hidden');
-	    	setTimeout(function(){
-	    		$("#mensajeFinal").addClass('hidden');
-	    	},5000);
-	    	$("#mens").text("Enhorabuena, todos los ciudadanos son felices!");
-	    }
+			mensajeFinal();
 	}
 }

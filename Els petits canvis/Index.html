@@ -30,15 +30,20 @@
 	<body>
 		<div id="conf">
 			<div id="info" class="hidden">
+				<h4 id="title">LOS PEQUEÑOS CAMBIOS</h4>
 				<p class="paragraf">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				El experimento de Schelling consiste en que teniendo un grupo de ciudadanos divididos en dos grupos (fichas verdes y fichas azules), es posible que convivan de maneras diferentes cambiando ligeramente el pensamiento de las fichas.
+				En este caso se puede escoger entre si las fichas quieren tener vecinos de su mismo grupo o del grupo contrario y cuantas vecinas puede tener.
 				</p>
 				<p class="paragraf">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				El tercer juego, es un 4 en raya con un tablero un poco mas grande de lo normal. Se aprovecha de la estructura de los juegos anteriores, para que con pequeños cambios (como la mentalidad de los grupos) puedas cambiar el comportamiento del grupo.
 				</p>
 			</div>	
-			<button id="start" class="btn btn-primary btn-lg center-block hidden" data-toggle="modal" data-target="#modalConf"> Configurar Juego 
-				<span class="glyphicon glyphicon-cog"></span>
+			<button id="start" class="btn btn-primary btn-lg center-block hidden" data-toggle="modal" data-target="#modalConf">
+				<span class="glyphicon glyphicon-cog"></span>Configurar Juego 
+			</button>
+			<button id="irPortada" class="btn btn-lg btn-primary irPortada center-block hidden">
+				<span class="glyphicon glyphicon-home"></span>Ir a portada
 			</button>
 		</div>
 		<div id="conf2">
@@ -48,10 +53,16 @@
 		</div>
 		<div id="presentacio">
 			<div >
-				<img src="IMG/schilling.jpg" alt="" class="imgSch">
+				<img src="IMG/schelling.jpg" alt="" class="imgSch">
 			</div>
 			<p class="infoPrinc">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				El segregacionismo es aquella política que separa, excluye y aparta a grupos del resto de la población humana, con base principalmente a planteamientos de tipo racial, sexual, religioso, o ideológico. Muchas personas a lo largo de la historia han luchado contra este tipo de prácticas.
+			</p>
+			<p class="infoPrinc">
+				Thomas Schelling probó que pequeños cambios en la mentalidad de la gente, pueden provocar cambios importantes en la lucha por la segregación.
+			</p>
+			<p class="infoPrinc acercate">
+				<span id="left" class="glyphicon glyphicon-arrow-left"></span>Acércate al desplegable de la izquierda para empezar.
 			</p>
 			<div >
 				<img src="IMG/john.jpg" alt="" class="img">
@@ -63,15 +74,16 @@
 		</div>
 		<div id="tauler"></div>
 
+
 		<div id="modalConf" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 				    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				    	<h2 class="modal-title">Configuració Del Joc</h2>
+				    	<h2 class="modal-title">Configuración Del Juego</h2>
 					</div>
 					<div class="modal-body">
-						<h4>Percentatge fitxes verdes</h4>
+						<h4>Porcentaje fichas verdes</h4>
 						<div class="slider">
 							<div class="por por50">50</div>
 							<div class="por por55">55</div>
@@ -86,7 +98,7 @@
 				    	<div class="slider" id="porVerde"></div>
 				    	</br>
 
-				    	<h4>Percentatge caselles buides</h4>
+				    	<h4>Porcentaje casillas vacias</h4>
 				    	<div class="slider">
 							<div class="por por30">30</div>
 							<div class="por por35">35</div>
@@ -97,28 +109,28 @@
 				    	<div class="slider" id="porLlenas"></div>
 				    	</br>
 						<div class="radioOp1">
-					    	<h4>Tipus de joc</h4>
+					    	<h4>Tipo de juego</h4>
 						  	<div class="radio opcions">
 								<label>
 									<input type="radio" name="joc" id="joc1" value="joc1" checked>
-									Felicitat amb fitxes iguals
+									Felicidad con fichas iguales
 								</label>
 							</div>
 							<div class="radio opcions">
 								<label>
 									<input type="radio" name="joc" id="joc2" value="joc2">
-									Felicitat amb fitxes diferents
+									Felicidad con fichas diferentes
 								</label>
 							</div>
 							<div class="radio opcions">
 								<label>
 									<input type="radio" name="joc" id="joc3" value="joc3">
-									Joc 3
+									4 en Raya
 								</label>
 							</div>
 						</div>
 						<div class="radioOp2">
-					    	<h4>Minim veïns</h4>
+					    	<h4>Vecinos Mínimos </h4>
 						  	<div class="radio opcions">
 								<label>
 									<input type="radio" name="veins" id="vei1" value="vei1" checked>
@@ -140,13 +152,16 @@
 						</div>
 				  	</div>
 				  	<div class="modal-footer">
-				    	<button id="comen" type="button" class="btn btn-success btn-lg center-block" data-dismiss="modal">Començar</button>
+				    	<button id="comen" type="button" class="btn btn-primary btn-lg center-block" data-dismiss="modal">Començar</button>
 				  	</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+
 		<div id="mensajeFinal" class="hidden">
 			<h1 id="mens"></h1>
+			<button id="congNuev" class="btn btn-primary" data-toggle="modal" data-target="#modalConf">Configurar Nueva Partida</button>
+			<button class="btn btn-primary irPortada">Ir a portada</button>
 		</div>
 	</body>
 </body>

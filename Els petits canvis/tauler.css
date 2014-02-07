@@ -27,6 +27,7 @@ body
 #start
 {
 	margin-top: 50px;
+	margin-bottom: 30px;
 }
 
 #desp
@@ -250,14 +251,40 @@ body
 #mensajeFinal
 {
 	position: absolute;
-	margin:5% 15%;
+	margin:16% 15%;
 	width:70%;
-	height: 80%;
-	background-color: #D3D3D3;
-	opacity: 0.9;
+	height: 30%;
+	background-color: #ffffff;
+	opacity: 1;
 	border:3px solid #303030;
 	-webkit-border-radius: 25px;
 	-moz-border-radius: 25px;
 	border-radius: 25px;
 	color:#000000;
+	text-align: center;
+}
+.acercate
+{
+	font-weight: bold;
+}
+
+#left
+{
+	margin-right: 20px;
+}
+
+#title
+{
+	text-align:center;
+	margin-bottom:30px;
+}
+
+.glyphicon
+{
+	margin-right: 10px;
+}
+
+#mens
+{
+	margin:40px auto;
 }

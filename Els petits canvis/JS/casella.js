@@ -15,11 +15,12 @@ function Casella(i,j)
 				.attr("id","casella"+i+j)
 				.addClass("casella ui-widget-header")
 		)
+
+		//SI estamos jugando al 4 en raya, añadimos los eventos click y hover a las casillas.
 		if(click)
 		{
 			var cas = $("#casella"+i+j);
 			cas.click(function(event) {
-				//alert($(this).attr("id"));
 				if(!tauler.caselles[i][j].tincFicha())
 				{
 					if(turno)
@@ -60,7 +61,6 @@ function Casella(i,j)
 		ficha.crearFicha(x,y,numFicha,color);
 		numFicha++;
 	}
-
 
 	//Funcion que pone una ficha en el atributo ficha de la casilla
 	this.posarFicha = function(fichaNew)
@@ -120,15 +120,14 @@ function Casella(i,j)
 			hoverClass: "posibleActiu",
 	    	drop: function( event, ui ) {
 	    		
-	    		//Borrem la ficha de l'anterior casella.
+	    		//Borramos la ficha de donde estaba.
 	        	var inici = numero(ui.draggable.parent().attr("id"));
 	        	var f = tauler.treuFicha(Math.floor(inici/10),inici%10);
-	        	
 	        	ui.draggable.remove();
 	        	
+	        	//Creamos la ficha en el destino, y actualizamos la felicidad.
 	        	var desti = numero(event.target.id);
 	        	f.crearFicha(Math.floor(desti/10),desti%10,ui.draggable.attr("id"),f.getColor());
-	        	
 	        	tauler.colocaFicha(Math.floor(desti/10),desti%10,f);
 	        	tauler.actualitzaFelicitat();
 	       

@@ -1,8 +1,21 @@
 jQuery(document).ready(function($) {
-
-	$("#fireworks").click(function(event) {
-		
-	});
+	var iz = true;
+	setInterval(function(){
+		if(iz)
+		{
+			$("#left").animate({
+				marginLeft: "0px",
+			},1500);
+			iz=!iz;
+		}
+		else
+		{
+			$("#left").animate({
+				marginLeft: "150px",
+			}, 1500 );
+			iz=!iz;
+		}
+	},1500);
 	//Quitar seleccion de texto(por comodidad)
 	window.onload = function()
 	{
@@ -23,6 +36,7 @@ jQuery(document).ready(function($) {
 		setTimeout(function()
 		{
 			$("#start").addClass('hidden');
+			$("#irPortada").addClass('hidden');
 			$("#info").addClass('hidden');
 		},300);
 
@@ -55,6 +69,7 @@ jQuery(document).ready(function($) {
 					.addClass("glyphicon glyphicon-chevron-left white")
 			)
 			$("#start").removeClass('hidden')
+			$("#irPortada").removeClass('hidden')
 			$("#info").removeClass('hidden')
 			
 			$("#conf2").animate({
@@ -91,9 +106,19 @@ jQuery(document).ready(function($) {
 		}
     });
 
+    $("#congNuev").click(function(event) {
+    	$("#mensajeFinal").addClass('hidden');
+    });
+
+    $(".irPortada").click(function(event) {
+    	$("#mensajeFinal").addClass('hidden');
+    	$("#presentacio").css("width","auto").css("height","100%");
+		$("#tauler").empty();
+    });
+
     //Funcion que gestiona el click al boton empezar
 	$("#comen").click(function(event) {
-
+		$("#mensajeFinal").addClass('hidden');
 		treuDesp();
 		var reparteix = true;
 		feliz = null;
@@ -139,17 +164,16 @@ jQuery(document).ready(function($) {
 		casPlenes = casTotal*porCas;
 		ficVerdes = casPlenes*porVerda;
 		ficBlaves = casPlenes-ficVerdes;
-		infelices = ficVerdes+ficBlaves;
+		//infelices = ficVerdes+ficBlaves;
 		dir = new Array(new Array(1,0,1,1,0,-1,-1,-1),new Array(-1,1,0,1,-1,0,-1,1));
 		console.log(dir);
 		guanyat = false;
 
 		//Vaciamos el antiguo tablero(Si habia alguno) y creamos el nuevo tablero y empezamos a jugar.
-		$("#presentacio").remove();
+		$("#presentacio").css("width","0px").css("height","0px");
 		$("#tauler").empty();
 		tauler = new Tauler(10,10);
-		$("#tauler").css("width",10*67+"px");
-		$("#tauler").css("margin","auto");
+		$("#tauler").css("width",10*67+"px").css("margin","auto");
 		tauler.pintarTauler(reparteix);
 
 	});
