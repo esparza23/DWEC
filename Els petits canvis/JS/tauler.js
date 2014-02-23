@@ -7,6 +7,55 @@ function Tauler(filesN,columnesN)
 	this.files = files;
 	this.columnes = columnes;
 
+	//funcion que carga la partida de un archivo JSON
+	this.carga = function(partida)
+	{
+		switch(partida.juego)
+		{
+			case "juego1":
+				feliz = felizIguales;
+				busca = iguales;
+				click = false;
+				juego = "juego1";
+				break;
+			case "juego2":
+				feliz = felizContrario;
+				busca = contrario;
+				click = false;
+				juego = "juego2";
+				break;
+			case "joc3":
+				feliz = feliz4Raya;
+				busca = busca4Raya;
+				reparteix = false;
+				click = true;
+				turno = true;
+				juego = "juego3";
+				break;
+		}
+		minim = partida.minim;
+		
+   		for(a=0;a<partida.tauler.files;a++)
+   		{
+   			for(b=0;b<partida.tauler.columnes;b++)
+   			{
+   				
+   				var cas = new Casella(a,b);
+				cas.crearCasella(a,b);
+				this.caselles[a][b] = cas;
+				
+   				if(partida.tauler.caselles[a][b].ficha != null)
+   				{
+   					console.log(a+"-"+b+"-"+partida.tauler.caselles[a][b].ficha.color);
+   					var col = partida.tauler.caselles[a][b].ficha.color;
+   					this.caselles[a][b].inicializaFicha(a,b,col);
+   				}
+   			}
+   		}
+        console.log(this.tauler);
+        this.actualitzaFelicitat();
+	}
+
 	//Funcion que coloca las fichas en el tablero.
 	this.colocaFiches = function()
 	{
@@ -31,7 +80,7 @@ function Tauler(filesN,columnesN)
 		}
 	}
 	
-	//Funcion que pinta el tablero, crea el objeto y crea las casillas para guardarlas en la matriz.
+	//Funcion que pinta el tableroy crea las filas.
 	this.pintarTauler = function(reparteix)
 	{
 		this.caselles = null;
@@ -45,7 +94,14 @@ function Tauler(filesN,columnesN)
 					.attr("id","fila"+i)
 					.addClass("fila")
 			)
+		}
+	}
 
+	//funcion que coloca las casillas en las filas del tablero
+	this.colocaCasillas = function(reparteix)
+	{
+		for(i = 0;i < files; i++)
+		{
 			for(j = 0;j < columnes; j++)
 			{
 				//Llamamos al constructor de casilla para crear cada casilla.
@@ -121,5 +177,13 @@ function Tauler(filesN,columnesN)
 		this.numInfelices();
 		if(infelices==0)
 			mensajeFinal();
+		else
+		{
+			var partida = JSON.stringify(tauler);
+			partida = '{"juego":"'+juego+'","minim":"'+minim+'","tauler":'+partida;
+			partida+="}";
+			var data = "text/json;charset=utf-8," + encodeURIComponent(partida);
+			$("#partida").attr("href",'data:' + data ).attr("download","data.json");
+		}
 	}
 }

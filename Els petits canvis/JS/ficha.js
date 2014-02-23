@@ -1,17 +1,17 @@
 function Ficha()
 {
 	var id;
-	var color = null;
+	this.color = null;
 	var feliz;
 
 	this.crearFicha = function(i,j,numFicha,nColor)
 	{	
-		color = nColor;
+		this.color = nColor;
 		$("#casella"+i+j).append
 		(
 			$(document.createElement("div"))
 				.attr("id","ficha"+numFicha)
-				.addClass(color+" ui-widget-content")
+				.addClass(this.color+" ui-widget-content")
 		)
 
 		id = "ficha"+numFicha;
@@ -20,13 +20,13 @@ function Ficha()
 	//funcion que devuelve el color de una ficha.
 	this.getColor = function()
 	{
-		return color;
+		return this.color;
 	}
 
 	//funcion que da el color a una ficha.
 	this.setColor = function(nColor)
 	{
-		color = nColor;
+		this.color = nColor;
 	}
 
 	//FUncion que devuelve si la ficha es.
@@ -39,7 +39,7 @@ function Ficha()
 	this.feliz = function(buscaFel,evalFel,a,b)
 	{
 		$("#"+id).removeClass('unhappy');
-		colorDrag = color;
+		colorDrag = this.color;
 		var inici = numero($("#"+id).parent().attr("id"));
 		var x = Math.floor(inici/10);
 		var y = inici%10;
@@ -69,6 +69,7 @@ function Ficha()
 			{
 				$("#"+id).addClass('unhappy');
 				$("#"+id).css("cursor","move");
+				var color2 = this.color;
 				$("#"+id).draggable({
 					revert:"invalid",
 					start: function() {
@@ -76,7 +77,7 @@ function Ficha()
 						var num = numero($("#"+id).parent().attr("id"));
 						xOr = Math.floor(num/10);
 						yOr = num%10;
-						colorDrag = color;
+						colorDrag = color2;
 						buscaFel(a,b);
 					}
 				});

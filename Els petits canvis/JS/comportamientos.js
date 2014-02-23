@@ -54,8 +54,8 @@ function felizIguales(a,b)
 {
 	var x,y;
 	var cond = 0;
-	x = i;
-	y = j;
+	//x = i;
+	//y = j;
 	cond = buscaIg(a,b);
 	if(cond>=minim)
 		return true;
@@ -86,8 +86,8 @@ function felizContrario(a,b)
 {
 	var x,y;
 	var cond = 0;
-	x = i;
-	y = j;
+	//x = i;
+	//y = j;
 	cond = buscaDif(a,b);
 	if(cond>=minim)
 		return true;

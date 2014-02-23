@@ -1,4 +1,45 @@
 jQuery(document).ready(function($) {
+
+	//Al click del boton cargar, lanzamos el selector de archivo para cargar
+	$("#cargar").click(function(event) {
+		$("#carg").click();
+	});
+
+	//funcion que gestiona la carga de partida
+	function handleFileSelect(evt) {
+	    var files = evt.target.files;
+	  	var file = files[0];
+
+	  	//Solo continuamos si es un archivo JSON
+	  	if(file.type.match("application/json"))
+	  	{
+	  		var blob = file.slice(0, file.size+1);
+	  		var reader = new FileReader();
+			reader.onloadend = function(evt) {
+
+				if (evt.target.readyState == FileReader.DONE) { 
+					$("#download").removeClass('disabled');
+			        $("#presentacio").css("width","0px").css("height","0px");
+					$("#tauler").empty();
+					tauler = new Tauler(10,10);
+					$("#tauler").css("width",10*67+"px").css("margin","auto");
+					tauler.pintarTauler(false);
+					partida = JSON.parse(evt.target.result);
+					tauler.carga(partida);
+			   	};
+    		}
+    		reader.readAsBinaryString(blob);
+	  	}
+	  	else
+	  	{
+	  		alert("No es un archivo válido para la carga");
+	  	}
+
+	};
+
+	//le añadimos al selector de archivo el evento change, para captar cuando el usuario selecciona un archivo.
+	document.getElementById("carg").addEventListener('change', handleFileSelect, false);
+
 	var iz = true;
 	setInterval(function(){
 		if(iz)
@@ -16,6 +57,7 @@ jQuery(document).ready(function($) {
 			iz=!iz;
 		}
 	},1500);
+
 	//Quitar seleccion de texto(por comodidad)
 	window.onload = function()
 	{
@@ -30,6 +72,7 @@ jQuery(document).ready(function($) {
 	     }
 	}
 
+	//Funcion que controla cuando quitamos el desplegable
 	function treuDesp()
 	{
 		var cond = 
@@ -37,6 +80,9 @@ jQuery(document).ready(function($) {
 		{
 			$("#start").addClass('hidden');
 			$("#irPortada").addClass('hidden');
+			$("#cargar").addClass('hidden');
+			$("#download").addClass('hidden');
+			$("#download").addClass('hidden');
 			$("#info").addClass('hidden');
 		},300);
 
@@ -55,6 +101,7 @@ jQuery(document).ready(function($) {
 		}, 500 );
 	}
 
+	//Controlamos cuando se abre el desplegable
 	$("#desp").mouseenter(function(event) {
 		if($("#conf").css("width")==0+"px")
 		{
@@ -68,8 +115,10 @@ jQuery(document).ready(function($) {
 				$(document.createElement("span"))
 					.addClass("glyphicon glyphicon-chevron-left white")
 			)
-			$("#start").removeClass('hidden')
-			$("#irPortada").removeClass('hidden')
+			$("#start").removeClass('hidden');
+			$("#irPortada").removeClass('hidden');
+			$("#cargar").removeClass('hidden');
+			$("#download").removeClass('hidden');
 			$("#info").removeClass('hidden')
 			
 			$("#conf2").animate({
@@ -114,15 +163,22 @@ jQuery(document).ready(function($) {
     	$("#mensajeFinal").addClass('hidden');
     	$("#presentacio").css("width","auto").css("height","100%");
 		$("#tauler").empty();
+		$("#download").addClass('disabled');
+		$("#cargar").removeClass('disabled');
+		$("#irPortada").addClass('disabled');
     });
 
     //Funcion que gestiona el click al boton empezar
 	$("#comen").click(function(event) {
+		$("#download").removeClass('disabled');
+		$("#cargar").addClass('disabled');
 		$("#mensajeFinal").addClass('hidden');
+		$("#irPortada").removeClass('disabled');
 		treuDesp();
 		var reparteix = true;
 		feliz = null;
 		busca = null;
+
 		//Miramos que normas aplicaremos
 		switch($('input[name=joc]:checked').val())
 		{
@@ -130,11 +186,13 @@ jQuery(document).ready(function($) {
 				feliz = felizIguales;
 				busca = iguales;
 				click = false;
+				juego = "juego1";
 				break;
 			case "joc2":
 				feliz = felizContrario;
 				busca = contrario;
 				click = false;
+				juego = "juego2";
 				break;
 			case "joc3":
 				feliz = feliz4Raya;
@@ -142,6 +200,7 @@ jQuery(document).ready(function($) {
 				reparteix = false;
 				click = true;
 				turno = true;
+				juego = "juego3";
 				break;
 		}	
 		//miramos el numero de vecinos
@@ -175,6 +234,6 @@ jQuery(document).ready(function($) {
 		tauler = new Tauler(10,10);
 		$("#tauler").css("width",10*67+"px").css("margin","auto");
 		tauler.pintarTauler(reparteix);
-
+		tauler.colocaCasillas(reparteix);
 	});
 });

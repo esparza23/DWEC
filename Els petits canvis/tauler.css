@@ -23,11 +23,29 @@ body
 	border-top-left-radius: 0px;
 	border-bottom-left-radius: 0px;
 }
+#carg
+{
+	display:none;
+	visibility: hidden;
+}
+#download
+{
+	margin-top: 15px;
+}
+#cargar
+{
+	margin-top: 15px;
+}
+#download *
+{
+	color:white;
+	text-decoration: none;
+}
 
 #start
 {
-	margin-top: 50px;
-	margin-bottom: 30px;
+	margin-top: 20px;
+	margin-bottom: 15px;
 }
 
 #desp

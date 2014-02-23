@@ -11,13 +11,13 @@
 		
 		
 		<!-- Carga Local -->
-		<!--
+		
 		<script src="../Jquery/jquery-1.10.2.js"></script>
 		<script src="../Jquery/jquery-ui-1.10.4.custom.js"></script>
 		<script src="../Bootstrap/js/bootstrap.js"></script>
 		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap.css"></link>
 		<link rel="stylesheet" type="text/css" href="../Jquery/jquery-ui-1.10.4.custom.css">
-		-->
+		
 
 		<link rel="stylesheet" type="text/css" href="tauler.css">
 		<script src="JS/config.js"></script>
@@ -44,8 +44,16 @@
 			<button id="start" class="btn btn-primary btn-lg center-block hidden" data-toggle="modal" data-target="#modalConf">
 				<span class="glyphicon glyphicon-cog"></span>Configurar Juego 
 			</button>
-			<button id="irPortada" class="btn btn-lg btn-primary irPortada center-block hidden">
+			<button id="irPortada" class="btn btn-lg btn-primary irPortada center-block hidden disabled">
 				<span class="glyphicon glyphicon-home"></span>Ir a portada
+			</button>
+			<input id="carg" type="file">
+			<button id="cargar" class="btn btn-lg btn-primary center-block hidden">
+				<span class="glyphicon glyphicon-folder-open"></span>Cargar Partida
+			</button>
+			<button id="download" type="button" class="btn-lg btn btn-primary center-block hidden disabled">
+				<span class="glyphicon glyphicon-save"></span>
+				<a id="partida" href="" download="">Guardar Partida</a>
 			</button>
 		</div>
 		<div id="conf2">

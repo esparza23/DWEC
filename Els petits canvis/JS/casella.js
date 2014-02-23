@@ -4,7 +4,7 @@ function Casella(i,j)
 	var id = "casella"+i+j;
 	var i = i;
 	var j = j;
-	var ficha = null;
+	this.ficha = null;
 
 	//Funcion que crea el HTML necesario para crear un casilla.
 	this.crearCasella = function(i,j)
@@ -28,9 +28,9 @@ function Casella(i,j)
 					else 
 						colorN = "circleB"
 					turno = !turno;
-					ficha = new Ficha();
-					ficha.crearFicha(i,j,numFicha,colorN);
-					ficha.feliz(busca,feliz);
+					this.ficha = new Ficha();
+					this.ficha.crearFicha(i,j,numFicha,colorN);
+					this.ficha.feliz(busca,feliz);
 					numFicha++;
 				}
 				else alert("NOOOO");
@@ -48,7 +48,7 @@ function Casella(i,j)
 	//Funcion que devuelve sun booleano indicando si tiene una ficha dentro.
 	this.tincFicha = function()
 	{
-		if(ficha == null)
+		if(this.ficha == null)
 			return false;
 		else 
 			return true;
@@ -57,38 +57,38 @@ function Casella(i,j)
 	//Funcion que llamaa al constructor de Ficha para añadirla a la casilla.
 	this.inicializaFicha = function(x,y,color)
 	{
-		ficha = new Ficha();
-		ficha.crearFicha(x,y,numFicha,color);
+		this.ficha = new Ficha();
+		this.ficha.crearFicha(x,y,numFicha,color);
 		numFicha++;
 	}
 
 	//Funcion que pone una ficha en el atributo ficha de la casilla
 	this.posarFicha = function(fichaNew)
 	{
-		ficha = fichaNew;
+		this.ficha = fichaNew;
 	}
 
 	//Funcion que quita la ficha del atributo ficha de la casilla
 	this.treuFicha = function()
 	{
-		ficha = null;
+		this.ficha = null;
 	}
 
 	//Funcion que devuelve la ficha de la casilla
 	this.tornaFicha = function()
 	{
-		return ficha;
+		return this.ficha;
 	}
 
 	this.fichaFeliz = function()
 	{
-		return ficha.soyFeliz();
+		return this.ficha.soyFeliz();
 	}
 
 	//Funcion que devuelve el color de la ficha de la casilla
 	this.tornaColorFicha = function()
 	{
-		return ficha.getColor();
+		return this.ficha.getColor();
 	}
 
 	//Funcion que quita la propiedad de la casilla de coger fichas.
@@ -109,7 +109,7 @@ function Casella(i,j)
 	//Funcion que evalua la felicidad de la ficha que tiene la casilla.
 	this.evalFelicitat = function(a,b)
 	{
-		ficha.feliz(busca,feliz,a,b);
+		this.ficha.feliz(busca,feliz,a,b);
 	}
 
 	//Funcion que hace que una casilla este receptible para coger una ficha

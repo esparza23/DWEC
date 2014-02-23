@@ -17,3 +17,4 @@ var turno;
 var infelices;
 var dir;
 var guanyat;
+var juego;
