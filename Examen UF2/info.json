@@ -1,0 +1,41 @@
+{
+    "juego": [
+        {
+            "nombre": "Final Fantasy",
+            "funcionListado": "pers = this.personajes;var div = $('#contenido');for(i=0;i<pers.length;i++){div.append($(document.createElement('br')));div.append($(document.createElement('span')).text('Nombre y Apellido: '+pers[i].nombre+ ' ' + pers[i].apellidos));div.append($(document.createElement('br')));div.append($(document.createElement('span')).text('Raza: '+pers[i].raza));div.append($(document.createElement('br')));div.append($(document.createElement('span')).text('Nivel Magia: '+pers[i].nivMagia+ ', Nivel Fuerza ' + pers[i].nivFuerza+ ', Nivel Inteligencia ' + pers[i].nivInteligencia));div.append($(document.createElement('br')));div.append($(document.createElement('span')).text('Ataque: '+pers[i].ataque));div.append($(document.createElement('br')))};",
+            "debug": 0
+        }
+    ],
+    "personajes": [
+        {
+            "nombre": "John",
+            "apellidos": "Doe",
+            "raza": "guerrero",
+            "nivMagia": 15,
+            "nivFuerza": 100,
+            "nivInteligencia": 30,
+            "funcionAtaque": "var ataque = 1;ataque = (this.nivMagia + this.nivFuerza/2)/2;ataque+=(this.nivInteligencia*2);switch(this.raza){case 'elfo':ataque+=75;break;case 'guerrero':ataque+=150;break;case 'mago':ataque+=110;break;case 'nomuerto':ataque+=200;break;}this.ataque = ataque;",
+            "funcionDebug": "console.log(this.nombre+' - '+this.apellidos+' - '+this.raza+' - '+this.nivMagia+' - '+this.nivFuerza+' - '+this.nivInteligencia);"
+        },
+        {
+            "nombre": "Anna",
+            "apellidos": "mago",
+            "raza": "elfo",
+            "nivMagia": 100,
+            "nivFuerza": 40,
+            "nivInteligencia": 90,
+            "funcionAtaque": "var ataque = 1;ataque = (this.nivMagia + this.nivFuerza/2)/2;ataque+=(this.nivInteligencia*2);switch(this.raza){case 'elfo':ataque+=75;break;case 'guerrero':ataque+=150;break;case 'mago':ataque+=110;break;case 'nomuerto':ataque+=200;break;}this.ataque = ataque;",
+            "funcionDebug": "console.log(this.nombre+' - '+this.apellidos+' - '+this.raza+' - '+this.nivMagia+' - '+this.nivFuerza+' - '+this.nivInteligencia);"
+        },
+        {
+            "nombre": "Peter",
+            "apellidos": "Jones",
+            "raza": "nomuerto",
+            "nivMagia": 40,
+            "nivFuerza": 100,
+            "nivInteligencia": 0,
+            "funcionAtaque": "var ataque = 1;ataque = (this.nivMagia + this.nivFuerza/2)/2;ataque+=(this.nivInteligencia*2);switch(this.raza){case 'elfo':ataque+=75;break;case 'guerrero':ataque+=150;break;case 'mago':ataque+=110;break;case 'nomuerto':ataque+=200;break;}this.ataque = ataque;",
+            "funcionDebug": "console.log(this.nombre+' - '+this.apellidos+' - '+this.raza+' - '+this.nivMagia+' - '+this.nivFuerza+' - '+this.nivInteligencia);"
+        }
+    ]
+}
