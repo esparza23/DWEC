@@ -5,7 +5,7 @@ var utils =
 	//Funcion para mostrar mensaje de error por consola, si estamos debugando.
 	alert : function(mensaje)
 	{
-		if(debug)
+		if(config.debug)
 			console.log(mensaje);
 	}
 }
