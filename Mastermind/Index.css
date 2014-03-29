@@ -1,14 +1,157 @@
+body
+{
+	background-color: white;
+	background: #435242;
+	background-image: url("/images/zenbg.png");
+}
+
+@font-face
+{
+	font-family: fuente;
+	src: url(fuente.ttf);
+}
+
+@font-face
+{
+	font-family: letra;
+	src: url(letra.ttf);
+}
+
+#titulo
+{
+	height: 200px;
+	width: 100%;
+	min-width: 1100px;
+	text-align: center;
+	font-size: 9em;
+	font-family: fuente;
+	box-sizing:border-box;
+	color:#f2f2f2;
+	top:0;
+}
+
+#turnoActual
+{
+	height: 250px;
+}
+#otrosTurnos
+{
+}
+
+#juego
+{
+	width: 1100px;
+	min-width: 1040px;
+	height: 700px;
+}
+
+#contRellenar
+{
+	height: 250px;
+	width:550px;
+	float:left;
+	box-sizing:border-box;
+}
+
+#contPistas
+{
+	height: 250px;
+	width:550px;
+	float:left;
+	box-sizing:border-box;
+}
+.contColorUs
+{
+	width:90px;
+	float:left;
+	margin:6px;
+}
+
+.contColors
+{
+	width:60px;
+	float:left;
+	margin:8px 20px;
+}
+
+.contcolors
+{
+	height: 70px;
+}
+
+.contColorUs
+{
+	height: 200px;
+}
+
+.col,.picker
+{
+	width:90px;
+	height:90px;
+}
+.colInfo
+{
+	width:60px;
+	height:60px;
+}
+
+.colorUs
+{
+	border-radius: 50%;
+	width:90px;
+	height: 90px;
+	border:1px solid black;
+	box-sizing:border-box;
+}
+.color
+{
+	border-radius: 50%;
+	width:60px;
+	height: 60px;
+	border:1px solid black;
+	box-sizing:border-box;
+}
+
+.colorPicker
+{
+	width:25px;
+	height: 25px;
+	cursor: pointer;
+	border:1px solid black;
+	box-sizing:border-box;
+	text-align: center;
+}
+
+.but1,.but2,.but3,.but4,.but5,.but6
+{
+	float:left;
+	margin:2px;
+}
+.but1,.but2,.but3
+{
+	margin-top: 25px;
+}
+
+.but4
+{
+	clear:both;
+}
+
 .classNO
 {
-	background-color: #f6fff1;
+	background-color: #f2f2f2;
+}
+.class0
+{
+	background-color: #f2f2f2;
 }
 .class1
 {
-	background-color: #F56D9A;
+	background-color: #ff98b3;
 }
 .class2
 {
-	background-color: #822393;
+	background-color: #a52dbc;
 }
 .class3
 {
@@ -20,11 +163,11 @@
 }
 .class5
 {
-	background-color: #FF6434;
+	background-color: #ff8c54;
 }
 .class6
 {
-	background-color: #ec554f;
+	background-color: #ed5355;
 }
 .classOK
 {
@@ -33,4 +176,79 @@
 .classKO
 {
 	background-color: #ff0610;	
+}
+
+#rapid
+{
+	text-align: center;
+	width:75px;
+}
+
+.turnos
+{
+	height: 75px;
+	width:100%;
+	float:left;
+	box-sizing:border-box;
+	clear:both;
+}
+
+.numTurno
+{
+	float:left;
+	height:75px;
+	text-align: center;
+	font-size: 25px;
+	width: 38px;
+	font-family: fuente;
+	color: #f2f2f2;
+}
+.coloresTurno
+{
+	float: left;
+	height:75px;
+	width:530px;
+	padding-left: 15px;
+}
+
+.pistasTurno
+{
+	float:right;
+	height:75px;
+	width:530px;
+	padding-left: 10px;
+}
+
+.debug
+{
+	text-align: center;
+	font-size: 30px;
+}
+
+#accion
+{
+	font-size: 2em;
+	font-family: arial;
+}
+
+#otrosTurnos
+{
+	margin-top: 40px;
+}
+
+#turnos
+{
+	font-family: fuente;
+	font-size: 4em;
+	margin-top:20px;
+	margin-bottom:10px;
+	text-align: center;
+	color:#f2f2f2;
+}
+
+#slider
+{
+	width:70%;
+	margin-top:20px;
+	margin-bottom:40px;
 }

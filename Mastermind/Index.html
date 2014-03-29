@@ -22,16 +22,49 @@
 		<link rel="stylesheet" type="text/css" href="../Jquery/jquery-ui-1.10.4.custom.css">
 		
 
-		<link rel="stylesheet" type="text/css" href="Index.css">
 		<script src="JS/Config.js"></script>
+		<script src="JS/Utils.js"></script>
 		<script src="JS/EventsFunctions.js"></script>
 		<script src="JS/Events.js"></script>
-		<script src="JS/Utils.js"></script>
 		<script src="JS/Master.js"></script>
 		<script src="JS/MasterUI.js"></script>
+		<script src="JS/Cookies.js"></script>
+		<link rel="stylesheet" type="text/css" href="Index.css">
 
 	</head>
 	<body>
-		<button>hola</button>
+		<div id="titulo">
+			MasterMind
+		</div>
+		<div id="juego" class="center-block">
+			<div id="turnoActual">
+				<div id="contRellenar" class="center-block">
+				</div>
+				<div id="contPistas">
+					<div id="turnos">Turnos : 7</div>
+					<div id="slider" class="center-block"></div>
+					<button id="accion" class="btn btn-default center-block">Empezar A jugar</button>
+				</div>
+			</div>
+			<div id="otrosTurnos">
+		</div>
+
+		</div><!-- Modal informacion-->
+		<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myInfo" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myInfo">Información</h4>
+		      </div>
+		      <div class="modal-body" >
+					<div id="mensaje" class="alert alert-success">Has ganado</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 	</body>
 </html>
