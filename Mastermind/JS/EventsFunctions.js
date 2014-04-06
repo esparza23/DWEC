@@ -8,8 +8,14 @@ var eventsFunctions =
 		var nums = utils.numero(event.target.id);
 		var numCol = Math.floor(nums/10);
 		var numCss = nums%10;
-		//utils.alert(numCol+"-"+numCss);
 		utils.cambiarClase("#col"+numCol,"class"+numCss);
+	},
+
+	//Funcion que pone en blanco la redonda clickada por el usuario
+	colorBlanco: function(event)
+	{
+		var nums = utils.numero(event.target.id);
+		utils.cambiarClase("#col"+nums,"class0");
 	},
 
 	//funcion que pasa los turnos por el atajo de teclado
@@ -17,18 +23,20 @@ var eventsFunctions =
 	{
 		if(event.keyCode==13)
 		{
-			var val  = $("#rapid").val();
-			if(/^[0-6]{5}$/.test(val))
-			{
-				if(master.arrUs != null)
-					master.arrUs = master.arrUs.splice(0,master.length);
-				master.arrUs = new Array();
-				for(i=0;i<val.length;i++)
-					master.arrUs.push(val[i]);
-				master.pasaTurno(false);
-			}
-			else
-				utils.alert("No Valido");
+			masterUI.quitarMensajeErrorCaja();
+			master.comprobarCajaRapida();
 		}
+	},
+
+	//Controlamos el click en el boyon accion.Empezamos a jugar, o pasamos turno
+	accion : function(){
+		config.teclado = false;
+		master. prepararTurno();
+	},
+
+	//funcion que reinicia el juego
+	reiniciar : function()
+	{
+		master.reiniciaJuego();
 	}
 }

@@ -1,8 +1,8 @@
 body
 {
-	background-color: white;
 	background: #435242;
-	background-image: url("/images/zenbg.png");
+	background-image: url("zenbg.png");
+	background-repeat: repeat;
 }
 
 @font-face
@@ -251,4 +251,12 @@ body
 	width:70%;
 	margin-top:20px;
 	margin-bottom:40px;
+}
+
+.mensajeCaja
+{
+	width:70%;
+	float:left;
+	float:right;
+	margin-right: 50px;
 }

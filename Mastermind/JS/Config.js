@@ -19,4 +19,7 @@ var config =
 
 	//turno actual de la partida
 	turnoActual : null,
+
+	//saber si el turno se ha cogido desde teclado o no
+	teclado : null
 }

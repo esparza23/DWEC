@@ -51,9 +51,7 @@ var cookies =
 		else
 		{
 			var valor = cookies.getCookie("turnosMax");
-			utils.alert("Hay cookie "+ valor);
-			$("#slider" ).slider( "value", valor );
-			$("#turnos").text("Turnos : "+valor);
+			masterUI.ponerValorSlider(valor);
 		}
 	}
 }

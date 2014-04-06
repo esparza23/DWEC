@@ -3,7 +3,7 @@
 var masterUI =
 {
 	//Funcion que creara los espacios para que el usuario seleccione los nuevos colores
-	MostrarColoresRellenar : function()
+	mostrarColoresRellenar : function()
 	{
 		div = $("#contRellenar");
 		for(i=1;i<=config.numHuecos;i++)
@@ -51,11 +51,20 @@ var masterUI =
 				.attr("placeholder","12345")
 				.attr("id","rapid")
 				.attr("maxlength","5")
+				.css("float","left")
+				.css("height","52px")
+		)
+		div.append
+		(
+			$(document.createElement("div"))
+				.attr("id","mensCaja")
+				.attr("class","alert alert-danger mensajeCaja hidden")
+				.text("hoal")
 		)
 	},
 
 	//Funcion que muestra la lista de pistas en la interfaz
-	MostrarPistasEnLista : function(arrayPistas)
+	mostrarPistasEnLista : function(arrayPistas)
 	{
 		div = $("#contPistas");
 		for(i=1;i<=config.numHuecos;i++)
@@ -81,16 +90,33 @@ var masterUI =
 		}
 	},
 
+	//Funcion que quita los colores escogidos por el usuario para el siguiente turno
+	quitarColoresUsuario : function()
+	{
+		$(".colorUs").each(function(){
+			utils.cambiarClase("#"+$(this).attr("id"),"class0");
+		});
+	},
+
 	//Funcion que borra la lista de pistas de la interfaz
-	BorrarListaPistas : function(){
+	borrarListaPistas : function(){
 		$("#otrosTurnos").empty(); 
 	},
 
 	//Funcion que obtendra la información que el usuario haya puesto en el textbox de introduccion rapida
-	CapturarCajaRapida : function(){},
+	cogerColoresUsuario : function(){
+		if(master.arrUs != null)
+			master.arrUs = master.arrUs.splice(0,master.length);
+		master.arrUs = new Array();
+		$(".colorUs").each(function() {
+			var clases = $(this).attr('class');
+		   	master.arrUs.push(clases[clases.length-1]);
+		});
+	},
+
 
 	//Funcion para añadir la información del turno
-	AnadirInfoTurno : function(turno,arrayInfo)
+	anadirInfoTurno : function(turno,arrayInfo)
 	{
 		div = $("#otrosTurnos");
 		div.prepend
@@ -139,7 +165,7 @@ var masterUI =
 	},
 
 	//Funcion para añadir la información del turno
-	AnadirPistasTurno : function(turno,arrayPistas)
+	anadirPistasTurno : function(turno,arrayPistas)
 	{
 		div = $("#turno"+turno); 
 		div.append
@@ -174,13 +200,88 @@ var masterUI =
 	},
 
 	//Funcion que cambia el texto del boton
-	CambiarTextoBoton : function()
+	cambiarTextoBoton : function()
 	{
 		var but = $("#accion");
 		if(but.text() == "Empezar A jugar")
 			but.text("Dame pistas");
 		else
 			but.text("Empezar A jugar");
+	},
+
+	//Funcion que enseña el modal con el mensaje adecuado
+	muestraModal :function(mensaje,modo){
+		$('#info').modal({
+			keyboard: false,
+			backdrop:'static'
+		});
+		$('#mensaje').text(mensaje);
+		if(modo==1)
+		{
+			$('#mensaje').removeClass('alert-danger');
+			$('#mensaje').addClass('alert-success')
+		}
+		else
+		{
+			$('#mensaje').addClass('alert-danger');
+			$('#mensaje').removeClass('alert-success')
+		}
+	},
+
+	//funcion que muestra un mensaje de informacion cuando el usuario introduce mal 
+	//valores en la caja rapida
+	mensajeErrorCaja : function()
+	{
+		$("#mensCaja").removeClass('hidden');
+		$("#mensCaja").text("Tienen que ser 5 numeros del 0 al 6");
+	},
+
+	//funcion que quita el mensaje de error de la caja rapida
+	quitarMensajeErrorCaja : function()
+	{
+		$("#mensCaja").addClass('hidden');
+		$("#mensCaja").text("");
+	},
+
+	//funcion que inicializa el slider
+	inicializaSlider : function()
+	{
+		//Si el slider esta iniciaizado, lo destruimos(para ahorrarnos problemas)
+		if($("#slider").hasClass('ui-slider'))
+			$( "#slider" ).slider( "destroy" );
+
+		$( "#slider" ).slider({
+			value:10,
+			min: 7,
+			max: 16,
+			step: 1,
+			slide: function( event, ui ) {
+				$("#turnos").text("Turnos : "+ui.value);
+			}
+	    });
+
+		//comprobaremos si existe la cookie para los turnos maximos
+		cookies.comprobarCookieInicio();
+	},
+
+	//funcion que pone un valor al slider
+	ponerValorSlider : function(valor)
+	{
+		utils.alert("Hay cookie "+ valor);
+		$("#slider" ).slider( "value", valor );
+		$("#turnos").text("Turnos : "+valor);
+	},
+
+	//funcion que cambia el slider para que cuente hacia atras los turnos
+	cambiarSlider : function()
+	{
+		$( "#slider" ).slider( "destroy" );
+		$( "#slider" ).slider({
+			value: (config.turnos-config.turnoActual)-1,
+			min: 0,
+			max: config.turnos,
+			step: 1
+	    });
 	}
 
 }

@@ -57,6 +57,25 @@ var master =
 		utils.alert("be: "+master.numOK+" - parcialBe: "+master.numParc+" - mal: "+master.numKO);	
 	},
 
+	//funcion que comprueba los valores de la caja rapida, y si son correctos, los guarda.
+	comprobarCajaRapida : function()
+	{
+		var val  = $("#rapid").val();
+		if(/^[0-6]{5}$/.test(val))
+		{
+			if(master.arrUs != null)
+				master.arrUs = master.arrUs.splice(0,master.length);
+			master.arrUs = new Array();
+			for(i=0;i<val.length;i++)
+				master.arrUs.push(val[i]);
+			//master.pasaTurno(false);
+			config.teclado = true;
+			master. prepararTurno();
+		}
+		else
+			masterUI.mensajeErrorCaja();
+	},
+
 	//Funcion que genera el codigo de colores que el usuario tendra que averiguar.
 	generarCodigoOculto : function(){
 		master.arrOr = null;
@@ -66,18 +85,6 @@ var master =
 			master.arrOr.push(String(Math.floor((Math.random()*6)+1)));
 		}
 		utils.alert(master.arrOr);
-	},
-
-	//consigue el array introducido por el usuario
-	cogerColoresUsuario : function()
-	{
-		if(master.arrUs != null)
-			master.arrUs = master.arrUs.splice(0,master.length);
-		master.arrUs = new Array();
-		$(".colorUs").each(function() {
-			var clases = $(this).attr('class');
-		   	master.arrUs.push(clases[clases.length-1]);
-		});
 	},
 
 	//funcion que genera el array de pistas para mostrarlo por pantalla
@@ -92,45 +99,9 @@ var master =
 			master.arrPist.push("NO")
 	},
 
-
-	pasaTurno : function(teclado)
+	//Funcion 
+	prepararTurno : function()
 	{
-		config.turnoActual++;
-		if(teclado)
-			master.cogerColoresUsuario();
-		master.cuantasOK();
-		master.cuantasKO();
-		master.generaArrayPistas();
-		masterUI.AnadirInfoTurno(config.turnoActual,master.arrUs);
-		masterUI.AnadirPistasTurno(config.turnoActual,master.arrPist);
-		utils.alert("------------------------");
-		utils.alert("turno:"+config.turnoActual);
-		utils.alert("array usuario :"+master.arrUs);
-		utils.alert("array original :"+master.arrOr);
-		utils.alert("array pistas :"+master.arrPist);
-		utils.alert("------------------------");
-		$("#contRellenar").empty();
-		masterUI.MostrarColoresRellenar();
-		$(".colorPicker").click(eventsFunctions.colorPicker);
-		$("#rapid").keydown(eventsFunctions.atajoInput);
-	},
-
-
-	compruebaTurnos : function()
-	{
-		if(config.turnoActual == config.turnos)
-		{
-			$('#info').modal('show');
-			master.reiniciaJuego();
-			return false;
-		}
-		else 
-			return true;
-	},
-
-	//Controlamos el click en el boyon accion.Empezamos a jugar, o pasamos turno
-	accion : function(){
-
 		//seteamos la cookie si aun no hemos empezado a jugar
 		if(!config.jugando)
 		{
@@ -139,27 +110,51 @@ var master =
 			config.turnoActual = 0;
 			config.turnos = $("#slider").slider("option", "value");
 			cookies.setCookie("turnosMax",config.turnos,1);
-			$( "#slider" ).slider( "destroy" );
-			$( "#slider" ).slider({
-				value: (config.turnos-config.turnoActual)-1,
-				min: 0,
-				max: config.turnos,
-				step: 1
-		    });
-		    masterUI.CambiarTextoBoton();
+			masterUI.cambiarSlider();
+		    masterUI.cambiarTextoBoton();
 		}
-		$("#turnos").text("Turnos : "+((config.turnos-config.turnoActual)-1));
-		$("#slider" ).slider( "value", ((config.turnos-config.turnoActual)-1));
+		masterUI.ponerValorSlider(((config.turnos-config.turnoActual)-1));
 		
 		//pasamos turno
-		master.pasaTurno(true);
+		master.pasaTurno(config.teclado);
 		master.compruebaTurnos();
+		masterUI.quitarColoresUsuario();
+	},
 
-		//quitamos los colores de los circulos
-		$(".colorUs").each(function(){
-			utils.cambiarClase("#"+$(this).attr("id"),"class0");
-		});
-		
+	//Funcion que gestiona el paso de turno
+	pasaTurno : function(teclado)
+	{
+		config.turnoActual++;
+		$("#rapid").val("");
+		if(!teclado)
+			masterUI.cogerColoresUsuario();
+		master.cuantasOK();
+		master.cuantasKO();
+		master.generaArrayPistas();
+		masterUI.anadirInfoTurno(config.turnoActual,master.arrUs);
+		masterUI.anadirPistasTurno(config.turnoActual,master.arrPist);
+		if(master.numOK == 5)
+			masterUI.muestraModal("Has ganado",1);
+
+		//Sacamos el debug si esta activo
+		utils.alert("------------------------");
+		utils.alert("turno:"+config.turnoActual);
+		utils.alert("array usuario :"+master.arrUs);
+		utils.alert("array original :"+master.arrOr);
+		utils.alert("array pistas :"+master.arrPist);
+		utils.alert("------------------------");
+	},
+
+
+	compruebaTurnos : function()
+	{
+		if(config.turnoActual == config.turnos)
+		{
+			masterUI.muestraModal("Has perdido",2);
+			return false;
+		}
+		else 
+			return true;
 	},
 
 	//funcion que reinicia las variables para volver a jugar
@@ -167,7 +162,12 @@ var master =
 	{
 		config.jugando = false;
 		config.turnoActual = 0;
-		masterUi.BorrarListaPistas();
-		masterUI.CambiarTextoBoton();
+		masterUI.borrarListaPistas();
+		masterUI.cambiarTextoBoton();
+		masterUI.inicializaSlider();
+		master.generarCodigoOculto();
+		$('body,html').animate({
+			scrollTop: 0
+		}, 800);
 	}
 }
