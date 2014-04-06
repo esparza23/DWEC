@@ -103,7 +103,7 @@ var masterUI =
 		$("#otrosTurnos").empty(); 
 	},
 
-	//Funcion que obtendra la información que el usuario haya puesto en el textbox de introduccion rapida
+	//Funcion que obtendra los colores que haya puesto el usuario
 	cogerColoresUsuario : function(){
 		if(master.arrUs != null)
 			master.arrUs = master.arrUs.splice(0,master.length);
@@ -113,7 +113,6 @@ var masterUI =
 		   	master.arrUs.push(clases[clases.length-1]);
 		});
 	},
-
 
 	//Funcion para añadir la información del turno
 	anadirInfoTurno : function(turno,arrayInfo)
@@ -228,8 +227,7 @@ var masterUI =
 		}
 	},
 
-	//funcion que muestra un mensaje de informacion cuando el usuario introduce mal 
-	//valores en la caja rapida
+	//funcion que muestra un mensaje de informacion cuando el usuario introduce mal valores en la caja rapida
 	mensajeErrorCaja : function()
 	{
 		$("#mensCaja").removeClass('hidden');
@@ -282,6 +280,14 @@ var masterUI =
 			max: config.turnos,
 			step: 1
 	    });
+	},
+
+	//Funcion que sube arriba la pagina para poder ver el contenido inicial de la misma
+	subirArriba : function()
+	{
+		$('body,html').animate({
+			scrollTop: 0
+		}, 800);
 	}
 
 }

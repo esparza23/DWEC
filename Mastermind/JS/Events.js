@@ -4,6 +4,9 @@
 jQuery(document).ready(function($) {	
 
 	utils.alert("empezaremos a jugar");
+	
+	//colocamos la pagina arriba del todo, por si se hubiera bajado
+	masterUI.subirArriba();
 
 	//creamos la interfaz de seleccion de colores
 	masterUI.mostrarColoresRellenar();
@@ -17,11 +20,11 @@ jQuery(document).ready(function($) {
 	//Evento que controla el apretar teclas en el textbox
 	$("#rapid").keydown(eventsFunctions.atajoInput);
 
-	//generamos el codigo oculto para empezar a jugar
-	master.generarCodigoOculto();	
-
 	//controlamos el click en el boton de accion(jugar)
 	$("#accion").click(eventsFunctions.accion);
+
+	//generamos el codigo oculto para empezar a jugar
+	master.generarCodigoOculto();	
 
 	//accionamos e inicializamos el slider para escoger los turnos
 	masterUI.inicializaSlider();

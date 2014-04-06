@@ -3,7 +3,7 @@
 var config =
 {
 	//Si debug esta activo, se mostraran los mensajes por consola.
-	debug : 1,
+	debug : 0,
 
 	//Nos indica si estamos jugando o no
 	jugando: false,

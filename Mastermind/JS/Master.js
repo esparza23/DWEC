@@ -11,7 +11,7 @@ var master =
 	arrUsCop : null,
 	arrOrCop : null,
 
-	//Funcion que nos dice cuantos colores correctos ha puesto el usuario, pero en mala posicion.
+	//Funcion que nos dice cuantos colores correctos ha puesto el usuario, se guardan en numOK.
 	cuantasOK : function(){
 		master.numOK = 0;
 		master.numParc = 0;
@@ -32,7 +32,7 @@ var master =
 		}
 	},
 
-	//Funcion que nos dice cuantos colores correctos en mala posicion ha puesto el usuario y cuantos erroneos.
+	//Funcion que nos dice cuantos colores correctos en mala posicion ha puesto el usuario y cuantos erroneos. se guardan en numParc y numKO respectivamente
 	cuantasKO : function(){
 		var i =0;
 		while(i<master.arrUsCop.length)
@@ -68,7 +68,6 @@ var master =
 			master.arrUs = new Array();
 			for(i=0;i<val.length;i++)
 				master.arrUs.push(val[i]);
-			//master.pasaTurno(false);
 			config.teclado = true;
 			master. prepararTurno();
 		}
@@ -99,13 +98,12 @@ var master =
 			master.arrPist.push("NO")
 	},
 
-	//Funcion 
+	//Funcion que mira si estamos en el primer turno para configurar la partida, y si no ,pasamos turno.
 	prepararTurno : function()
 	{
-		//seteamos la cookie si aun no hemos empezado a jugar
 		if(!config.jugando)
 		{
-			//ponemos a true el booleano que nos dice si estamos jugando o no.
+			//ponemos a true el booleano que nos dice si estamos jugando o no y seteamos la cookie si aun no hemos empezado a jugar
 			config.jugando = !config.jugando;
 			config.turnoActual = 0;
 			config.turnos = $("#slider").slider("option", "value");
@@ -113,7 +111,6 @@ var master =
 			masterUI.cambiarSlider();
 		    masterUI.cambiarTextoBoton();
 		}
-		masterUI.ponerValorSlider(((config.turnos-config.turnoActual)-1));
 		
 		//pasamos turno
 		master.pasaTurno(config.teclado);
@@ -124,15 +121,23 @@ var master =
 	//Funcion que gestiona el paso de turno
 	pasaTurno : function(teclado)
 	{
+		//Pasamos turno en nuestro contador interno y lo mostramos en el slider.
+		masterUI.ponerValorSlider(((config.turnos-config.turnoActual)-1));
 		config.turnoActual++;
 		$("#rapid").val("");
+
+		//Si no se ha utilizado el atajo de teclado, cogemos los colores que ha introducido el usuario
 		if(!teclado)
 			masterUI.cogerColoresUsuario();
+
+		//comprobamos cuantas se han acertado y lo mostramos en la informacion.
 		master.cuantasOK();
 		master.cuantasKO();
 		master.generaArrayPistas();
 		masterUI.anadirInfoTurno(config.turnoActual,master.arrUs);
 		masterUI.anadirPistasTurno(config.turnoActual,master.arrPist);
+
+		//Mostramos el mensaje de hemos ganado si se da el caso
 		if(master.numOK == 5)
 			masterUI.muestraModal("Has ganado",1);
 
@@ -145,7 +150,7 @@ var master =
 		utils.alert("------------------------");
 	},
 
-
+	//Funcion que mira si se han acabado los turnos de la partida actual
 	compruebaTurnos : function()
 	{
 		if(config.turnoActual == config.turnos)
@@ -166,8 +171,6 @@ var master =
 		masterUI.cambiarTextoBoton();
 		masterUI.inicializaSlider();
 		master.generarCodigoOculto();
-		$('body,html').animate({
-			scrollTop: 0
-		}, 800);
+		masterUI.subirArriba();
 	}
 }

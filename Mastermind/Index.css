@@ -11,12 +11,6 @@ body
 	src: url(fuente.ttf);
 }
 
-@font-face
-{
-	font-family: letra;
-	src: url(letra.ttf);
-}
-
 #titulo
 {
 	height: 200px;
