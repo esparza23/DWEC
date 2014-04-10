@@ -59,7 +59,6 @@ var masterUI =
 			$(document.createElement("div"))
 				.attr("id","mensCaja")
 				.attr("class","alert alert-danger mensajeCaja hidden")
-				.text("hoal")
 		)
 	},
 
@@ -149,7 +148,6 @@ var masterUI =
 									.attr("id","col"+i)
 									.addClass("color debug")
 									.addClass("class"+arrayInfo[i].replace('O','0'))
-									.text(arrayInfo[i])
 							)
 					)
 			)
@@ -191,7 +189,6 @@ var masterUI =
 									.attr("id","col"+i)
 									.addClass("color debug")
 									.addClass("class"+arrayPistas[i])
-									.text(arrayPistas[i])
 							)
 					)
 			)
@@ -217,14 +214,15 @@ var masterUI =
 		$('#mensaje').text(mensaje);
 		if(modo==1)
 		{
-			$('#mensaje').removeClass('alert-danger');
-			$('#mensaje').addClass('alert-success')
+			$('#bodyModal').removeClass('alert-danger');
+			$('#bodyModal').addClass('alert-success')
 		}
 		else
 		{
-			$('#mensaje').addClass('alert-danger');
-			$('#mensaje').removeClass('alert-success')
+			$('#bodyModal').addClass('alert-danger');
+			$('#bodyModal').removeClass('alert-success')
 		}
+		masterUI.anadirInfoFinal(master.arrOr);
 	},
 
 	//funcion que muestra un mensaje de informacion cuando el usuario introduce mal valores en la caja rapida
@@ -288,6 +286,34 @@ var masterUI =
 		$('body,html').animate({
 			scrollTop: 0
 		}, 800);
-	}
+	},
+
+	//Funcion para añadir  el array de colores original en el mensaje final
+	anadirInfoFinal : function(arrayColores)
+	{
+		div = $("#original");
+		div.empty();
+		for(i=0;i<config.numHuecos;i++)
+		{
+			div.append
+			(
+				$(document.createElement("div"))
+					.attr("id","contCir"+i)
+					.addClass("contColors")
+					.append
+					(
+						$(document.createElement("div"))
+							.addClass("colInfo")
+							.append
+							(
+								$(document.createElement("div"))
+									.attr("id","col"+i)
+									.addClass("color debug")
+									.addClass("class"+arrayColores[i].replace('O','0'))
+							)
+					)
+			)
+		}
+	},
 
 }
