@@ -1,0 +1,99 @@
+<!DOCTYPE HTML SYSTEM>
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<!-- Carga Github -->
+		
+		<script src="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-1.10.2.js"></script>
+		<script src="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-ui-1.10.4.custom.js"></script>
+		<script src="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/js/bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Bootstrap/css/bootstrap.css"></link>
+		<link rel="stylesheet" type="text/css" href="https://rawgithub.com/esparza23/DWEC/master/Jquery/jquery-ui-1.10.4.custom.css">
+		
+		
+		<!-- Carga Local -->
+		
+		<script src="../Jquery/jquery-1.10.2.js"></script>
+		<script src="../Jquery/jquery-ui-1.10.4.custom.js"></script>
+		<script src="../Bootstrap/js/bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap.css"></link>
+		<link rel="stylesheet" type="text/css" href="../Jquery/jquery-ui-1.10.4.custom.css">
+
+		<script type="text/javascript"
+	      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGOBLUMYq1IcepNMNMcTTqBoovySt_Qic&sensor=true">
+	    </script>
+
+		<script src="index.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="index.css">
+
+	</head>
+	<body>
+		<div id="top" class="form-group ">
+			<input id="buscaNom" class="pull-left form-control"type="text" value="elmofoto">
+			<button id="busca" class="pull-left form-control btn btn-info">Buscar Usuario</button>
+			<select id="tagSelect" class="pull-left form-control" ></select>
+			<button id="carga" class="pull-left form-control" >Busca Fotos</button>
+		</div>
+		<div id="contErr">
+			<div id="errUs" class="alert alert-danger" hidden></div>
+		</div>
+		</br>
+		<div id="portada">
+			<img src="logo.png" alt="">
+		</div>	
+		<div id="fotos" hidden>
+		</div>
+		<div id="big" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Modal title</h4>
+					</div>
+					<div class="modal-body">
+
+
+
+						<div class="panel-group" id="accordion">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+								  <h4 class="panel-title">
+								    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+								      Mapa de la foto
+								    </a>
+								  </h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in">
+								  	<div class="panel-body">
+								  		<div id="mapa" ></div>
+								 	 </div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+								  <h4 class="panel-title">
+								    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+								      Imagen
+								    </a>
+								  </h4>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse">
+								  	<div class="panel-body">
+										<img id="img_big" src="" >
+										<div id="comments"></div>
+								  	</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				  	</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</body>
+</html>

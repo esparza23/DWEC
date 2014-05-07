@@ -1,0 +1,109 @@
+body
+{
+	background-color:#f2f2f2;
+	height: 100%;
+	width:100%;
+}
+#contErr
+{
+	position: absolute;
+	width:100%;
+	z-index: 100;
+	height: 400px;
+}
+
+#errUs
+{
+	width:200px;
+	text-align: center;
+	display: none;
+	margin:auto;
+	margin-top: 250px;
+	z-index: 100;
+}
+
+#top
+{
+	width:100%;
+	height: 75px;
+	position: fixed;
+	top:0;
+	z-index:500;
+	-webkit-box-shadow: 0px 15px 15px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 15px 15px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 15px 15px 0px rgba(0,0,0,0.75);
+	background-color: #282828;
+}
+
+#tagSelect,#carga
+{
+	display: none;
+}
+
+#buscaNom
+{
+	-webkit-box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.75);
+	box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.75);
+	background-color: white;
+}
+
+.pull-left
+{
+	width:250px;
+	margin:0 30px;
+}
+#fotos
+{
+	position: absolute;
+	width: 100%;
+	margin-top: 75px;
+	overflow: scroll;
+	background-color: #f2f2f2;
+}
+#portada
+{
+	position: absolute;
+	width: 100%;
+	margin-top: 75px;
+	height: 100%;
+	text-align: center;
+}
+
+#portada img
+{
+	margin-top: 50px;
+}
+
+.img_little
+{
+	cursor: pointer;
+	margin:15px 5px;
+	opacity: 0;
+}
+
+#big
+{
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}
+#big > div, #big >div>div
+{
+	width: 100%;
+	height: 100%;
+	overflow:scroll;
+}
+
+.pull-left
+{
+	position: relative;
+	top: 28%;
+	transform: translateY(-50%);
+}
+#mapa
+{
+	height: 400px;
+	width: 400px;
+	margin:auto;
+}
