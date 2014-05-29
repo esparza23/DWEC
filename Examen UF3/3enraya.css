@@ -1,0 +1,54 @@
+#taulell
+{
+	margin-top:20px;
+	margin-bottom:20px;
+	width: 450px;
+	height: 450px;
+}
+.fila
+{
+	height: 150px;
+	width:450px;
+	clear:both;
+	background-color: #f2f2f2;
+}
+
+.col
+{
+	float:left;
+	height: 150px;
+	width:150px;
+	background-color: #f2f2f2;
+	border:1px solid black;
+	box-sizing: border-box;
+}
+
+.fitxa1,.fitxa2
+{
+	margin:auto;
+	border-radius: 50%;
+	width:150px;
+	height: 150px;
+	border:1px solid black;
+	box-sizing:border-box;
+}
+
+.fitxa2
+{
+	background-color: #D24F47;
+}
+.fitxa1
+{
+	background-color: #00A2DC;
+}
+#turno
+{
+	font-size: 20px;
+}
+#mensajes
+{
+	text-align: center;
+	font-size: 25px;
+	height: 60px;
+	width:100%;
+}
